@@ -1,0 +1,124 @@
+body {
+  cursor: url('http://ionicframework.com/img/finger.png'), auto;
+}
+.slider {
+  height: 100%;
+}
+.slider-slide {
+  /*padding-top: 80px;*/
+  color: #000;
+  background-color: #fff;
+  text-align: center;
+
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+  font-weight: 300;
+}
+
+#logo {
+  margin: 30px 0px;
+}
+
+#list {
+  width: 170px;
+  margin: 30px auto;
+  font-size: 20px;
+}
+#list ol {
+  margin-top: 30px;
+}
+#list ol li {
+  text-align: left;
+  list-style: decimal;
+  margin: 10px 0px;
+}
+
+.button.ng-hide{
+  display:none;
+}
+
+
+@keyframes animatedBackground {
+  from { background-position: 0 0; }
+  to { background-position: 100% 0; }
+}
+
+@-webkit-keyframes animatedBackground {
+  from { background-position: 0 0; }
+  to { background-position: 100% 0; }
+}
+
+
+
+.page-1-scroll-content{
+    /*width: 560px; */
+  position:relative;
+  height: 800px; 
+  background-position: 0;
+  /*background-repeat: repeat-x;*/
+  background-size:cover;
+  -webkit-animation:animatedBackground 50s linear infinite;
+   -moz-animation:animatedBackground 50s linear infinite;
+    -ms-animation:animatedBackground 50s linear infinite;
+     -o-animation:animatedBackground 50s linear infinite;
+        animation:animatedBackground 50s linear infinite;
+}
+
+
+.page-2-scroll-content{
+    /*width: 550px; */
+  height: 800px; 
+  background-position: 0;
+  /*background-repeat: repeat-x;*/
+  background-size:cover;
+  -webkit-animation:animatedBackground 50s linear infinite;
+   -moz-animation:animatedBackground 50s linear infinite;
+    -ms-animation:animatedBackground 50s linear infinite;
+     -o-animation:animatedBackground 50s linear infinite;
+        animation:animatedBackground 50s linear infinite;
+}
+
+
+.page-3-scroll-content{
+    /*width: 550px; */
+  height: 800px; 
+  background-position: 0;
+  /*background-repeat: repeat-x;*/
+  background-size:cover;
+  -webkit-animation:animatedBackground 50s linear infinite;
+   -moz-animation:animatedBackground 50s linear infinite;
+    -ms-animation:animatedBackground 50s linear infinite;
+     -o-animation:animatedBackground 50s linear infinite;
+        animation:animatedBackground 50s linear infinite;
+}
+
+
+
+.page-4-scroll-content{
+    /*width: 550px; */
+  height: 800px; 
+  background-position: 0;
+  /*background-repeat: repeat-x;*/
+  background-size:cover;
+  -webkit-animation:animatedBackground 50s linear infinite;
+   -moz-animation:animatedBackground 50s linear infinite;
+    -ms-animation:animatedBackground 50s linear infinite;
+     -o-animation:animatedBackground 50s linear infinite;
+        animation:animatedBackground 50s linear infinite;
+}
+
+.facebook-login-container {
+  margin-top: -50%;
+  text-align: center;
+}
+
+.facebook-login-buttons {
+  margin-bottom: 3%;
+}
+
+.login-logo-container { 
+  /*text-align: center;*/
+  margin-top:-13%;
+  margin-left: auto;
+  margin-right: auto;
+
+}
