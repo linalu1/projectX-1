@@ -8,6 +8,7 @@ body {
 /* it from getting too large also */
 .bar-footer {
   overflow: visible !important;
+  bottom: 50px;
 }
 .bar-footer textarea {
   resize: none;
