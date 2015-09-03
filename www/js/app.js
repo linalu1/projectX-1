@@ -1,28 +1,48 @@
 angular.module('ionicApp', ['ionic'])
 
 .config(function($stateProvider, $urlRouterProvider) {
-
   $stateProvider
-  .state('intro', {
+  .state('login', {
     url: '/',
-    templateUrl: 'templates/intro.html',
-    controller: 'IntroCtrl'
+    templateUrl: 'templates/login.html',
+    controller: 'LoginCtrl'
   })
   .state('main', {
     url: '/main',
     templateUrl: 'templates/main.html',
     controller: 'MainCtrl'
+  })
+  .state('selectActivity', {
+    url: '/selectActivity',
+    templateUrl: 'templates/selectActivity.html',
+    controller: 'selectActivityCtrl'
   });
 
   $urlRouterProvider.otherwise("/");
 
 })
+.controller('selectActivityCtrl', function($scope, $state) {
+  $scope.toLogin = function(){
+    $state.go('login');
+  }
+  $scope.user = {
+    firstName: ''
+  };
 
-.controller('IntroCtrl', function($scope, $state, $ionicSlideBoxDelegate) {
+})
+
+
+.controller('LoginCtrl', function($scope, $state, $ionicSlideBoxDelegate) {
  
   // Called to navigate to the main app
   $scope.startApp = function() {
     $state.go('main');
+  };
+  $scope.loggingInFb = function() {
+    $state.go('selectActivity');
+  };
+  $scope.loggingInTwitter = function() {
+    $state.go('selectActivity');
   };
   $scope.next = function() {
     $ionicSlideBoxDelegate.next();
@@ -40,8 +60,23 @@ angular.module('ionicApp', ['ionic'])
 .controller('MainCtrl', function($scope, $state) {
   console.log('MainCtrl');
   
-  $scope.toIntro = function(){
-    $state.go('intro');
+  $scope.toLogin = function(){
+    $state.go('login');
+  }
+})
+
+.directive('ionMdInput', function(){
+  return {
+    restrict: 'E',
+    transclude: true,
+    template:
+      '<input type="text" required>'+
+      '<span class="md-highlight"></span>'+
+      '<span class="md-bar"></span>'+
+      '<label>{{label}}</label>',
+    scope: {
+      'label': '@'
+    }
   }
 });
 
