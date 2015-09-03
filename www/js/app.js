@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ionicApp', ['ionic', 'ionicApp.login', 'ionicApp.selectActivity'])
+angular.module('ionicApp', ['ionic', 'ionicApp.login', 'ionicApp.selectActivity', 'ionicApp.chat', 'angularMoment', 'luegg.directives'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -15,9 +15,14 @@ angular.module('ionicApp', ['ionic', 'ionicApp.login', 'ionicApp.selectActivity'
     controller: 'addFbLikesCtrl'
   })
   .state('chat', {
-    url: '/',
+    url: '/chat',
     templateUrl: 'js/chat/chat.html',
     controller: 'chatCtrl'
+  })
+  .state('chat-detail', {
+    url: '/chat/:chatId',
+    templateUrl: 'js/chat/chatdetail.html',
+    controller: 'chatDetailCtrl'
   })
   .state('otherUsers', {
     url: '/',
