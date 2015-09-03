@@ -41,9 +41,13 @@ angular.module('ionicApp', ['ionic', 'ionicApp.login', 'ionicApp.selectActivity'
   });
   $urlRouterProvider.otherwise("/");
 })
+
+// redundant unless this method is being used to hide top/bottom bar for login.html
+/*
 .run(function ($state, $rootScope) {
     $rootScope.$state = $state;
 })
+*/
 
 .directive('ionMdInput', function(){
   return {
