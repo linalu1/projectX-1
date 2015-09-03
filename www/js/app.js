@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ionicApp', ['ionic', 'ionicApp.login', 'ionicApp.selectActivity', 'ionicApp.chat'])
+angular.module('ionicApp', ['ionic', 'ionicApp.login', 'ionicApp.selectActivity', 'ionicApp.chat', 'angularMoment', 'luegg.directives'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider

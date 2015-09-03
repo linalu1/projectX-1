@@ -14,6 +14,7 @@
   <ion-content has-bouncing="true" class="has-header has-footer" 
       delegate-handle="userMessageScroll">
     
+    <!-- repeat and print every message in a message arr -->
       <div ng-repeat="message in chatMsgs" class="message-wrapper"
           on-hold="onMessageHold($event, $index, message)">
 
@@ -28,12 +29,15 @@
                   <div class="message" ng-bind-html="message.text" autolinker>
 
                   </div>
+                  <span style="font-weight: bold" am-time-ago="message.time"></span>
+
 
 
 
               </div>
           </div>
 
+    <!-- decide if the user is the person typing or not, and style approprialtly -->
           <div ng-if="user._id === message.userId">
             
                <img ng-click="viewProfile(message)" class="profile-pic right" 
@@ -45,6 +49,7 @@
                   <div class="message" ng-bind-html="message.text" autolinker>
 
                   </div>
+                  <span style="font-weight: bold" am-time-ago="message.time"></span>
 
 
 
@@ -52,11 +57,12 @@
             
           </div>
 
-          <div class="cf"></div>
+        <div class="cf"></div>
 
       </div>
   </ion-content>
 
+<!-- Submit form -->
   <form name="sendMessageForm" ng-submit="sendMessage(sendMessageForm)" novalidate>
       <ion-footer-bar class="bar-stable item-input-inset message-footer" keyboard-attach>
           <label class="item-input-wrapper">

@@ -20,7 +20,7 @@ angular.module('ionicApp.chat', [])
 
 
   $scope.submitText = function(text){
-    $scope.chatMsgs.push({text: text, userId: 123});
+    $scope.chatMsgs.push({text: text, userId: 123, time: new Date()});
     $scope.input.message = "";
   }
 })
