@@ -20,50 +20,35 @@
 
     <ion-nav-view></ion-nav-view>
 
+    <!-- ion top bar (navigation) -->
     <ion-header-bar class="bar-positive">
-      <button class="button button-clear" ng-click="newTask()">New</button>
-      <h1 class="title">Tasks</h1>
+      <button class="button button-clear">PlaceHolder</button>
+      <h1 class="title">Title</h1>
     </ion-header-bar>
 
-    <!-- ion tabs -->
-    <ion-tabs class="tabs-icon-only tabs-positive" data-ng-hide="$state.includes('ionicApp.login')">
-
-       <ion-tab title="Home" 
-                icon-on="ion-ios7-filing" 
-                icon-off="ion-ios7-filing-outline" 
-                ng-controller="HomeCtrl">
-         
-         <ion-header-bar class="bar-positive">
-           <button class="button button-clear" ng-click="newTask()">New</button>
-           <h1 class="title">Tasks</h1>
-         </ion-header-bar>
-         
-         <ion-content has-tabs="true" on-refresh="onRefresh()">
-
-           <ion-refresher></ion-refresher>
-         </ion-content>
-       </ion-tab>
-
-       <ion-tab title="About" icon-on="icon ion-ios7-clock" icon-off="icon ion-ios7-clock-outline">
-         <header class="bar bar-header bar-positive">
-           <h1 class="title">Deadlines</h1>
-         </header>
-         <ion-content has-header="true">
-           <h1>Deadlines</h1>
-         </ion-content>
-       </ion-tab>
-
-       <ion-tab title="Settings" icon-on="icon ion-ios7-gear" icon-off="icon ion-ios7-gear-outline">
-         <header class="bar bar-header bar-positive">
-           <h1 class="title">Settings</h1>
-         </header>
-         <ion-content has-header="true">
-           <h1>Settings</h1>
-         </ion-content>
-       </ion-tab>
-       
-     </ion-tabs>
-
+    <!-- ion tabs (bottom bar) -->
+    <ion-tabs class="tabs-icon-top tabs-color-active-positive">
+      <!-- See Nearby Users & Activities Tab -->
+      <ion-tab title="Home" icon-off="ion-ios-home-outline" icon-on="ion-ios-home" href="#/selectActivity">
+        <ion-nav-view name="tab-account"></ion-nav-view>
+      </ion-tab>
+      <!-- Select Activity Tab -->
+      <ion-tab title="Activity" icon-off="ion-happy-outline" icon-on="ion-happy" href="#/selectActivity">
+        <ion-nav-view name="tab-dash"></ion-nav-view>
+      </ion-tab>
+      <!-- Add FB Likes Tab -->
+      <ion-tab title="Your Likes" icon-off="ion-ios-heart-outline" icon-on="ion-ios-heart" href="#/selectActivity">
+        <ion-nav-view name="tab-account"></ion-nav-view>
+      </ion-tab>
+      <!-- Chats Tab -->
+      <ion-tab title="Chats" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/selectActivity">
+        <ion-nav-view name="tab-chats"></ion-nav-view>
+      </ion-tab>
+      <!-- Profile Tab -->
+      <ion-tab title="Profile" icon-off="ion-ios-glasses-outline" icon-on="ion-ios-glasses" href="#/selectActivity">
+        <ion-nav-view name="tab-account"></ion-nav-view>
+      </ion-tab>
+    </ion-tabs>
     <!-- ion tabs end here -->
 
     <!-- ionic -->
