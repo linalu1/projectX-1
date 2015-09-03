@@ -1,48 +1,59 @@
-angular.module('ionicApp', ['ionic'])
+'use strict';
+
+angular.module('ionicApp', ['ionic', 'ionicApp.login', 'ionicApp.selectActivity'])
 
 .config(function($stateProvider, $urlRouterProvider) {
-
   $stateProvider
-  .state('intro', {
+  .state('login', {
     url: '/',
-    templateUrl: 'templates/intro.html',
-    controller: 'IntroCtrl'
+    templateUrl: 'js/login/login.html',
+    controller: 'LoginCtrl'
   })
-  .state('main', {
-    url: '/main',
-    templateUrl: 'templates/main.html',
-    controller: 'MainCtrl'
+  .state('addFbLikes', {
+    url: '/',
+    templateUrl: 'js/addFbLikes/addFbLikes.html',
+    controller: 'addFbLikesCtrl'
+  })
+  .state('chat', {
+    url: '/',
+    templateUrl: 'js/chat/chat.html',
+    controller: 'chatCtrl'
+  })
+  .state('otherUsers', {
+    url: '/',
+    templateUrl: 'js/otherUsers/otherUsers.html',
+    controller: 'otherUsersCtrl'
+  })
+  .state('profile', {
+    url: '/',
+    templateUrl: 'js/profile/profile.html',
+    controller: 'profileCtrl'
+  })
+  .state('selectActivity', {
+    url: '/selectActivity',
+    templateUrl: 'js/selectActivity/selectActivity.html',
+    controller: 'selectActivityCtrl'
   });
-
   $urlRouterProvider.otherwise("/");
-
+})
+.run(function ($state, $rootScope) {
+    $rootScope.$state = $state;
 })
 
-.controller('IntroCtrl', function($scope, $state, $ionicSlideBoxDelegate) {
- 
-  // Called to navigate to the main app
-  $scope.startApp = function() {
-    $state.go('main');
-  };
-  $scope.next = function() {
-    $ionicSlideBoxDelegate.next();
-  };
-  $scope.previous = function() {
-    $ionicSlideBoxDelegate.previous();
-  };
-
-  // Called each time the slide changes
-  $scope.slideChanged = function(index) {
-    $scope.slideIndex = index;
-  };
-})
-
-.controller('MainCtrl', function($scope, $state) {
-  console.log('MainCtrl');
-  
-  $scope.toIntro = function(){
-    $state.go('intro');
+.directive('ionMdInput', function(){
+  return {
+    restrict: 'E',
+    transclude: true,
+    template:
+      '<input type="text" required>'+
+      // commented out to remove the 'flash' on input
+      // '<span class="md-highlight"></span>'+
+      '<span class="md-bar"></span>'+
+      '<label>{{label}}</label>',
+    scope: {
+      'label': '@'
+    }
   }
 });
 
-
+//add extra line at the end

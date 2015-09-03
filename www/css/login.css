@@ -120,5 +120,206 @@ body {
   margin-top:-13%;
   margin-left: auto;
   margin-right: auto;
+}
+
+/*ion-md-input initiate */
+ion-md-input {
+  position: relative;
+  margin-top: 45px;
+  margin-left: 20px;
+  display: block; }
+ion-md-input input {
+  font-size: 18px !important;
+  padding: 10px 10px 10px 5px !important;
+  display: block;
+  width: 110px; /* width change here */
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #ffc900 !important;
+  vertical-align: baseline; }
+ion-md-input input:focus {
+  outline: none; }
+ion-md-input .md-bar {
+  position: relative;
+  display: block;
+  width: 110px; } /* width change here */
+ion-md-input .md-bar:before {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #FFB03D;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all; }
+ion-md-input .md-bar:before {
+  left: 50%; }
+ion-md-input input:focus ~ .md-bar:before {
+  left: 0%;
+  width: 100%; }
+ion-md-input label {
+  color: #999;
+  font-size: 18px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 5px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+  width: 280px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
+ion-md-input input:focus ~ label, ion-md-input input:valid ~ label {
+  top: -20px;
+  font-size: 14px;
+  color: #FFB03D; }
+ion-md-input .md-highlight {
+  position: absolute;
+  height: 60%;
+  width: 100px;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5; }
+ion-md-input input:focus ~ .md-highlight {
+  -webkit-animation: inputHighlighter 0.3s ease;
+  -moz-animation: inputHighlighter 0.3s ease;
+  animation: inputHighlighter 0.3s ease; }
+@-webkit-keyframes inputHighlighter {
+  from { background: #FFB03D; }
+  to { width: 0; background: transparent; } }
+@-moz-keyframes inputHighlighter {
+  from { background: #FFB03D; }
+  to { width: 0; background: transparent; } }
+@keyframes inputHighlighter {
+  from { background: #FFB03D; }
+  to { width: 0; background: transparent; } }
+.item-md-label .hightlight-energized {
+  background: #ffc900;
+}
+/*ion-md-input end */
+
+/*
+.choosetodo-input-container {
+  position:fixed;
+  border: 1px solid black;
+}*/
+
+/**
+ * Position icons into circle (SO)
+ * http://stackoverflow.com/q/12813573/1397351 
+ */
+.circle-container {
+  position: relative;
+  width: 24em;
+  height: 24em;
+  padding: 2.8em; /*= 2em * 1.4 (2em = half the width of an img, 1.4 = sqrt(2))*/
+  /*border: dashed 1px;*/
+  border-radius: 50%;
+  margin: 1.75em auto 0;
+}
+.circle-container a {
+  display: block;
+  /*overflow: hidden;*/
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 4em; height: 4em;
+  margin: -2em; /* 2em = 4em/2 */ /* half the width */
+}
+
+.circle-container ion-md-input {
+  display: block;
+  /*overflow: hidden;*/
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 7em; height: 7em;
+  margin-top: -1em; /* 2em = 4em/2 */ /* half the width */
+  margin-bottom: -2em;
+  margin-right: -2em;
+  margin-left: -4em;
+  /*margin-bottom: -1em;*/
+}
+/*ng prefixer */
+.circle-container img { display: block; width: 100%; } /*width changes size of each image*/
+.deg0 { 
+  transform: translate(8em); 
+  -ms-transform: translate(8em); 
+  -webkit-transform: translate(8em); 
+  } /* 8em = half the width of the wrapper */
+.deg45 { 
+  transform: rotate(60deg) translate(8em) rotate(-60deg); 
+  -ms-transform: rotate(60deg) translate(8em) rotate(-60deg); 
+  -webkit-transform: rotate(60deg) translate(8em) rotate(-60deg); 
 
 }
+.deg135 { 
+  transform: rotate(120deg) translate(8em) rotate(-120deg); 
+  -ms-transform: rotate(120deg) translate(8em) rotate(-120deg); 
+  -webkit-transform: rotate(120deg) translate(8em) rotate(-120); 
+
+}
+.deg180 { 
+  transform: translate(-8em); 
+  -ms-transform: translate(-8em);x` 
+  -webkit-transform: translate(-8em); 
+
+}
+.deg225 { ca
+  transform: rotate(240deg) translate(8em) rotate(-240deg); 
+  -ms-transform: rotate(240deg) translate(8em) rotate(-240deg); 
+  -webkit-transform: rotate(240deg) translate(8em) rotate(-240deg); 
+
+}
+.deg315 { 
+  transform: rotate(300deg) translate(8em) rotate(-300deg); 
+  -ms-transform: rotate(300deg) translate(8em) rotate(-300deg); 
+  -webkit-transform: rotate(300deg) translate(8em) rotate(-300deg); 
+
+}
+
+/* this is just for showing the angle on hover */
+/*.circle-container a:not(.center):before {
+  position: absolute;
+  width: 4em;
+  color: white;
+  opacity: 0;
+  background: rgba(0,0,0,.5);
+  font: 1.25em/3.45 Courier, monospace;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-indent: -2em;
+  text-shadow: 0 0 .1em deeppink;*/
+  /*transition: .7s;  only works in Firefox */
+/*  content: attr(class)'°';
+}*/
+/*.circle-container a:hover:before { opacity: 1; }*/
+
+/* this is for showing the circle on which the images are placed */
+/*.circle-container:after {
+  position: absolute;
+  top: 2.8em; left: 2.8em;
+  width: 24em; height: 24em;
+  border: dashed 1px deeppink;
+  border-radius: 50%;
+  opacity: .3;
+  pointer-events: none;
+  content: '';
+}
+.circle-container:hover:after { opacity: 1; }
+.circle-container a:not(.center):after {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  box-shadow: 0 0 .5em .5em white;
+  margin: -2px;
+  background: deeppink;
+  opacity: .3;
+  content: '';
+}
+.circle-container:hover a:after { opacity: 1; }
+.circle-container a:hover:after { opacity: .3; }*/
