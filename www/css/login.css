@@ -224,7 +224,7 @@ ion-md-input input:focus ~ .md-highlight {
 }
 .circle-container a {
   display: block;
-  overflow: hidden;
+  /*overflow: hidden;*/
   position: absolute;
   top: 50%; left: 50%;
   width: 4em; height: 4em;
@@ -251,38 +251,38 @@ ion-md-input input:focus ~ .md-highlight {
   -webkit-transform: translate(8em); 
   } /* 8em = half the width of the wrapper */
 .deg45 { 
-  transform: rotate(45deg) translate(8em) rotate(-45deg); 
-  -ms-transform: rotate(45deg) translate(8em) rotate(-45deg); 
-  -webkit-transform: rotate(45deg) translate(8em) rotate(-45deg); 
+  transform: rotate(60deg) translate(8em) rotate(-60deg); 
+  -ms-transform: rotate(60deg) translate(8em) rotate(-60deg); 
+  -webkit-transform: rotate(60deg) translate(8em) rotate(-60deg); 
 
 }
 .deg135 { 
-  transform: rotate(135deg) translate(8em) rotate(-135deg); 
-  -ms-transform: rotate(135deg) translate(8em) rotate(-135deg); 
-  -webkit-transform: rotate(135deg) translate(8em) rotate(-135deg); 
+  transform: rotate(120deg) translate(8em) rotate(-120deg); 
+  -ms-transform: rotate(120deg) translate(8em) rotate(-120deg); 
+  -webkit-transform: rotate(120deg) translate(8em) rotate(-120); 
 
 }
 .deg180 { 
   transform: translate(-8em); 
-  -ms-transform: translate(-8em); 
+  -ms-transform: translate(-8em);x` 
   -webkit-transform: translate(-8em); 
 
 }
-.deg225 { 
-  transform: rotate(225deg) translate(8em) rotate(-225deg); 
-  -ms-transform: rotate(225deg) translate(8em) rotate(-225deg); 
-  -webkit-transform: rotate(225deg) translate(8em) rotate(-225deg); 
+.deg225 { ca
+  transform: rotate(240deg) translate(8em) rotate(-240deg); 
+  -ms-transform: rotate(240deg) translate(8em) rotate(-240deg); 
+  -webkit-transform: rotate(240deg) translate(8em) rotate(-240deg); 
 
 }
 .deg315 { 
-  transform: rotate(315deg) translate(8em) rotate(-315deg); 
-  -ms-transform: rotate(315deg) translate(8em) rotate(-315deg); 
-  -webkit-transform: rotate(315deg) translate(8em) rotate(-315deg); 
+  transform: rotate(300deg) translate(8em) rotate(-300deg); 
+  -ms-transform: rotate(300deg) translate(8em) rotate(-300deg); 
+  -webkit-transform: rotate(300deg) translate(8em) rotate(-300deg); 
 
 }
 
 /* this is just for showing the angle on hover */
-.circle-container a:not(.center):before {
+/*.circle-container a:not(.center):before {
   position: absolute;
   width: 4em;
   color: white;
@@ -292,11 +292,11 @@ ion-md-input input:focus ~ .md-highlight {
   letter-spacing: 2px;
   text-decoration: none;
   text-indent: -2em;
-  text-shadow: 0 0 .1em deeppink;
-  transition: .7s; /* only works in Firefox */
-  content: attr(class)'°';
-}
-.circle-container a:hover:before { opacity: 1; }
+  text-shadow: 0 0 .1em deeppink;*/
+  /*transition: .7s;  only works in Firefox */
+/*  content: attr(class)'°';
+}*/
+/*.circle-container a:hover:before { opacity: 1; }*/
 
 /* this is for showing the circle on which the images are placed */
 /*.circle-container:after {

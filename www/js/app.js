@@ -36,6 +36,9 @@ angular.module('ionicApp', ['ionic', 'ionicApp.login', 'ionicApp.selectActivity'
   });
   $urlRouterProvider.otherwise("/");
 })
+.run(function ($state, $rootScope) {
+    $rootScope.$state = $state;
+})
 
 .directive('ionMdInput', function(){
   return {
