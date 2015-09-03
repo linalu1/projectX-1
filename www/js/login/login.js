@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('ionicApp.login', [])
 
 .controller('LoginCtrl', function($scope, $state, $ionicSlideBoxDelegate) {
@@ -25,3 +27,4 @@ angular.module('ionicApp.login', [])
   };
 });
 
+// add extra line at end

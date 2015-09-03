@@ -1,4 +1,6 @@
-angular.module('ionicApp', ['ionic', 'ionicApp.login'])
+'use strict';
+
+angular.module('ionicApp', ['ionic', 'ionicApp.login', 'ionicApp.selectActivity'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -7,37 +9,32 @@ angular.module('ionicApp', ['ionic', 'ionicApp.login'])
     templateUrl: 'js/login/login.html',
     controller: 'LoginCtrl'
   })
-  .state('main', {
-    url: '/main',
-    templateUrl: 'templates/main.html',
-    controller: 'MainCtrl'
+  .state('addFbLikes', {
+    url: '/',
+    templateUrl: 'js/addFbLikes/addFbLikes.html',
+    controller: 'addFbLikesCtrl'
+  })
+  .state('chat', {
+    url: '/',
+    templateUrl: 'js/chat/chat.html',
+    controller: 'chatCtrl'
+  })
+  .state('otherUsers', {
+    url: '/',
+    templateUrl: 'js/otherUsers/otherUsers.html',
+    controller: 'otherUsersCtrl'
+  })
+  .state('profile', {
+    url: '/',
+    templateUrl: 'js/profile/profile.html',
+    controller: 'profileCtrl'
   })
   .state('selectActivity', {
     url: '/selectActivity',
-    templateUrl: 'templates/selectActivity.html',
+    templateUrl: 'js/selectActivity/selectActivity.html',
     controller: 'selectActivityCtrl'
   });
-
   $urlRouterProvider.otherwise("/");
-
-})
-.controller('selectActivityCtrl', function($scope, $state) {
-  $scope.toLogin = function(){
-    $state.go('login');
-  }
-  $scope.user = {
-    firstName: ''
-  };
-
-})
-
-
-.controller('MainCtrl', function($scope, $state) {
-  console.log('MainCtrl');
-  
-  $scope.toLogin = function(){
-    $state.go('login');
-  }
 })
 
 .directive('ionMdInput', function(){
@@ -46,7 +43,8 @@ angular.module('ionicApp', ['ionic', 'ionicApp.login'])
     transclude: true,
     template:
       '<input type="text" required>'+
-      '<span class="md-highlight"></span>'+
+      // commented out to remove the 'flash' on input
+      // '<span class="md-highlight"></span>'+
       '<span class="md-bar"></span>'+
       '<label>{{label}}</label>',
     scope: {
@@ -55,4 +53,4 @@ angular.module('ionicApp', ['ionic', 'ionicApp.login'])
   }
 });
 
-
+//add extra line at the end
