@@ -27,8 +27,7 @@
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
-    <!-- ng controllers  -->
-    <script type="text/javascript" src="js/app.js"></script>
+
 
 
 
@@ -47,46 +46,7 @@
      <!-- <script src="https://ajax.googleapis.com/ajax/libs/angular_material/0.10.0/angular-material.min.js"></script> -->
 
 
-    <script id="templates/login.html" type="text/ng-template"> 
-      
 
-      <ion-view>
-
-
-        <ion-content scroll="true">
-        </ion-content>
-          <ion-slide-box show-pager='true' does-continue='true' class='fade-in'>
-            <ion-slide> 
-              <div class="page-1-scroll-content" style="background-image: url('img/autumn-leaves.png')"></div>
-            </ion-slide>
-            <ion-slide>
-              <div class="page-2-scroll-content" style="background-image: url('img/beach-kids.png')"></div>
-            </ion-slide>
-            <ion-slide>
-              <div class="page-3-scroll-content" style="background-image: url('img/cafe-place.png')"></div>
-            </ion-slide>
-            <ion-slide>
-              <div class="page-4-scroll-content" style="background-image: url('img/bar-shots.jpg')"></div>
-          </ion-slide-box>
-
-          <ion-header-bar class="bar-clear">
-            <div class="login-logo-container"> 
-              <img style="height:200px" src = "img/hangout-logo-white.png">
-            </div>
-          </ion-header-bar>
-
-          <ion-footer-bar class="bar-clear">
-              
-            <div class="facebook-login-container">
-              <img ng-click="loggingInFb()" class = "facebook-login-buttons" style="height:60px" src = "img/facebook-login-crop-bkgrndv3.png">
-              <img ng-click="loggingInTwitter()" class = "twitter-login-buttons" style="height:60.4px" src = "img/twitter-login-cropped.png">
-            </div>
-
-          </ion-footer-bar>
-
-      </ion-view>
-
-    </script>
 
     <script id="templates/main.html" type="text/ng-template">
       <ion-view hide-back-button="true" view-title="Awesome">
@@ -111,6 +71,7 @@
 
 
       <ion-md-input type="text" label="What to do?"></ion-md-input>
+    </script>
 
 
   <!-- dependencies for angular -->
@@ -122,6 +83,12 @@
   <script src="https://gitcdn.xyz/repo/angular/bower-material/v0.10.1/angular-material.js"></script>
   <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/assets-cache.js"></script>
 
-    
+  <!-- ng controllers  -->
+  <script type="text/javascript" src="js/app.js"></script>
+  <script type="text/javascript" src="js/login/login.js"></script>
+
+
+
+
   </body>
 </html>

@@ -1,10 +1,10 @@
-angular.module('ionicApp', ['ionic'])
+angular.module('ionicApp', ['ionic', 'ionicApp.login'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
   .state('login', {
     url: '/',
-    templateUrl: 'templates/login.html',
+    templateUrl: 'js/login/login.html',
     controller: 'LoginCtrl'
   })
   .state('main', {
@@ -31,31 +31,6 @@ angular.module('ionicApp', ['ionic'])
 
 })
 
-
-.controller('LoginCtrl', function($scope, $state, $ionicSlideBoxDelegate) {
- 
-  // Called to navigate to the main app
-  $scope.startApp = function() {
-    $state.go('main');
-  };
-  $scope.loggingInFb = function() {
-    $state.go('selectActivity');
-  };
-  $scope.loggingInTwitter = function() {
-    $state.go('selectActivity');
-  };
-  $scope.next = function() {
-    $ionicSlideBoxDelegate.next();
-  };
-  $scope.previous = function() {
-    $ionicSlideBoxDelegate.previous();
-  };
-
-  // Called each time the slide changes
-  $scope.slideChanged = function(index) {
-    $scope.slideIndex = index;
-  };
-})
 
 .controller('MainCtrl', function($scope, $state) {
   console.log('MainCtrl');
