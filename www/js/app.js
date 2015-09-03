@@ -10,7 +10,7 @@ angular.module('ionicApp', ['ionic', 'ionicApp.login', 'ionicApp.selectActivity'
     controller: 'LoginCtrl'
   })
   .state('addFbLikes', {
-    url: '/',
+    url: '/addFbLikes',
     templateUrl: 'js/addFbLikes/addFbLikes.html',
     controller: 'addFbLikesCtrl'
   })
@@ -25,12 +25,12 @@ angular.module('ionicApp', ['ionic', 'ionicApp.login', 'ionicApp.selectActivity'
     controller: 'chatDetailCtrl'
   })
   .state('otherUsers', {
-    url: '/',
+    url: '/otherUsers',
     templateUrl: 'js/otherUsers/otherUsers.html',
     controller: 'otherUsersCtrl'
   })
   .state('profile', {
-    url: '/',
+    url: '/profile',
     templateUrl: 'js/profile/profile.html',
     controller: 'profileCtrl'
   })
