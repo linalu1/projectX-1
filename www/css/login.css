@@ -221,6 +221,7 @@ ion-md-input input:focus ~ .md-highlight {
   /*border: dashed 1px;*/
   border-radius: 50%;
   margin: 1.75em auto 0;
+  margin-top:6em;
 }
 .circle-container a {
   display: block;
@@ -228,7 +229,7 @@ ion-md-input input:focus ~ .md-highlight {
   position: absolute;
   top: 50%; left: 50%;
   /*width: 4em; height: 4em;*/
-  margin: -1.4em; /* 2em = 4em/2 */ /* half the width */
+  margin: -2em; /* 2em = 4em/2 */ /* half the width */
 }
 
 .circle-container ion-md-input {
@@ -239,7 +240,7 @@ ion-md-input input:focus ~ .md-highlight {
   width: 7em; height: 7em;
   margin-top: -2em; /* 2em = 4em/2 */ /* half the width */
   margin-bottom: -2em;
-  margin-right: -2em;
+  margin-right: -3em;
   margin-left: -4em;
   /*margin-bottom: -1em;*/
 }
@@ -289,7 +290,11 @@ ion-md-input input:focus ~ .md-highlight {
 
 i.interest-icon path {
   fill: #387EF5;
-  transform: scale(1.8);
+  /* originally scale was 1.8*/
+  transform: scale(1.8); 
+  -ms-transform: scale(1.8); 
+  -webkit-transform: scale(1.8); 
+
   }
   i.interest-icon:hover path {
     fill: #FFAC0D; /* #FFC900; */
