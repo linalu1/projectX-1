@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ionicApp', ['ionic', 'ionicApp.login', 'ionicApp.selectActivity', 'ionicApp.chat', 'angularMoment', 'luegg.directives', 'ngStorage'])
+angular.module('ionicApp', ['ionic', 'ionicApp.login', 'ionicApp.selectActivity', 'ionicApp.chat', 'angularMoment', 'luegg.directives', 'ngStorage', 'ngCordova'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -61,7 +61,7 @@ angular.module('ionicApp', ['ionic', 'ionicApp.login', 'ionicApp.selectActivity'
 
 .config(['$ionicConfigProvider', function($ionicConfigProvider) {
 
-    $ionicConfigProvider.tabs.position('standard'); // other values: top
+    $ionicConfigProvider.tabs.position('bottom'); // other values: top, standard
 
 }])
 
