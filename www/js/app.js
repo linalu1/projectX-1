@@ -49,6 +49,12 @@ angular.module('ionicApp', ['ionic', 'ionicApp.login', 'ionicApp.selectActivity'
 })
 */
 
+.config(['$ionicConfigProvider', function($ionicConfigProvider) {
+
+    $ionicConfigProvider.tabs.position('bottom'); // other values: top
+
+}])
+
 .directive('ionMdInput', function(){
   return {
     restrict: 'E',
