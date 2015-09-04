@@ -29,8 +29,8 @@ angular.module('ionicApp', ['ionic', 'ionicApp.login', 'ionicApp.selectActivity'
     authenticate: true
 
   })
-  .state('otherUsers', {
-    url: '/otherUsers',
+  .state('home', {
+    url: '/home',
     templateUrl: 'js/otherUsers/otherUsers.html',
     controller: 'otherUsersCtrl',
     authenticate: true

@@ -2,7 +2,7 @@
 
 angular.module('ionicApp.otherUsers', [])
 
-.controller('otherUsers', function($scope, $state, $rootScope) {
+.controller('otherUsersCtrl', function($scope, $state, $rootScope) {
   $rootScope.login = false;
 
 });
