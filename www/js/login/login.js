@@ -3,8 +3,8 @@
 angular.module('ionicApp.login', [])
 
 .controller('LoginCtrl', function($scope, $state, $ionicSlideBoxDelegate, $rootScope) {
-  $rootScope.$state = $state;
-  
+  $rootScope.login = true;
+
   // Called to navigate to the main app
   $scope.startApp = function() {
     $state.go('main');

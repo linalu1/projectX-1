@@ -3,6 +3,7 @@
 angular.module('ionicApp.selectActivity', [])
 
 .controller('selectActivityCtrl', function($scope, $state, $rootScope) {
+  $rootScope.login = false;
   $scope.toLogin = function(){
     $state.go('login');
   };
