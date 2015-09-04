@@ -18,6 +18,7 @@
       <div ng-repeat="message in chatMsgs" class="message-wrapper"
           on-hold="onMessageHold($event, $index, message)">
 
+
           <div ng-if="user._id !== message.userId">
               
             <img ng-click="viewProfile(message)" class="profile-pic left" 
