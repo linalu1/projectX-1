@@ -3,12 +3,15 @@
 angular.module('ionicApp.chat', [])
 
 .controller('chatCtrl', function($scope, $state, $rootScope) {
+  $rootScope.login = false;
   $scope.chats = [{name: "Omar", lastText: "LOL", face: "http://img.timeinc.net/time/daily/2010/1011/poy_nomination_agassi.jpg", id: 123}];
 })
 
 .controller('chatDetailCtrl', function($scope, $state, $rootScope, $ionicScrollDelegate) {
   // some get req based on the id to get info on that certian chat
   // each chat room has a socket id.... we can use that id itself... bam
+  $rootScope.login = false;
+
 
   // ajax request here
   // ajax response here 

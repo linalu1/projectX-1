@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('ionicApp', ['ionic', 'ionicApp.login', 'ionicApp.selectActivity', 'ionicApp.chat', 'angularMoment', 'luegg.directives'])
+angular.module('ionicApp', ['ionic', 'ionicApp.login', 'ionicApp.selectActivity', 'ionicApp.chat', 'angularMoment', 'luegg.directives', 'ngStorage'])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
@@ -12,32 +12,42 @@ angular.module('ionicApp', ['ionic', 'ionicApp.login', 'ionicApp.selectActivity'
   .state('addFbLikes', {
     url: '/addFbLikes',
     templateUrl: 'js/addFbLikes/addFbLikes.html',
-    controller: 'addFbLikesCtrl'
+    controller: 'addFbLikesCtrl',
+    authenticate: true
   })
   .state('chat', {
     url: '/chat',
     templateUrl: 'js/chat/chat.html',
-    controller: 'chatCtrl'
+    controller: 'chatCtrl',
+    authenticate: true
+
   })
   .state('chat-detail', {
     url: '/chat/:chatId',
     templateUrl: 'js/chat/chatdetail.html',
-    controller: 'chatDetailCtrl'
+    controller: 'chatDetailCtrl',
+    authenticate: true
+
   })
   .state('otherUsers', {
     url: '/otherUsers',
     templateUrl: 'js/otherUsers/otherUsers.html',
-    controller: 'otherUsersCtrl'
+    controller: 'otherUsersCtrl',
+    authenticate: true
+
   })
   .state('profile', {
     url: '/profile',
     templateUrl: 'js/profile/profile.html',
-    controller: 'profileCtrl'
+    controller: 'profileCtrl',
+    authenticate: true
   })
   .state('selectActivity', {
     url: '/selectActivity',
     templateUrl: 'js/selectActivity/selectActivity.html',
-    controller: 'selectActivityCtrl'
+    controller: 'selectActivityCtrl',
+    authenticate: true
+
   });
   $urlRouterProvider.otherwise("/");
 })
@@ -54,6 +64,20 @@ angular.module('ionicApp', ['ionic', 'ionicApp.login', 'ionicApp.selectActivity'
     $ionicConfigProvider.tabs.position('standard'); // other values: top
 
 }])
+
+.run(function($localStorage, $rootScope, $location){
+
+  if ($localStorage.access_token) {
+    $location.path('/profile');
+  }
+
+  $rootScope.$on('$stateChangeStart', function (evt, next, current) {
+    if (next.authenticate && !$localStorage.access_token) {
+      $rootScope.login = false;
+      $location.path('/');
+    }
+  });
+})
 
 .directive('ionMdInput', function(){
   return {
