@@ -21,7 +21,6 @@ angular.module('ionicApp.login', [])
   };
 
   $scope.loggingInTwitter = function() {
-    $state.go('selectActivity');
   };
   $scope.next = function() {
     $ionicSlideBoxDelegate.next();
