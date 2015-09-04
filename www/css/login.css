@@ -227,8 +227,8 @@ ion-md-input input:focus ~ .md-highlight {
   /*overflow: hidden;*/
   position: absolute;
   top: 50%; left: 50%;
-  width: 4em; height: 4em;
-  margin: -2em; /* 2em = 4em/2 */ /* half the width */
+  /*width: 4em; height: 4em;*/
+  margin: -1.4em; /* 2em = 4em/2 */ /* half the width */
 }
 
 .circle-container ion-md-input {
@@ -237,7 +237,7 @@ ion-md-input input:focus ~ .md-highlight {
   position: absolute;
   top: 50%; left: 50%;
   width: 7em; height: 7em;
-  margin-top: -1em; /* 2em = 4em/2 */ /* half the width */
+  margin-top: -2em; /* 2em = 4em/2 */ /* half the width */
   margin-bottom: -2em;
   margin-right: -2em;
   margin-left: -4em;
@@ -245,41 +245,55 @@ ion-md-input input:focus ~ .md-highlight {
 }
 /*ng prefixer */
 .circle-container img { display: block; width: 100%; } /*width changes size of each image*/
+/* rotate = 360/icon_count translate=8em */
 .deg0 { 
   transform: translate(8em); 
   -ms-transform: translate(8em); 
   -webkit-transform: translate(8em); 
   } /* 8em = half the width of the wrapper */
 .deg45 { 
-  transform: rotate(60deg) translate(8em) rotate(-60deg); 
-  -ms-transform: rotate(60deg) translate(8em) rotate(-60deg); 
-  -webkit-transform: rotate(60deg) translate(8em) rotate(-60deg); 
-
+  transform: rotate(45deg) translate(8em) rotate(-45deg); 
+  -ms-transform: rotate(45deg) translate(8em) rotate(-45deg); 
+  -webkit-transform: rotate(45deg) translate(8em) rotate(-45deg); 
+}
+.deg90 { 
+  transform: rotate(90deg) translate(8em) rotate(-90deg); 
+  -ms-transform: rotate(90deg) translate(8em) rotate(-90deg); 
+  -webkit-transform: rotate(90deg) translate(8em) rotate(-90deg); 
 }
 .deg135 { 
-  transform: rotate(120deg) translate(8em) rotate(-120deg); 
-  -ms-transform: rotate(120deg) translate(8em) rotate(-120deg); 
-  -webkit-transform: rotate(120deg) translate(8em) rotate(-120); 
-
+  transform: rotate(135deg) translate(8em) rotate(-135deg); 
+  -ms-transform: rotate(135deg) translate(8em) rotate(-135deg); 
+  -webkit-transform: rotate(135deg) translate(8em) rotate(-135deg); 
 }
 .deg180 { 
   transform: translate(-8em); 
-  -ms-transform: translate(-8em);x` 
+  -ms-transform: translate(-8em);
   -webkit-transform: translate(-8em); 
-
 }
-.deg225 { ca
-  transform: rotate(240deg) translate(8em) rotate(-240deg); 
-  -ms-transform: rotate(240deg) translate(8em) rotate(-240deg); 
-  -webkit-transform: rotate(240deg) translate(8em) rotate(-240deg); 
-
+.deg225 {
+  transform: rotate(225deg) translate(8em) rotate(-225deg); 
+  -ms-transform: rotate(225deg) translate(8em) rotate(-225deg); 
+  -webkit-transform: rotate(225deg) translate(8em) rotate(-225deg); 
+}
+.deg270 {
+  transform: rotate(270deg) translate(8em) rotate(-270deg); 
+  -ms-transform: rotate(270deg) translate(8em) rotate(-270deg); 
+  -webkit-transform: rotate(270deg) translate(8em) rotate(-270deg); 
 }
 .deg315 { 
-  transform: rotate(300deg) translate(8em) rotate(-300deg); 
-  -ms-transform: rotate(300deg) translate(8em) rotate(-300deg); 
-  -webkit-transform: rotate(300deg) translate(8em) rotate(-300deg); 
-
+  transform: rotate(315deg) translate(8em) rotate(-315deg); 
+  -ms-transform: rotate(315deg) translate(8em) rotate(-315deg); 
+  -webkit-transform: rotate(315deg) translate(8em) rotate(-315deg); 
 }
+
+i.interest-icon path {
+  fill: #387EF5;
+  transform: scale(1.8);
+  }
+  i.interest-icon:hover path {
+    fill: #FFAC0D; /* #FFC900; */
+  }
 
 /* this is just for showing the angle on hover */
 /*.circle-container a:not(.center):before {
