@@ -2,7 +2,7 @@
 
 angular.module('ionicApp.profile', [])
 
-.controller('profile', function($scope, $state, $rootScope) {
+.controller('profileCtrl', function($scope, $state, $rootScope) {
   $rootScope.login = false;
 
 });
