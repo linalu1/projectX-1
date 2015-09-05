@@ -25,40 +25,40 @@ angular.module('ionicApp', [
     url: '/addFbLikes',
     templateUrl: 'js/addFbLikes/addFbLikes.html',
     controller: 'addFbLikesCtrl',
-    // authenticate: true // change to 'false' for testing
+    authenticate: false // change to 'false' for testing
   })
   .state('chat', {
     url: '/chat',
     templateUrl: 'js/chat/chat.html',
     controller: 'chatCtrl',
-    // authenticate: true // change to 'false' for testing
+    authenticate: false // change to 'false' for testing
 
   })
   .state('chat-detail', {
     url: '/chat/:chatId',
     templateUrl: 'js/chat/chatdetail.html',
     controller: 'chatDetailCtrl',
-    // authenticate: true // change to 'false' for testing
+    authenticate: false // change to 'false' for testing
 
   })
   .state('home', {
     url: '/home',
     templateUrl: 'js/otherUsers/otherUsers.html',
     controller: 'otherUsersCtrl',
-    // authenticate: true // change to 'false' for testing
+    authenticate: false // change to 'false' for testing
 
   })
   .state('profile', {
     url: '/profile',
     templateUrl: 'js/profile/profile.html',
     controller: 'profileCtrl',
-    // authenticate: true // change to 'false' for testing
+    authenticate: false // change to 'false' for testing
   })
   .state('selectActivity', {
     url: '/selectActivity',
     templateUrl: 'js/selectActivity/selectActivity.html',
     controller: 'selectActivityCtrl',
-    // authenticate: true // change to 'false' for testing
+    authenticate: false // change to 'false' for testing
 
   });
   $urlRouterProvider.otherwise("/");
