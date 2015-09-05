@@ -1,52 +1,65 @@
 'use strict';
 
-angular.module('ionicApp', ['ionic', 'ionicApp.login', 'ionicApp.selectActivity', 'ionicApp.chat', 'angularMoment', 'luegg.directives', 'ngStorage', 'ngCordova'])
+angular.module('ionicApp', [
+  'ionic', 
+  'ionicApp.login', 
+  'ionicApp.selectActivity', 
+  'ionicApp.chat', 
+  'angularMoment', 
+  'luegg.directives', 
+  'ngStorage', 
+  'ionicApp.otherUsers', 
+  'ionicApp.profile', 
+  'ionicApp.addFbLikes',
+  'ngCordova'
+])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
   .state('login', {
     url: '/',
     templateUrl: 'js/login/login.html',
-    controller: 'LoginCtrl'
+    controller: 'LoginCtrl',
+    authenticate: false
   })
   .state('addFbLikes', {
     url: '/addFbLikes',
     templateUrl: 'js/addFbLikes/addFbLikes.html',
     controller: 'addFbLikesCtrl',
-    authenticate: true
+    authenticate: false // change to false for testing
   })
   .state('chat', {
     url: '/chat',
     templateUrl: 'js/chat/chat.html',
     controller: 'chatCtrl',
-    authenticate: true
+    authenticate: false // change to false for testing
 
   })
   .state('chat-detail', {
     url: '/chat/:chatId',
     templateUrl: 'js/chat/chatdetail.html',
     controller: 'chatDetailCtrl',
-    authenticate: true
+    authenticate: false // change to false for testing
 
   })
   .state('home', {
     url: '/home',
     templateUrl: 'js/otherUsers/otherUsers.html',
     controller: 'otherUsersCtrl',
-    authenticate: true
+    authenticate: false // change to false for testing
 
   })
   .state('profile', {
     url: '/profile',
     templateUrl: 'js/profile/profile.html',
     controller: 'profileCtrl',
-    authenticate: true
+    authenticate: false // change to false for testing
   })
   .state('selectActivity', {
     url: '/selectActivity',
     templateUrl: 'js/selectActivity/selectActivity.html',
     controller: 'selectActivityCtrl',
-    authenticate: true
+    authenticate: false // change to false for testing
 
   });
   $urlRouterProvider.otherwise("/");

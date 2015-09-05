@@ -35,9 +35,6 @@ angular.module('ionicApp.selectActivity', [])
     firstName: ''
   }
 
-  $rootScope.$state = $state;
-
-
 });
 
 // add extra line at end

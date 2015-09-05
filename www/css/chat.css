@@ -108,14 +108,14 @@ img.profile-pic.right {
 }
 
 .chat-bubble.right {
-  background-color: #158ffe;
+  background-color: #11C1F3;
   color: #fff;
   float: right;
   margin-right: 55px;
 }
 
 .chat-bubble.right:before {
-  background-color: #158ffe;
+  background-color: #11C1F3;
   right: 10px;
   -webkit-transform: rotate(118deg) skew(-5deg);
 }
@@ -141,8 +141,8 @@ img.profile-pic.right {
   top: -3px;
 }
 
-input, textarea, .item-input, .item-input-wrapper {
-  background-color: #f4f4f4 !important;
+input .chat-input, textarea, .item-input, .item-input-wrapper {
+  background-color: #F8F8F8 !important;
 }
 
 .bold {

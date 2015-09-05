@@ -2,7 +2,7 @@
 
 angular.module('ionicApp.addFbLikes', [])
 
-.controller('addFbLikes', function($scope, $state, $rootScope) {
+.controller('addFbLikesCtrl', function($scope, $state, $rootScope) {
   $rootScope.login = false;
 
 });

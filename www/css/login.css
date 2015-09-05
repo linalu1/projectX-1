@@ -135,7 +135,7 @@ ion-md-input input {
   width: 110px; /* width change here */
   border: none;
   border-radius: 0;
-  border-bottom: 1px solid #ffc900 !important;
+  border-bottom: 1px solid #11C1F3 !important;
   vertical-align: baseline; }
 ion-md-input input:focus {
   outline: none; }
@@ -149,7 +149,7 @@ ion-md-input .md-bar:before {
   width: 0;
   bottom: 1px;
   position: absolute;
-  background: #FFB03D;
+  background: #11C1F3;
   transition: 0.2s ease all;
   -moz-transition: 0.2s ease all;
   -webkit-transition: 0.2s ease all; }
@@ -176,7 +176,7 @@ ion-md-input label {
 ion-md-input input:focus ~ label, ion-md-input input:valid ~ label {
   top: -20px;
   font-size: 14px;
-  color: #FFB03D; }
+  color: #11C1F3; }
 ion-md-input .md-highlight {
   position: absolute;
   height: 60%;
@@ -190,16 +190,16 @@ ion-md-input input:focus ~ .md-highlight {
   -moz-animation: inputHighlighter 0.3s ease;
   animation: inputHighlighter 0.3s ease; }
 @-webkit-keyframes inputHighlighter {
-  from { background: #FFB03D; }
+  from { background: #11C1F3; }
   to { width: 0; background: transparent; } }
 @-moz-keyframes inputHighlighter {
-  from { background: #FFB03D; }
+  from { background: #11C1F3; }
   to { width: 0; background: transparent; } }
 @keyframes inputHighlighter {
-  from { background: #FFB03D; }
+  from { background: #11C1F3; }
   to { width: 0; background: transparent; } }
 .item-md-label .hightlight-energized {
-  background: #ffc900;
+  background: #11C1F3;
 }
 /*ion-md-input end */
 
@@ -285,11 +285,11 @@ ion-md-input input:focus ~ .md-highlight {
 .deg315 { 
   transform: rotate(315deg) translate(8em) rotate(-315deg); 
   -ms-transform: rotate(315deg) translate(8em) rotate(-315deg); 
-  -webkit-transform: rotate(315deg) translate(8em) rotate(-315deg); 
+  -webkit-transform: rotate(315deg) translate(8em) rotsate(-315deg); 
 }
 
 i.interest-icon path {
-  fill: #387EF5;
+  fill: #11C1F3;
   /* originally scale was 1.8*/
   transform: scale(1.8); 
   -ms-transform: scale(1.8); 
@@ -342,3 +342,67 @@ i.interest-icon path {
 }
 .circle-container:hover a:after { opacity: 1; }
 .circle-container a:hover:after { opacity: .3; }*/
+
+img.home-profile-pic {
+  width: 7em;
+  /*height: 50px;*/
+  border-radius: 50%;
+  position: relative;
+  margin-top:-1em;
+  margin-left:-0.5em;
+  margin-bottom:-1em;
+
+  /*padding: -4em;*/
+  /*bottom: 10px;*/
+  /*padding-top:200em;*/
+}
+
+i.user-card {
+  font-size:2.5em;
+  /*top:50%;*/
+  /*bottom: 50%;*/
+  vertical-align: middle;
+
+}
+
+button.user-card-button {
+  /*margin-top:-1em;*/
+  /*margin-left:-0.5em;*/
+
+  /*margin-bottom:-1em;*/
+  /*text-align:center;*/
+  /*margin-left:50%;*/
+  /*margin-right:50%;*/
+}
+
+div.user-card-column {
+  margin-top:-1em;
+  margin-left:-0.5em;
+  margin-bottom:-1em;
+
+  /*text-align:center;*/
+}
+
+p.user-card-list {
+  margin-top: -1em;
+  margin-left:-0.5em;  
+}
+
+p.user-card-list-item {
+}
+
+.user-card-list a {
+
+  text-decoration: none !important;
+}
+
+i.user-card-msg-icon {
+  font-size:2em;  
+  /*display:inline-block;*/
+  
+}
+
+h1.home-username{ 
+  display:inline-block;
+
+}
