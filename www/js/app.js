@@ -25,13 +25,13 @@ angular.module('ionicApp', [
     url: '/addFbLikes',
     templateUrl: 'js/addFbLikes/addFbLikes.html',
     controller: 'addFbLikesCtrl',
-    authenticate: true // change to 'true' for testing
+    authenticate: true // change to 'false' for testing
   })
   .state('chat', {
     url: '/chat',
     templateUrl: 'js/chat/chat.html',
     controller: 'chatCtrl',
-    authenticate: true // change to 'true' for testing
+    authenticate: true // change to 'false' for testing
 
   })
   .state('chat-detail', {
@@ -44,14 +44,14 @@ angular.module('ionicApp', [
     url: '/home',
     templateUrl: 'js/otherUsers/otherUsers.html',
     controller: 'otherUsersCtrl',
-    authenticate: true // change to 'true' for testing
+    authenticate: true // change to 'false' for testing
 
   })
   .state('profile', {
     url: '/profile',
     templateUrl: 'js/profile/profile.html',
     controller: 'profileCtrl',
-    authenticate: true // change to 'true' for testing
+    authenticate: true // change to 'false' for testing
   })
   .state('selectActivity', {
     url: '/selectActivity',

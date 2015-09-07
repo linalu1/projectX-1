@@ -15,7 +15,9 @@ angular.module('ionicApp.login', [])
 
         console.log(result);
         $http.post('http://10.6.1.162:3000/api/auth/facebook', {access_token: result.access_token})
-          .then(function(){
+          .then(function(userDataInfo){
+            console.log(userDataInfo);
+            $localStorage.userData = userDataInfo.data;
             $localStorage.access_token = result.access_token;
             $state.go("selectActivity");
           });

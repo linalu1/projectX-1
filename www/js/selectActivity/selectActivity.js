@@ -8,7 +8,8 @@ angular.module('ionicApp.selectActivity', [])
   $rootScope, 
   $cordovaGeolocation, 
   $ionicLoading,
-  $http
+  $http,
+  $localStorage
   ) 
 {
   $scope.label = "Select Activity";
@@ -36,8 +37,9 @@ angular.module('ionicApp.selectActivity', [])
         var long = position.coords.longitude
         console.log(lat);
         console.log(long);
+        console.log($localStorage.userData);
 
-        $http.post('http://10.6.1.162:3000/api/checkin', {latitude: lat, longitude: long, activity: $scope.label, userId: 123})
+        $http.post('http://10.6.1.162:3000/api/checkin', {latitude: lat, longitude: long, activity: $scope.label, userId: $localStorage.userData.fbId})
           .then(function(){
             console.log('ADDED');
             $ionicLoading.hide();
