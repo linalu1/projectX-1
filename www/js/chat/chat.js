@@ -30,6 +30,10 @@ angular.module('ionicApp.chat', [])
     viewScroll.resize();
     viewScroll.scrollBottom();
   }
+
+  $scope.redirectToChats = function() {
+    $state.go('chat');
+  }
 })
 
 // add extra line at end
