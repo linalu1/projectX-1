@@ -7,7 +7,8 @@ angular.module('ionicApp.selectActivity', [])
   $state, 
   $rootScope, 
   $cordovaGeolocation, 
-  $ionicLoading
+  $ionicLoading,
+  $http
   ) 
 {
   $scope.label = "Select Activity";
@@ -17,15 +18,17 @@ angular.module('ionicApp.selectActivity', [])
   }
   
   $scope.postActivity = function(){
-    if (!$scope.label || $scope.label === '') {
+    if (!$scope.label || $scope.label === '' || $scope.label === 'Select Activity') {
       alert('Select something');
       return;
     }
 
     $ionicLoading.show({
-      template: 'Getting position...'
+      template: 'Adding Activity...'
     });
+
     var posOptions = {timeout: 5000, enableHighAccuracy: false};
+
     $cordovaGeolocation
       .getCurrentPosition(posOptions)
       .then(function (position) {
@@ -33,7 +36,15 @@ angular.module('ionicApp.selectActivity', [])
         var long = position.coords.longitude
         console.log(lat);
         console.log(long);
-        $ionicLoading.hide();
+
+        $http.post('http://10.6.1.162:3000/api/checkin', {latitude: lat, longitude: long, activity: $scope.label, userId: 123})
+          .then(function(){
+            console.log('ADDED');
+            $ionicLoading.hide();
+          }, function(err){
+            $ionicLoading.hide();
+            alert('Failed to add Activity');
+          })
 
       }, function(err) {
         console.log(err);
