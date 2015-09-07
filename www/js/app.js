@@ -5,12 +5,12 @@ angular.module('ionicApp', [
   'ionicApp.login', 
   'ionicApp.selectActivity', 
   'ionicApp.chat', 
-  'angularMoment', 
-  'luegg.directives', 
-  'ngStorage', 
   'ionicApp.otherUsers', 
   'ionicApp.profile', 
   'ionicApp.addFbLikes',
+  'angularMoment', 
+  'luegg.directives', 
+  'ngStorage', 
   'ngCordova'
 ])
 

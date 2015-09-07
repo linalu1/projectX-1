@@ -221,7 +221,7 @@ ion-md-input input:focus ~ .md-highlight {
   /*border: dashed 1px;*/
   border-radius: 50%;
   margin: 1.75em auto 0;
-  margin-top:6em;
+  margin-top:10%;
 }
 .circle-container a {
   display: block;
@@ -285,7 +285,7 @@ ion-md-input input:focus ~ .md-highlight {
 .deg315 { 
   transform: rotate(315deg) translate(8em) rotate(-315deg); 
   -ms-transform: rotate(315deg) translate(8em) rotate(-315deg); 
-  -webkit-transform: rotate(315deg) translate(8em) rotsate(-315deg); 
+  -webkit-transform: rotate(315deg) translate(8em) rotate(-315deg); 
 }
 
 i.interest-icon path {
@@ -349,7 +349,7 @@ img.home-profile-pic {
   border-radius: 50%;
   position: relative;
   margin-top:-1em;
-  margin-left:-0.5em;
+  margin-left:-1em;
   margin-bottom:-1em;
 
   /*padding: -4em;*/
@@ -377,32 +377,44 @@ button.user-card-button {
 
 div.user-card-column {
   margin-top:-1em;
-  margin-left:-0.5em;
+  /*margin-left:-0.5em;*/
   margin-bottom:-1em;
-
-  /*text-align:center;*/
+  /*text-align:right;*/ 
 }
 
 p.user-card-list {
   margin-top: -1em;
-  margin-left:-0.5em;  
+  /*margin-left:-0.5em;  */
 }
 
 p.user-card-list-item {
 }
 
 .user-card-list a {
-
   text-decoration: none !important;
 }
 
 i.user-card-msg-icon {
-  font-size:2em;  
+  font-size:1.5em; 
+  margin-right: 0.5em;
+  /*text-align:center;*/
   /*display:inline-block;*/
   
 }
 
-h1.home-username{ 
-  display:inline-block;
+p.home-username{ 
+  /*display:inline-block;*/
+  font-size: 1.5em;
+  margin-bottom:0.5em;
+  /*text-align:right;*/
 
+}
+
+p.home-distance{
+  margin-bottom:0.5em;
+}
+
+div.right-align-in-col {
+  /*text-align:right;*/
+  /*float: right;*/
 }
