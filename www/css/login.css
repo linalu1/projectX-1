@@ -213,6 +213,7 @@ ion-md-input input:focus ~ .md-highlight {
  * Position icons into circle (SO)
  * http://stackoverflow.com/q/12813573/1397351 
  */
+
 .circle-container {
   position: relative;
   width: 24em;
@@ -221,7 +222,7 @@ ion-md-input input:focus ~ .md-highlight {
   /*border: dashed 1px;*/
   border-radius: 50%;
   margin: 1.75em auto 0;
-  margin-top:10%;
+  margin-top:-5%;
 }
 .circle-container a {
   display: block;

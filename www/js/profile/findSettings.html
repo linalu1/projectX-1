@@ -2,6 +2,8 @@
   <button class="button button-clear" ng-click="redirectToProfileSettings()">Back</button>
 
     <h1 class="title">Find Settings</h1>
+  <button class="button button-clear">Submit</button>
+
 </ion-header-bar>
 
 
@@ -17,19 +19,20 @@
          </div>
        </label>
     </li>
-
-      Distance
+    </br>
+    <p>Distance</p>
     <div class="item range">
       <i class="icon ion-ios-location-outline"></i>
-      <input type="range" name="volume">
+      <input type="range" name="volume" ng-model=''>
       <i class="icon ion-ios-location"></i>
     </div>
 
-      Age
+    </br>
+    <p>Age</p>
     <div class="list">
       <div class="item range range-positive">
         <i class="icon ion-ios-circle-outline"></i>
-        <input type="range" name="volume" min="0" max="100" value="33">
+        <input type="range" name="volume" min="18" max="55" value="33" ng-model=''>
         <i class="icon ion-ios-circle-filled"></i>
       </div>
     </div>
