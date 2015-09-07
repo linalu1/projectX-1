@@ -59,8 +59,26 @@ angular.module('ionicApp', [
     templateUrl: 'js/selectActivity/selectActivity.html',
     controller: 'selectActivityCtrl',
     authenticate: false // change to 'false' for testing
-
+  })
+  .state('findSettings', {
+    url: '/findSettings',
+    templateUrl: 'js/profile/findSettings.html',
+    controller: 'findSettingsCtrl',
+    authenticate: false // change to 'false' for testing
+  })
+  .state('showUserSettings', {
+    url: '/showUserSettings',
+    templateUrl: 'js/profile/showUserSettings.html',
+    controller: 'showUserSettingsCtrl',
+    authenticate: false // change to 'false' for testing
+  })
+  .state('generalSettings', {
+    url: '/generalSettings',
+    templateUrl: 'js/profile/generalSettings.html',
+    controller: 'generalSettingsCtrl',
+    authenticate: false // change to 'false' for testing
   });
+
   $urlRouterProvider.otherwise("/");
 })
 

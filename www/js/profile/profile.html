@@ -1,14 +1,35 @@
+<ion-header-bar class="bar-calm">
+  <h1 class="title">{{currentUser.name}}</h1>
+</ion-header-bar>
+
 <ion-view view-title="profile">
+  <ion-content>
 
+    <center>
+      <img class="settings-profile-pic" ng-src="{{currentUser.profilePic}}">
+      <p>Change Image?</p>
+    </center>
 
-  <div>
-    filler 
-    filler 
-    filler 
-    filler 
-    filler 
-    filler 
-    filler 
+    <div>
+    <ul class="list settings-main-menu">
+        <li class="item" ng-click="redirectToFind()">
+          Find Preferences
+        </li>
+        <li class="item">
+          Share HangOut
+        </li>
+
+        <li class="item">
+          Help
+        </li>
+
+        <li class="item" ng-click="redirectToSettings()">
+          Settings
+        </li>
+
+    </ul>
   </div>
+  </ion-content>
 
 </ion-view>
+

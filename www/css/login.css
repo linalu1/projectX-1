@@ -407,7 +407,6 @@ p.home-username{
   font-size: 1.5em;
   margin-bottom:0.5em;
   /*text-align:right;*/
-
 }
 
 p.home-distance{
@@ -417,4 +416,25 @@ p.home-distance{
 div.right-align-in-col {
   /*text-align:right;*/
   /*float: right;*/
+}
+
+
+img.settings-profile-pic {
+  width: 15em;
+  /*height: 50px;*/
+  border-radius: 50%;
+  position: relative;
+  margin-top:5%;
+  /*text-align:center;*/
+  /*margin-left:50%;*/
+  /*margin-right:50%;*/
+
+  /*padding: -4em;*/
+  /*bottom: 10px;*/
+  /*padding-top:200em;*/
+}
+
+
+ul.settings-main-menu{
+  margin-top:10%;
 }
