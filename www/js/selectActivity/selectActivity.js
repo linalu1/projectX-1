@@ -2,9 +2,26 @@
 
 angular.module('ionicApp.selectActivity', [])
 
-.controller('selectActivityCtrl', function($scope, $state, $rootScope, $cordovaGeolocation, $ionicLoading) {
+.controller('selectActivityCtrl', function(
+  $scope, 
+  $state, 
+  $rootScope, 
+  $cordovaGeolocation, 
+  $ionicLoading
+  ) 
+{
+  $scope.label = "Select Activity";
 
+  $scope.activityChange = function(newActivity){
+    $scope.label = newActivity;
+  }
+  
   $scope.postActivity = function(){
+    if (!$scope.label || $scope.label === '') {
+      alert('Select something');
+      return;
+    }
+
     $ionicLoading.show({
       template: 'Getting position...'
     });

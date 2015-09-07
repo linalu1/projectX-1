@@ -2,7 +2,24 @@
 
 angular.module('ionicApp.otherUsers', [])
 
-.controller('otherUsersCtrl', function($scope, $state, $rootScope) {
+.controller('otherUsersCtrl', function($scope, $state, $rootScope, $cordovaGeolocation, $http) {
+  var loadNearbyUsers = function(){
+    $cordovaGeolocation
+      .getCurrentPosition({timeout: 5000, enableHighAccuracy: false})
+      .then(function (position) {
+        var lat  = position.coords.latitude
+        var long = position.coords.longitude
+        console.log("lat", lat);
+        console.log("long", long);
+        $http.get('http://10.6.1.162:3000/api/checkin?latitude=' + lat + '&longitude=' + long + '&distance=10')
+          .then(function(resp){
+            console.log(resp);
+          })
+        });
+    
+  };
+
+  loadNearbyUsers();
   $rootScope.login = false;
   $scope.userInfo = { 
                       username: "Lina", 
