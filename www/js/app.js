@@ -80,7 +80,7 @@ angular.module('ionicApp', [
 .run(function($localStorage, $rootScope, $location){
 
   if ($localStorage.access_token) {
-    $location.path('/profile');
+    $location.path('/otherUsers');
   }
 
   $rootScope.$on('$stateChangeStart', function (evt, next, current) {
