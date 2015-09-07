@@ -2,7 +2,7 @@
 
 angular.module('ionicApp.login', [])
 
-.controller('LoginCtrl', function($scope, $state, $ionicSlideBoxDelegate, $rootScope, $cordovaOauth, $localStorage) {
+.controller('LoginCtrl', function($scope, $state, $ionicSlideBoxDelegate, $rootScope, $cordovaOauth, $localStorage, $http) {
   $rootScope.login = true;
 
   // Called to navigate to the main app
@@ -19,7 +19,7 @@ angular.module('ionicApp.login', [])
             $localStorage.access_token = result.access_token;
             $state.go("selectActivity");
           });
-          
+
     }, function(error) {
         alert("There was a problem signing in!  See the console for logs");
         console.log(error);
