@@ -25,6 +25,55 @@ angular.module('ionicApp.profile', [])
   $scope.redirectToProfileSettings = function() {
     $state.go('profile');
   }
+
+  $scope.distance = 50;
+
+  $scope.distanceUnit = "miles";
+
+  $scope.age = 100;
+
+
+
+
+  // // $(function () {
+  // jQuery(function($){
+
+  //   console.log("'i'mthebest'")
+  //   $("#range_example").ionRangeSlider({
+  //       // hide_min_max: true,
+  //       // keyboard: true,
+  //       // min: 0,
+  //       // max: 5000,
+  //       // from: 1000,
+  //       // to: 4000,
+  //       // type: 'double',
+  //       // step: 1,
+  //       // prefix: "$",
+  //       // grid: true
+  //       type: "double",
+  //       min: 1000,
+  //       max: 5000,
+  //       from: 2000,
+  //       to: 4000,
+  //       step: 100,
+  //       onStart: function (data) {
+  //           console.log(data);
+  //       },
+  //       onChange: function (data) {
+  //           console.log(data);
+  //       },
+  //       onFinish: function (data) {
+  //           console.log(data);
+  //       },
+  //       onUpdate: function (data) {
+  //           console.log(data);
+  //       },
+  //       force_edges: true
+  //   });
+  // });
+
+  // });
+
 })
 
 .controller('generalSettingsCtrl', function($scope, $state) {

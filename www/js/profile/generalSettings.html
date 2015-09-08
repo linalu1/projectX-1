@@ -1,13 +1,12 @@
 <ion-header-bar class="bar-calm">
   <button class="button button-clear" ng-click="redirectToProfileSettings()">Back</button>
 
-    <h1 class="title">Options</h1>
+  <h1 class="title">Options</h1>
 </ion-header-bar>
 
 <ion-view view-title="findSettings">
   <ion-content>
-
-    <ul>
+    <ul class="list settings-toggle-menu">
       <li class="item item-toggle">
          Notifications
          <label class="toggle toggle-calm">
@@ -19,7 +18,7 @@
       </li>
     </ul>
 
-    <ul>
+    <ul class="list settings-legal-menu">
       <li class="item item-icon-right" ng-click="redirectToShowUserSettings()">
         Privacy Policy
         <i class="icon"></i>

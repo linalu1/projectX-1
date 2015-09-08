@@ -1,3 +1,7 @@
+<ion-view view-title="findSettings">
+
+
+
 <ion-header-bar class="bar-calm">
   <button class="button button-clear" ng-click="redirectToProfileSettings()">Back</button>
 
@@ -7,32 +11,53 @@
 </ion-header-bar>
 
 
-<ion-view view-title="findSettings">
   <ion-content>
-
-    <li class="item item-toggle">
-       Find
-       <label class="toggle toggle-calm">
-         <input type="checkbox">
-         <div class="track">
-           <div class="handle"></div>
-         </div>
-       </label>
-    </li>
+    <ul class="list find-settings-find-button">
+      <li class="item item-toggle">
+         Find
+         <label class="toggle toggle-calm">
+           <input type="checkbox">
+           <div class="track">
+             <div class="handle"></div>
+           </div>
+         </label>
+      </li>
+    </ul>
     </br>
-    <p>Distance</p>
-    <div class="item range">
+    <div class="findsettings-distance-range">
+      <p>Distance: {{distance}} {{distanceUnit}} </p>
+    </div><div class='findsettings-distance-display'>
+      <p></p>
+    </div>
+
+
+    <div class="item range range-settings-distance">
       <i class="icon ion-ios-location-outline"></i>
-      <input type="range" name="volume" ng-model=''>
+      <input type="range" name="volume" min="2" max="50" value="33" ng-model="distance">
       <i class="icon ion-ios-location"></i>
     </div>
 
     </br>
-    <p>Age</p>
+    <div class="findsettings-age-range">
+      <p>Age: 18 to {{age}}</p>    </div><div class='findsettings-age-display'>
+      <p></p>
+    </div>
+
+
+    <!-- <div style="position: relative; padding: 10px;"> -->
+
+<!--     <div style="border:1px solid black; width: 500px">
+        <input type="text" id="range_example" value="" name="range" />
+    </div> -->
+
+
+    <!-- </div> -->
+
+
     <div class="list">
-      <div class="item range range-positive">
+      <div class="item range range-positive range-setting-age">
         <i class="icon ion-ios-circle-outline"></i>
-        <input type="range" name="volume" min="18" max="55" value="33" ng-model=''>
+        <input class='range-setting-age -input' type="range" name="age" min="18" max="100" value="33" ng-model='age'>
         <i class="icon ion-ios-circle-filled"></i>
       </div>
     </div>
@@ -47,3 +72,4 @@
 
   </ion-content>
 </ion-view>
+

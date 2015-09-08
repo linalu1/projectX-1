@@ -421,7 +421,7 @@ div.right-align-in-col {
 
 
 img.settings-profile-pic {
-  width: 15em;
+  width: 13em;
   /*height: 50px;*/
   border-radius: 50%;
   position: relative;
@@ -438,4 +438,44 @@ img.settings-profile-pic {
 
 ul.settings-main-menu{
   margin-top:10%;
+}
+
+
+ul.settings-toggle-menu, ul.find-settings-find-button{
+  margin-top: 5%;
+}
+
+div.findsettings-age-range, div.findsettings-distance-range {
+  margin-left:5%;
+  display: inline-block;
+}
+
+div.settings-main-menu-bottom {
+  margin-bottom:60px;
+}
+
+div.results-cards-list {
+  margin-bottom:90px;
+}
+
+div.findsettings-distance-display {
+  /*float:right;*/
+  margin-left:20%;
+  /*margin-right: -95%;*/
+  /*display: contents;*/
+  /*text-align: right;*/
+  display: inline-block;
+}
+
+div.findsettings-age-display {
+  display: inline-block;
+  /*margin-left:20%;*/
+  /*margin-left:30%;*/
+  /*text-align:middle;*/
+  /*float:none;*/
+}
+
+
+div.show-user-settings-list {
+  margin-top: 5%;
 }
