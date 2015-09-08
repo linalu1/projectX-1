@@ -11,7 +11,7 @@ angular.module('ionicApp.login', [])
   };
 
   $scope.loggingInFb = function() {
-    $cordovaOauth.facebook("840774716036629", ["email", "user_website", "user_location", "user_relationships"]).then(function(result) {
+    $cordovaOauth.facebook("840774716036629", ["email", "user_website", "user_likes", "user_photos","user_location", "user_relationships"]).then(function(result) {
 
         console.log(result);
         $http.post('http://10.6.1.162:3000/api/auth/facebook', {access_token: result.access_token})

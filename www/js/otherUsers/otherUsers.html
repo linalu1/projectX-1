@@ -6,6 +6,10 @@
 <ion-view view-title="Home">
   <ion-content>
     <!-- a single user -->
+    <div ng-show="userResults === undefined">
+      <center><h3>Fetching Nearby Users</h3></center>
+    </div>
+
     <div class="results-cards-list">
       <div ng-repeat="person in userResults">
         <div class="card">
