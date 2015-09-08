@@ -25,58 +25,57 @@ angular.module('ionicApp', [
     url: '/addFbLikes',
     templateUrl: 'js/addFbLikes/addFbLikes.html',
     controller: 'addFbLikesCtrl',
-    authenticate: false // change to 'false' for testing
+    authenticate: true // change to 'false' for testing
   })
   .state('chat', {
     url: '/chat',
     templateUrl: 'js/chat/chat.html',
     controller: 'chatCtrl',
-    authenticate: false // change to 'false' for testing
+    authenticate: true // change to 'false' for testing
 
   })
   .state('chat-detail', {
     url: '/chat/:chatId',
     templateUrl: 'js/chat/chatdetail.html',
     controller: 'chatDetailCtrl',
-    authenticate: false // change to 'false' for testing
-
+    authenticate: true // change to 'true' for testing
   })
   .state('home', {
     url: '/home',
     templateUrl: 'js/otherUsers/otherUsers.html',
     controller: 'otherUsersCtrl',
-    authenticate: false // change to 'false' for testing
+    authenticate: true // change to 'false' for testing
 
   })
   .state('profile', {
     url: '/profile',
     templateUrl: 'js/profile/profile.html',
     controller: 'profileCtrl',
-    authenticate: false // change to 'false' for testing
+    authenticate: true // change to 'false' for testing
   })
   .state('selectActivity', {
     url: '/selectActivity',
     templateUrl: 'js/selectActivity/selectActivity.html',
     controller: 'selectActivityCtrl',
-    authenticate: false // change to 'false' for testing
+    authenticate: true // change to 'false' for testing
   })
   .state('findSettings', {
     url: '/findSettings',
     templateUrl: 'js/profile/findSettings.html',
     controller: 'findSettingsCtrl',
-    authenticate: false // change to 'false' for testing
+    authenticate: true // change to 'false' for testing
   })
   .state('showUserSettings', {
     url: '/showUserSettings',
     templateUrl: 'js/profile/showUserSettings.html',
     controller: 'showUserSettingsCtrl',
-    authenticate: false // change to 'false' for testing
+    authenticate: true // change to 'false' for testing
   })
   .state('generalSettings', {
     url: '/generalSettings',
     templateUrl: 'js/profile/generalSettings.html',
     controller: 'generalSettingsCtrl',
-    authenticate: false // change to 'false' for testing
+    authenticate: true // change to 'false' for testing
   });
 
   $urlRouterProvider.otherwise("/");
