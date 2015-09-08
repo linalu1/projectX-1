@@ -2,7 +2,8 @@
 
 angular.module('ionicApp.otherUsers', [])
 
-.controller('otherUsersCtrl', function($scope, $state, $rootScope, $cordovaGeolocation, $http) {
+.controller('otherUsersCtrl', function($scope, $state, $rootScope, $cordovaGeolocation, $http, $localStorage) {
+  console.log($localStorage.userData);
   var loadNearbyUsers = function(){
     $cordovaGeolocation
       .getCurrentPosition({timeout: 5000, enableHighAccuracy: false})
@@ -11,7 +12,7 @@ angular.module('ionicApp.otherUsers', [])
         var long = position.coords.longitude
         console.log("lat", lat);
         console.log("long", long);
-        $http.get('http://10.6.1.162:3000/api/checkin?latitude=' + lat + '&longitude=' + long + '&distance=10')
+        $http.get('http://10.6.1.162:3000/api/checkin?latitude=' + lat + '&longitude=' + long + '&distance=10&currentFbId=' + $localStorage.userData.fbId)
           .then(function(resp){
             console.log(resp.data);
             $scope.userResults = resp.data;
