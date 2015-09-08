@@ -345,7 +345,7 @@ i.interest-icon path {
 .circle-container a:hover:after { opacity: .3; }*/
 
 img.home-profile-pic {
-  width: 7em;
+  width: 4em;
   /*height: 50px;*/
   border-radius: 50%;
   position: relative;
@@ -421,7 +421,7 @@ div.right-align-in-col {
 
 
 img.settings-profile-pic {
-  width: 13em;
+  width: 5em;
   /*height: 50px;*/
   border-radius: 50%;
   position: relative;
