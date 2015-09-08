@@ -213,6 +213,7 @@ ion-md-input input:focus ~ .md-highlight {
  * Position icons into circle (SO)
  * http://stackoverflow.com/q/12813573/1397351 
  */
+
 .circle-container {
   position: relative;
   width: 24em;
@@ -221,7 +222,7 @@ ion-md-input input:focus ~ .md-highlight {
   /*border: dashed 1px;*/
   border-radius: 50%;
   margin: 1.75em auto 0;
-  margin-top:10%;
+  margin-top:-5%;
 }
 .circle-container a {
   display: block;
@@ -407,7 +408,6 @@ p.home-username{
   font-size: 1.5em;
   margin-bottom:0.5em;
   /*text-align:right;*/
-
 }
 
 p.home-distance{
@@ -417,4 +417,66 @@ p.home-distance{
 div.right-align-in-col {
   /*text-align:right;*/
   /*float: right;*/
+}
+
+
+img.settings-profile-pic {
+  width: 13em;
+  /*height: 50px;*/
+  border-radius: 50%;
+  position: relative;
+  margin-top:5%;
+  /*text-align:center;*/
+  /*margin-left:50%;*/
+  /*margin-right:50%;*/
+
+  /*padding: -4em;*/
+  /*bottom: 10px;*/
+  /*padding-top:200em;*/
+}
+
+
+ul.settings-main-menu{
+  margin-top:10%;
+}
+
+
+ul.settings-toggle-menu, ul.find-settings-find-button{
+  margin-top: 5%;
+}
+
+div.findsettings-age-range, div.findsettings-distance-range {
+  margin-left:5%;
+  display: inline-block;
+}
+
+div.settings-main-menu-bottom {
+  margin-bottom:60px;
+}
+
+div.results-cards-list {
+  margin-bottom:90px;
+}
+
+div.findsettings-distance-display {
+  /*float:right;*/
+  margin-left:20%;
+  /*margin-right: -95%;*/
+  /*display: contents;*/
+  /*text-align: right;*/
+  display: inline-block;
+}
+
+div.findsettings-age-display {
+  display: inline-block;
+  font-size: 2em;
+  /*margin-left:20%;*/
+  /*margin-left:30%;*/
+  /*text-align:middle;*/
+  /*float:none;*/
+}
+
+
+div.show-user-settings-list {
+  margin-top: 5%;
 }

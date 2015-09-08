@@ -32,6 +32,37 @@ angular.module('ionicApp.otherUsers', [])
                       activities: ['Running', 'Coffee']
                     },
                     { 
+                      username: "James", 
+                      profilePic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xfa1/v/t1.0-1/c34.45.421.421/s200x200/396766_10151064735060720_1730615221_n.jpg?oh=904ec6c8be1a347a167d980a0dc10be0&oe=5671C719&__gda__=1449609301_74bdc97dffb067f21d0cced359a5f957", 
+                      id: 123,
+                      distanceMiles: 28,
+                      distanceKm: 14,
+                      likes: ['JavaScript', 'MongoDB', 'AngularJS', 'I <3 Programming', 'Texas Holdem Poker', ''],
+                      likesTopThree: ['Mappa Mercia', 'The Guardian', 'Small Answers'],
+                      activities: ['Biking', 'Coffee']
+                    },
+                    { 
+                      username: "Rene", 
+                      profilePic: "https://fbcdn-profile-a.akamaihd.net/hprofile-ak-xap1/v/t1.0-1/p200x200/10805808_10152347290831734_4010306437546039993_n.jpg?oh=58cd203d851b93ce9c004afd1dc914f1&oe=5664495C&__gda__=1449158537_f8dcc05f5b63264ee09d7603db394f9d", 
+                      id: 123,
+                      distanceMiles: 16,
+                      distanceKm: 14,
+                      likes: ['JavaScript', 'MongoDB', 'AngularJS', 'I <3 Programming', 'Texas Holdem Poker', ''],
+                      likesTopThree: ['Salsalito Taco Shop', 'Radio Bio Bio', 'CrossFit'],
+                      activities: ['Gym', 'Food']
+                    },
+                    { 
+                      username: "Omar", 
+                      profilePic: "https://avatars0.githubusercontent.com/u/11527433?v=3&s=460", 
+                      id: 123,
+                      distanceMiles: 2,
+                      distanceKm: 14,
+                      likes: ['JavaScript', 'MongoDB', 'AngularJS', 'I <3 Programming', 'Texas Holdem Poker', ''],
+                      likesTopThree: ['Node.js', '9GAG', 'Eclipse'],
+                      activities: ['Food', 'Boardgames']
+                    },
+
+                    { 
                       username: "Angela", 
                       profilePic: "https://scontent-sjc2-1.xx.fbcdn.net/hprofile-xat1/v/t1.0-1/p200x200/11407200_10152972882898295_4575315031086192909_n.jpg?oh=44b6dd12893e8a2937b7cc80b848ab3e&oe=5660A399", 
                       id: 123,
