@@ -32,7 +32,7 @@ angular.module('ionicApp.profile', [])
     $rootScope.distance = distance;
   }
 
-
+  $scope.distanceUnit = "miles";
   $scope.age = 100;
 
 })
