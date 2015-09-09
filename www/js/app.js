@@ -96,7 +96,7 @@ angular.module('ionicApp', [
 
 .run(function($localStorage, $rootScope, $location){
 
-  $rootScope.distance = 5;
+  $rootScope.distance = 50;
   // sets the default var
 
   if ($localStorage.access_token) {
