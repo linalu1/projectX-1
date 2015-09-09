@@ -6,6 +6,7 @@
   <button class="button button-clear" ng-click="redirectToProfileSettings()">Back</button>
 
     <h1 class="title">Find Settings</h1>
+  <button class="button button-clear">Submit</button>
 
 </ion-header-bar>
 
@@ -32,7 +33,7 @@
 
     <div class="item range range-settings-distance">
       <i class="icon ion-ios-location-outline"></i>
-      <input type="range" name="volume" min="2" max="50" value="{{ distance }}" ng-model="distance" ng-change="updateDist(distance)">
+      <input type="range" name="volume" min="2" max="50" value="33" ng-model="distance">
       <i class="icon ion-ios-location"></i>
     </div>
 
@@ -41,6 +42,17 @@
       <p style="font-size:1.1em">Age: 18 to {{age}}</p>    </div><div class='findsettings-age-display'>
       <p></p>
     </div>
+
+
+    <!-- <div style="position: relative; padding: 10px;"> -->
+
+<!--     <div style="border:1px solid black; width: 500px">
+        <input type="text" id="range_example" value="" name="range" />
+    </div> -->
+
+
+    <!-- </div> -->
+
 
     <div class="list">
       <div class="item range range-positive range-setting-age">
