@@ -25,57 +25,57 @@ angular.module('ionicApp', [
     url: '/addFbLikes',
     templateUrl: 'js/addFbLikes/addFbLikes.html',
     controller: 'addFbLikesCtrl',
-    authenticate: true // change to 'false' for testing
+    authenticate: true 
   })
   .state('chat', {
     url: '/chat',
     templateUrl: 'js/chat/chat.html',
     controller: 'chatCtrl',
-    authenticate: true // change to 'false' for testing
+    authenticate: true 
 
   })
   .state('chat-detail', {
     url: '/chat/:chatId',
     templateUrl: 'js/chat/chatdetail.html',
     controller: 'chatDetailCtrl',
-    authenticate: true // change to 'true' for testing
+    authenticate: true 
   })
   .state('home', {
     url: '/home',
     templateUrl: 'js/otherUsers/otherUsers.html',
     controller: 'otherUsersCtrl',
-    authenticate: true // change to 'false' for testing
+    authenticate: true 
 
   })
   .state('profile', {
     url: '/profile',
     templateUrl: 'js/profile/profile.html',
     controller: 'profileCtrl',
-    authenticate: true // change to 'false' for testing
+    authenticate: true 
   })
   .state('selectActivity', {
     url: '/selectActivity',
     templateUrl: 'js/selectActivity/selectActivity.html',
     controller: 'selectActivityCtrl',
-    authenticate: true // change to 'false' for testing
+    authenticate: true 
   })
   .state('findSettings', {
     url: '/findSettings',
     templateUrl: 'js/profile/findSettings.html',
     controller: 'findSettingsCtrl',
-    authenticate: true // change to 'false' for testing
+    authenticate: true 
   })
   .state('showUserSettings', {
     url: '/showUserSettings',
     templateUrl: 'js/profile/showUserSettings.html',
     controller: 'showUserSettingsCtrl',
-    authenticate: true // change to 'false' for testing
+    authenticate: true 
   })
   .state('generalSettings', {
     url: '/generalSettings',
     templateUrl: 'js/profile/generalSettings.html',
     controller: 'generalSettingsCtrl',
-    authenticate: true // change to 'false' for testing
+    authenticate: true 
   });
 
   $urlRouterProvider.otherwise("/");
@@ -87,6 +87,12 @@ angular.module('ionicApp', [
     $rootScope.$state = $state;
 })
 */
+.config(function($cordovaFacebookProvider) {
+  var appID = 840762989371135;
+  var version = "v2.0"; // or leave blank and default is v2.0
+  $cordovaFacebookProvider.browserInit(appID, version);
+})
+
 
 .config(['$ionicConfigProvider', function($ionicConfigProvider) {
 
