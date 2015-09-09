@@ -20,7 +20,7 @@ angular.module('ionicApp.profile', [])
     $state.go('generalSettings');
   }
 })
-.controller('findSettingsCtrl', function($scope, $state) {
+.controller('findSettingsCtrl', function($scope, $state, $rootScope) {
   $scope.redirectToShowUserSettings = function() {
     $state.go('showUserSettings');
   }
@@ -28,17 +28,23 @@ angular.module('ionicApp.profile', [])
     $state.go('profile');
   }
 
-  $scope.distance = 50;
+  $scope.updateDist = function(distance){
+    $rootScope.distance = distance;
+  }
 
   $scope.distanceUnit = "miles";
-
   $scope.age = 100;
 
 })
 
-.controller('generalSettingsCtrl', function($scope, $state) {
+.controller('generalSettingsCtrl', function($scope, $state, $localStorage) {
   $scope.redirectToProfileSettings = function() {
     $state.go('profile');
+  }
+
+  $scope.logout = function(){
+    $localStorage.$reset();
+    $state.go('login');
   }
 
 })
