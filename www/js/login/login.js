@@ -14,7 +14,7 @@ angular.module('ionicApp.login', [])
     $cordovaOauth.facebook("840774716036629", ["email", "user_likes", "user_photos","user_birthday"]).then(function(result) {
 
         console.log(result);
-        $http.post('http://10.6.1.162:3000/api/auth/facebook', {access_token: result.access_token})
+        $http.post($rootScope.mobileFacadeURL + '/api/auth/facebook', {access_token: result.access_token})
           .then(function(userDataInfo){
             console.log(userDataInfo);
             $localStorage.userData = userDataInfo.data;

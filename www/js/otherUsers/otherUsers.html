@@ -52,7 +52,7 @@
               </div>
               <div class="col col-67 user-card-column">
                 <div class="user-card-list"><center>
-                  <p ng-repeat="name in person.activities" 
+                  <p ng-repeat="name in person.activities track by $index" 
                       href="#" 
                       class="user-card-list-item">
                       {{ name }}

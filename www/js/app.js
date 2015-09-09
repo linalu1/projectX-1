@@ -96,7 +96,8 @@ angular.module('ionicApp', [
 
 .run(function($localStorage, $rootScope, $location){
 
-  $rootScope.distance = 50;
+  $rootScope.distance = 5;
+  $rootScope.mobileFacadeURL = 'http://10.6.1.162:3000';
   // sets the default var
 
   if ($localStorage.access_token) {
