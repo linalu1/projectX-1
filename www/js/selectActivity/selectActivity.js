@@ -39,7 +39,7 @@ angular.module('ionicApp.selectActivity', [])
         console.log(long);
         console.log($localStorage.userData);
 
-        $http.post('http://10.6.1.162:3000/api/checkin/addcheckin', {access_token: $localStorage.access_token, latitude: lat, longitude: long, activity: $scope.label, userId: $localStorage.userData.fbId})
+        $http.post('http://10.6.1.162:3000/api/checkin', {latitude: lat, longitude: long, activity: $scope.label, userId: $localStorage.userData.fbId})
           .then(function(){
             console.log('ADDED');
             $ionicLoading.hide();

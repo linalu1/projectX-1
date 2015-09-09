@@ -22,8 +22,7 @@
     "cordova-plugin-splashscreen",
     "com.ionic.keyboard",
     "org.apache.cordova.inappbrowser",
-    "org.apache.cordova.geolocation",
-    "cordova-plugin-whitelist@1.0.0"
+    "org.apache.cordova.geolocation"
   ],
   "cordovaPlatforms": [
     "ios",
