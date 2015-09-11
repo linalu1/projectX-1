@@ -17,6 +17,7 @@ angular.module('ionicApp.otherUsers', [])
             .then(function(resp){
               console.log(resp.data);
               $rootScope.userResults = resp.data;
+              console.log('$rootScope.userResults', $rootScope.userResults);
             })
           });
     }
@@ -25,6 +26,16 @@ angular.module('ionicApp.otherUsers', [])
 
   loadNearbyUsers();
   $rootScope.login = false;
+
+  $scope.sendMessage = function(userId) {
+    if(userId) {
+      $state.go('chat',{userId:userId})
+    }
+
+  };
+
+
+  
   
   // dummy demo data
   // $scope.userResults = [{ 

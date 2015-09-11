@@ -13,10 +13,10 @@ angular.module('ionicApp.login', [])
   $scope.loggingInFb = function() {
     $cordovaOauth.facebook("840774716036629", ["email", "user_likes", "user_photos","user_birthday"]).then(function(result) {
 
-        console.log(result);
+        console.log('result', result);
         $http.post($rootScope.mobileFacadeURL + '/api/auth/facebook', {access_token: result.access_token})
           .then(function(userDataInfo){
-            console.log(userDataInfo);
+            console.log('userDataInfo', userDataInfo);
             $localStorage.userData = userDataInfo.data;
             $localStorage.access_token = result.access_token;
             $state.go("selectActivity");

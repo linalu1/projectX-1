@@ -10,6 +10,7 @@
     "angular-material": "~0.10.1",
     "angular-moment": "~0.10.2",
     "angular-scroll-glue": "~2.0.6",
+    "angular-socket-io": "~0.7.0",
     "ionic-material": "~0.4.2",
     "jquery": "~2.1.4",
     "moment": "~2.10.6",

@@ -11,7 +11,8 @@ angular.module('ionicApp', [
   'angularMoment', 
   'luegg.directives', 
   'ngStorage', 
-  'ngCordova'
+  'ngCordova',
+  'btford.socket-io'
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -97,7 +98,7 @@ angular.module('ionicApp', [
 .run(function($localStorage, $rootScope, $location){
 
   $rootScope.distance = 5;
-  $rootScope.mobileFacadeURL = 'http://10.6.1.162:3000';
+  $rootScope.mobileFacadeURL = 'http://192.168.128.114:3000';
   // sets the default var
 
   if ($localStorage.access_token) {
@@ -126,6 +127,19 @@ angular.module('ionicApp', [
       'label': '@'
     }
   }
+})
+
+.run(function($ionicPlatform) {
+  $ionicPlatform.ready(function() {
+    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+    // for form inputs)
+    if(window.cordova && window.cordova.plugins.Keyboard) {
+      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+    }
+    if(window.StatusBar) {
+      StatusBar.styleDefault();
+    }
+  });
 });
 
 //add extra line at the end
