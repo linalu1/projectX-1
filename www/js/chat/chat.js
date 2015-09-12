@@ -8,7 +8,7 @@ angular.module('ionicApp.chat', [])
 
 })
 
-.controller('chatDetailCtrl', function($scope, $state, $rootScope, $ionicScrollDelegate) {
+.controller('chatDetailCtrl', function($scope, $state, $rootScope, $ionicScrollDelegate, socket) {
   // some get req based on the id to get info on that certian chat
   // each chat room has a socket id.... we can use that id itself... bam
   $rootScope.login = false;

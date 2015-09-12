@@ -11,8 +11,15 @@ angular.module('ionicApp.services', [])
     });
     console.log('inside factory2')
 
+    myIoSocket.emit('helloServer');
+    myIoSocket.on('helloClient', function(data) {
+      console.log('Server said hello to client');
+    })
+    // myIoSocket.on('news', function (data) {
+    //     console.log(data);
+    //     myIoSocket.emit('my other event', { my: 'data' });
+    //   });
     return mySocket;
-
 });
 
 //add extra line at the end

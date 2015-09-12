@@ -4,6 +4,7 @@ angular.module('ionicApp.login', [])
 
 .controller('LoginCtrl', function($scope, socket, $state, $ionicSlideBoxDelegate, $rootScope, $cordovaOauth, $localStorage, $http) {
   $rootScope.login = true;
+  // myIoSocket.on('')
 
   // Called to navigate to the main app
   $scope.startApp = function() {
@@ -27,8 +28,14 @@ angular.module('ionicApp.login', [])
         console.log(error);
     });
   };
+  
+  socket.on('twitter listener', function() {
+    console.log('client listened to server after it registered twitter');
+  });
 
   $scope.loggingInTwitter = function() {
+    console.log('clicked on twitter')
+    socket.emit('clicked on twitter');
   };
   $scope.next = function() {
     $ionicSlideBoxDelegate.next();

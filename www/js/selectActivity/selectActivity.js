@@ -9,9 +9,16 @@ angular.module('ionicApp.selectActivity', [])
   $cordovaGeolocation, 
   $ionicLoading,
   $http,
-  $localStorage
-  ) 
-{
+  $localStorage,
+  socket
+){
+
+  socket.on('news', function (data) {
+      console.log(data);
+      console.log('we heard the news event. emitting something else');
+      socket.emit('my other event', { my: data });
+    });
+
   $scope.label = "Select Activity";
 
   $scope.activityChange = function(newActivity){
