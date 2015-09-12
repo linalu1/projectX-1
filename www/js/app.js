@@ -8,6 +8,8 @@ angular.module('ionicApp', [
   'ionicApp.otherUsers', 
   'ionicApp.profile', 
   'ionicApp.addFbLikes',
+  'ionicApp.services',
+  'ionicApp.directives',
   'angularMoment', 
   'luegg.directives', 
   'ngStorage', 
@@ -95,7 +97,7 @@ angular.module('ionicApp', [
 
 }])
 
-.run(function($localStorage, $rootScope, $location){
+.run(function($localStorage, $rootScope, $location, socket){
 
   $rootScope.distance = 5;
   $rootScope.mobileFacadeURL = 'http://10.6.1.165:3000';
@@ -111,6 +113,18 @@ angular.module('ionicApp', [
       $location.path('/');
     }
   });
+
+  socket.on('connection',function(){
+    $rootScope.connected = true;
+
+    console.log("socket has connected, YAY")
+    //Add user called nickname
+    console.log('userData.fbId inside socket', userData.fbId);
+    socket.emit('add user',userData.fbId);
+    // socket.emit('new message',”Hi Socket IO is awesome”)
+  })
+
+
 })
 
 .directive('ionMdInput', function(){

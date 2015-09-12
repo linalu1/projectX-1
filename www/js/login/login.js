@@ -2,7 +2,7 @@
 
 angular.module('ionicApp.login', [])
 
-.controller('LoginCtrl', function($scope, $state, $ionicSlideBoxDelegate, $rootScope, $cordovaOauth, $localStorage, $http) {
+.controller('LoginCtrl', function($scope, socket, $state, $ionicSlideBoxDelegate, $rootScope, $cordovaOauth, $localStorage, $http) {
   $rootScope.login = true;
 
   // Called to navigate to the main app
@@ -41,6 +41,7 @@ angular.module('ionicApp.login', [])
   $scope.slideChanged = function(index) {
     $scope.slideIndex = index;
   };
+
 });
 
 // add extra line at end
