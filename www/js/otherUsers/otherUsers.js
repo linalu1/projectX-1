@@ -2,7 +2,7 @@
 
 angular.module('ionicApp.otherUsers', [])
 
-.controller('otherUsersCtrl', function($scope, $state, $rootScope, $cordovaGeolocation, $http, $localStorage) {
+.controller('otherUsersCtrl', function($scope, $state, $rootScope, $cordovaGeolocation, $http, $localStorage, $location) {
   console.log($localStorage.userData);
   var loadNearbyUsers = function(){
     if ($localStorage.userData){
@@ -26,11 +26,24 @@ angular.module('ionicApp.otherUsers', [])
 
   loadNearbyUsers();
   $rootScope.login = false;
+  
+  $scope.storedMessages = $rootScope.storedMessages;
 
-  $scope.sendMessage = function(userId) {
+  $scope.sendMessage = function(userId, userInfo) {
+    console.log('userId in sendMessage', userId);
     if(userId) {
-      $state.go('chat',{userId:userId})
+      console.log('inside userId if function')
+
+      $rootScope.selectedUserToMsg = userId;
+      $rootScope.selectedUserToMsgInfo = userInfo;
+      console.log('$rootScope.selectedUserToMsgInfo:', $rootScope.selectedUserToMsgInfo);
+      // for (var i = 0 ; i < user_attributes)
+      $location.path('/#/chatDetail/' + userId);
+      console.log('$rootScope.selectedUserToMsg:', $rootScope.selectedUserToMsg);
+      // $state.go('chat', {userId:userId});
     }
+    // $state.go('chatDetail', );
+
 
   };
 

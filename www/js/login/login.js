@@ -28,7 +28,11 @@ angular.module('ionicApp.login', [])
         console.log(error);
     });
   };
-  
+
+  $scope.getMessageHistory = function() {
+    $rootScope.storedMessages = {};
+  }
+
   socket.on('twitter listener', function() {
     console.log('client listened to server after it registered twitter');
   });

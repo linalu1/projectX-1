@@ -37,8 +37,8 @@ angular.module('ionicApp', [
     authenticate: true // change to 'false' for testing
 
   })
-  .state('chat-detail', {
-    url: '/chat/:chatId',
+  .state('chatDetail', {
+    url: '/chatDetail/:chatId',
     templateUrl: 'js/chat/chatdetail.html',
     controller: 'chatDetailCtrl',
     authenticate: true // change to 'true' for testing
@@ -100,7 +100,7 @@ angular.module('ionicApp', [
 .run(function($localStorage, $rootScope, $location, socket){
 
   $rootScope.distance = 5;
-  $rootScope.mobileFacadeURL = 'http://10.6.1.165:3000';
+  $rootScope.mobileFacadeURL = 'http://192.168.128.114:3000';
   // sets the default var
 
   if ($localStorage.access_token) {

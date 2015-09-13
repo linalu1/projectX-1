@@ -1,7 +1,7 @@
 <ion-header-bar class="bar-calm">
     <button class="button button-clear" ng-click="redirectToChats()">Back</button>
 
-    <h1 class="title">{{fromUser.username}}</h1>
+    <h1 class="title">{{receiverFirstName}}</h1>
 </ion-header-bar>
 
 <ion-view id="userMessagesView"
@@ -21,10 +21,10 @@
           on-hold="onMessageHold($event, $index, message)">
 
 
-          <div ng-if="user._id !== message.userId">
+          <div ng-if="receiverUserId !== message.userId">
               
             <img ng-click="viewProfile(message)" class="profile-pic left" 
-                  ng-src="{{toUser.pic}}" onerror="onProfilePicError(this)" />
+                  ng-src="{{receiverUserInfo.profilePic}}" onerror="onProfilePicError(this)" />
 
               <div class="chat-bubble left">
 
@@ -40,11 +40,11 @@
               </div>
           </div>
 
-    <!-- decide if the user is the person typing or not, and style approprialtly -->
-          <div ng-if="user._id === message.userId">
+    <!-- decide if the user is the person typing or not, and style appropriately -->
+          <div ng-if="receiverUserId === message.userId">
             
                <img ng-click="viewProfile(message)" class="profile-pic right" 
-                  ng-src="{{fromUser.pic}}" onerror="onProfilePicError(this)" />
+                  ng-src="{{receiverUserInfo.profilePic}}" onerror="onProfilePicError(this)" />
             
               <div class="chat-bubble right">
 
@@ -60,7 +60,7 @@
             
           </div>
 
-        <div class="cf"></div>
+        <div class="cf"></div>  
 
       </div>
   </ion-content>
@@ -69,7 +69,7 @@
   <form name="sendMessageForm" ng-submit="sendMessage(sendMessageForm)" novalidate>
       <ion-footer-bar class="bar-stable item-input-inset message-footer" keyboard-attach>
           <label class="item-input-wrapper">
-              <input class="chat-input" ng-model="input.message" value="" placeholder="Send {{toUser.username}} a message..." required minlength="1" maxlength="1500" msd-elastic ng-enter="submitText(input.message)"></input>
+              <input class="chat-input" ng-model="input.message" value="" placeholder="Send {{receiverFirstName}} a message..." required minlength="1" maxlength="1500" msd-elastic ng-enter="submitText(input.message)"></input>
           </label>
           <div class="footer-btn-wrap">
             <button class="button button-icon icon ion-android-send footer-btn" ng-click="submitText(input.message)" type="submit"
