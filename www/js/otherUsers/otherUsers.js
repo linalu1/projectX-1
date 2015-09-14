@@ -30,15 +30,30 @@ angular.module('ionicApp.otherUsers', [])
   $scope.storedMessages = $rootScope.storedMessages;
 
   $scope.sendMessage = function(userId, userInfo) {
+    // $scope.$apply(function() {
+    $scope.currentTime = Date.now();
+    // $rootScope.
+    // })
     console.log('userId in sendMessage', userId);
     if(userId) {
-      console.log('inside userId if function')
 
+      // checks if the userId matches up with anything in the userChats object. if it doesn't, go straight to chat. if it does, pull up existing chat (get request to database). 
+
+      console.log('inside userId if function')
+      $rootScope.currentUserId = $localStorage.userData.fbId;
+      var currentUserIdVar = $rootScope.currentUserId;
+      console.log('currentUserIdVar', currentUserIdVar);
       $rootScope.selectedUserToMsg = userId;
       $rootScope.selectedUserToMsgInfo = userInfo;
       console.log('$rootScope.selectedUserToMsgInfo:', $rootScope.selectedUserToMsgInfo);
+
+      $rootScope.selectedChatId = currentUserIdVar.concat($scope.currentTime);
       // for (var i = 0 ; i < user_attributes)
-      $location.path('/#/chatDetail/' + userId);
+      console.log('Date.now():', Date.now());
+      // var newChatId = userResults.id + Date.now();
+      // console.log('newChatId', newChatId);
+
+      // $location.path('/#/chatDetail/' + newChatId);
       console.log('$rootScope.selectedUserToMsg:', $rootScope.selectedUserToMsg);
       // $state.go('chat', {userId:userId});
     }
