@@ -8,7 +8,7 @@ angular.module('ionicApp.chat', [])
 
 })
 
-.controller('chatDetailCtrl', function($scope, $state, $rootScope, $ionicScrollDelegate, socket, $localStorage) {
+.controller('chatDetailCtrl', function($scope, $state, $rootScope, $ionicScrollDelegate, socket, $localStorage, chatServicesSocket) {
   // some get req based on the id to get info on that certian chat
   // each chat room has a socket id.... we can use that id itself... bam
   $rootScope.login = false;
@@ -25,7 +25,9 @@ angular.module('ionicApp.chat', [])
   $scope.receiverFirstName = $scope.receiverUserInfo.username.substr(0,$scope.receiverUserInfo.username.indexOf(' '));
   console.log('$scope.receiverUserId', $scope.receiverUserId);
   console.log('$scope.receiverUserInfo', $scope.receiverUserInfo);
+  $scope.selectedChatId = $rootScope.selectedChatId;
 
+  console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$scope.selectedChatId', $scope.selectedChatId);
   // ajax request here
   // ajax response here 
   var viewScroll = $ionicScrollDelegate.$getByHandle('userMessageScroll');
@@ -57,7 +59,8 @@ angular.module('ionicApp.chat', [])
       messageTime: Date.now(),
       senderId: $scope.currentUserId,
       senderProfileImage: $scope.currentUserProfileImage,
-      senderFirstName: $scope.currentUserFirstName
+      senderFirstName: $scope.currentUserFirstName,
+      conversationId: $scope.selectedChatId
     }
     console.log('$scope.messageData',$scope.messageData);
     // depending on if the chat exists in userChat's allchat's array,  
@@ -67,6 +70,10 @@ angular.module('ionicApp.chat', [])
       console.log('emitting "send message"');
       // $chat.append('<span class="error">' + data + "</span><br/>");
     });
+
+    chatServicesSocket.emit('write message to db', $scope.messageData, function(data) {
+      console.log("chatServicesSocket.emit('write message to db')");
+    })
 
 
     // $scope.chatMsgs.push({text: text, userId: 123, time: new Date()});

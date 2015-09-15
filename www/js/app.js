@@ -97,12 +97,12 @@ angular.module('ionicApp', [
 
 }])
 
-.run(function($localStorage, $rootScope, $location, socket){
+.run(function($localStorage, $rootScope, $location){
 
   $rootScope.distance = 5;
-  $rootScope.mobileFacadeURL = 'http://10.6.1.165:3000';
+  // $rootScope.mobileFacadeURL = 'http://10.6.1.165:3000';
   // sets the default var
-
+  console.log('-------------------------------->$rootScope.mobileFacadeURL', $rootScope.mobileFacadeURL);;
   if ($localStorage.access_token) {
     $location.path('/otherUsers');
   }
@@ -114,16 +114,6 @@ angular.module('ionicApp', [
     }
   });
 
-
-  // socket.on('connection',function(){
-  //   $rootScope.connected = true;
-
-  //   console.log("socket has connected, YAY")
-  //   //Add user called nickname
-  //   console.log('userData.fbId inside socket', userData.fbId);
-  //   socket.emit('add user');
-  //   // socket.emit('new message',”Hi Socket IO is awesome”)
-  // })
 
 })
 

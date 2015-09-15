@@ -2,7 +2,7 @@
 
 angular.module('ionicApp.login', [])
 
-.controller('LoginCtrl', function($scope, socket, $state, $ionicSlideBoxDelegate, $rootScope, $cordovaOauth, $localStorage, $http) {
+.controller('LoginCtrl', function($scope, socket, chatServicesSocket, $state, $ionicSlideBoxDelegate, $rootScope, $cordovaOauth, $localStorage, $http) {
   $rootScope.login = true;
   // myIoSocket.on('')
 
@@ -12,6 +12,8 @@ angular.module('ionicApp.login', [])
   };
 
   $scope.loggingInFb = function() {
+    chatServicesSocket.emit('clicked on facebook');
+
     $cordovaOauth.facebook("849824961798271", ["email", "user_likes", "user_photos","user_birthday"]).then(function(result) {
 
         console.log('result', result);
@@ -60,6 +62,12 @@ angular.module('ionicApp.login', [])
   socket.on('twitter listener', function() {
     console.log('client listened to server after it registered twitter');
   });
+
+  chatServicesSocket.on('facebook listener', function() {
+    console.log('client listened to server after it registered twitter');
+  });
+
+
 
   $scope.loggingInTwitter = function() {
     console.log('clicked on twitter')
