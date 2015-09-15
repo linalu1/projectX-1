@@ -24,7 +24,7 @@
           <div ng-if="currentUserId !== message.userId">
               
             <img ng-click="viewProfile(message)" class="profile-pic left" 
-                  ng-src="{{receiverUserInfo.profilePic}}" onerror="onProfilePicError(this)" />
+                  ng-src="{{message.profileImage}}" onerror="onProfilePicError(this)" />
 
               <div class="chat-bubble left">
 
@@ -33,7 +33,8 @@
                   </div>
 
                   <div class="message-detail">
-                    <span class="bold">{{message.firstName}}</span>,</span am-time-ago="message.timestamp_created"></span>
+                    <span class="bold">{{message.firstName}}</span>,
+                    <span am-time-ago="message.timestamp_created"></span>
                   </div>
 
 
@@ -46,7 +47,7 @@
           <div ng-if="currentUserId === message.userId">
             
                <img ng-click="viewProfile(message)" class="profile-pic right" 
-                  ng-src="{{userData.pic.data.url}}" onerror="onProfilePicError(this)" />
+                  ng-src="{{message.profileImage}}" onerror="onProfilePicError(this)" />
             
               <div class="chat-bubble right">
 

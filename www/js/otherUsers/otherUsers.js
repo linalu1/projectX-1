@@ -36,7 +36,10 @@ angular.module('ionicApp.otherUsers', [])
     // })
     console.log('userId in sendMessage', userId);
     if(userId) {
+      console.log('$localStorage.userDataChats', $localStorage.userDataChats);
 
+      var userDataPrivateChats = $localStorage.userDataChats.chatId_private;
+      
       // checks if the userId matches up with anything in the userChats object. if it doesn't, go straight to chat. if it does, pull up existing chat (get request to database). 
 
       console.log('inside userId if function')
@@ -47,7 +50,7 @@ angular.module('ionicApp.otherUsers', [])
       $rootScope.selectedUserToMsgInfo = userInfo;
       console.log('$rootScope.selectedUserToMsgInfo:', $rootScope.selectedUserToMsgInfo);
 
-      $rootScope.selectedChatId = currentUserIdVar.concat($scope.currentTime);
+      $rootScope.selectedChatId =  userDataPrivateChats[userId] || currentUserIdVar.concat($scope.currentTime);
       // for (var i = 0 ; i < user_attributes)
       console.log('Date.now():', Date.now());
       // var newChatId = userResults.id + Date.now();

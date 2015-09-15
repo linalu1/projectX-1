@@ -3,7 +3,7 @@
 angular.module('ionicApp.services', [])
 .factory('socket',function(socketFactory, $rootScope){
       //Create socket and connect to http://chat.socket.io 
-
+      console.log('$rootScope.mobileFacadeURL', $rootScope.mobileFacadeURL);
     var myIoSocket = io.connect('http://10.6.1.165:3000');
     console.log('inside factory1')
     var mySocket = socketFactory({  

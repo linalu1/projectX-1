@@ -26,6 +26,11 @@ angular.module('ionicApp.login', [])
             $localStorage.access_token = result.access_token;
             $scope.getUserChatInfo(userDataInfo.data.fbId);
             $state.go("selectActivity");
+
+            socket.emit('new user logged on', userDataInfo.data.fbId, function(data){
+              console.log('inside new user logged on! socket emitting')
+              console.log('socke is emitting this data:',data)
+            });
           });
     }, function(error) {
         alert("There was a problem signing in!  See the console for logs");
@@ -40,8 +45,8 @@ angular.module('ionicApp.login', [])
     console.log('userId', userId);
     $http.post($rootScope.mobileFacadeURL + '/api/chat/getUserChats', {access_token: $localStorage.access_token, userId: userId})
       .then(function(userDataChats) {
-        console.log('inside login.js clint side - userDataChats:', userDataChats)
-        $localStorage.userDataChats = userDataChats;
+        console.log('inside login.js clint side - userDataChats.data:', userDataChats.data)
+        $localStorage.userDataChats = userDataChats.data;
       }, function(err) {
         alert('there was a problem retrieving the all chats of the current user, error:', err);
         console.log('error:', err);
