@@ -5,18 +5,17 @@ angular.module('ionicApp.services', [])
     //Create socket and connect to http://chat.socket.io 
   $rootScope.mobileFacadeURL = 'http://10.6.1.165:3000';
 
-  // console.log('$rootScope.mobileFacadeURL', $rootScope.mobileFacadeURL);
+  // construct the socket factory
   var myIoSocket = io.connect($rootScope.mobileFacadeURL);
-  console.log('inside factory1')
   var mySocket = socketFactory({  
     ioSocket: myIoSocket
   });
-  console.log('inside factory2');
 
-  myIoSocket.emit('helloServer');
-  myIoSocket.on('helloClient', function(data) {
-    console.log('Server said hello to client');
-  })
+  // to test if the socket is active.
+  // myIoSocket.emit('helloServer');
+  // myIoSocket.on('helloClient', function(data) {
+  //   console.log('Server said hello to client');
+  // })
 
   myIoSocket.on('update user public chat storage', function(data) {
     if($localStorage.userAllChatsObject && !localStorage.userAllChatsObject[data]) {
