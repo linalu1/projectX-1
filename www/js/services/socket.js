@@ -17,6 +17,14 @@ angular.module('ionicApp.services', [])
   myIoSocket.on('helloClient', function(data) {
     console.log('Server said hello to client');
   })
+
+  myIoSocket.on('receiving changes to private chat storage', function(chatID, senderID) {
+    $localStorage.userPrivateChats[senderID] = userID;
+    $localStorage.userAllChatsArray.push(chatID);
+    $localStorage.userAllChatsObject[chatID] = true;
+    $rootScope.getAllChats($localStorage.userAllChats);
+
+  })
   // myIoSocket.on('news', function (data) {
   //     console.log(data);
   //     myIoSocket.emit('my other event', { my: 'data' });

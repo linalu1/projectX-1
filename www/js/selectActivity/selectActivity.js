@@ -65,6 +65,8 @@ angular.module('ionicApp.selectActivity', [])
   // watch.clearWatch();
 
   $rootScope.login = false;
+  $rootScope.isPrivateChat = false;
+  
   $scope.toLogin = function(){
     $state.go('login');
   };

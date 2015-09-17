@@ -2,8 +2,9 @@
 
 angular.module('ionicApp.otherUsers', [])
 
-.controller('otherUsersCtrl', function($scope, $state, $rootScope, $cordovaGeolocation, $http, $localStorage, $location) {
+.controller('otherUsersCtrl', function($scope, $state, $rootScope, $cordovaGeolocation, $http, $localStorage, $location, socket) {
   console.log($localStorage.userData);
+
   var loadNearbyUsers = function(){
     if ($localStorage.userData){
       $cordovaGeolocation
@@ -26,21 +27,25 @@ angular.module('ionicApp.otherUsers', [])
 
   loadNearbyUsers();
   $rootScope.login = false;
+  $rootScope.isPrivateChat = false;
   
   $scope.storedMessages = $rootScope.storedMessages;
 
   $scope.sendMessage = function(userId, userInfo) {
     // $scope.$apply(function() {
+    $scope.participantUserIDs = {};
+    // $rootScope.isPrivateMessage = userId;
     $scope.currentTime = Date.now();
     // $rootScope.
     // })
+    $rootScope.isPrivateChat = true;
+
     console.log('userId in sendMessage', userId);
     if(userId) {
       console.log('$localStorage.userDataChats', $localStorage.userDataChats);
 
-      var userDataPrivateChats = $localStorage.userDataChats.chatId_private;
+      // var userDataPrivateChats = $localStorage.userDataChats.chatId_private;
       
-      // checks if the userId matches up with anything in the userChats object. if it doesn't, go straight to chat. if it does, pull up existing chat (get request to database). 
 
       console.log('inside userId if function')
       $rootScope.currentUserId = $localStorage.userData.fbId;
@@ -50,9 +55,34 @@ angular.module('ionicApp.otherUsers', [])
       $rootScope.selectedUserToMsgInfo = userInfo;
       console.log('$rootScope.selectedUserToMsgInfo:', $rootScope.selectedUserToMsgInfo);
 
-      $rootScope.selectedChatId =  userDataPrivateChats[userId] || currentUserIdVar.concat($scope.currentTime);
-      // for (var i = 0 ; i < user_attributes)
-      console.log('Date.now():', Date.now());
+      // checks if the userId matches up with anything in the userChats object. if it doesn't, go straight to chat. if it does, pull up existing chat (get request to database). 
+
+      // if($localStorage.userPrivateChats[userId]) {
+      //   $rootScope.selectedChatId = $localStorage.userPrivateChats[userId];
+      // } else {
+      //   $localStorage.userPrivateChats[userId] = 
+      // }
+
+
+
+
+
+      $rootScope.selectedChatId =  $localStorage.userPrivateChats[userId] || currentUserIdVar.concat($scope.currentTime);
+
+      socket.emit('update other user private chat storage', userId, $rootScope.selectedChatId, $localStorage.userData.fbId, function(data) {
+        console.log("socket.emit 'update other user private chat storage'")
+        console.log('data:', data);
+      })
+      if(!$localStorage.userPrivateChats[userId]) {
+        $localStorage.userPrivateChats[userId] = $rootScope.selectedChatId;
+      }
+
+      if(!$localStorage.userAllChatsObject[$rootScope.selectedChatId]) {
+        $localStorage.userAllChatsObject[$rootScope.selectedChatId] = true;
+        $localStorage.userAllChatsArray.push($rootScope.selectedChatId);
+      }
+
+
       // var newChatId = userResults.id + Date.now();
       // console.log('newChatId', newChatId);
 

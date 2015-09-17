@@ -4,10 +4,15 @@ angular.module('ionicApp.profile', [])
 
 .controller('profileCtrl', function($scope, $state, $localStorage, $rootScope) {
   $rootScope.login = false;
+  $rootScope.isPrivateChat = false;
+
+  
   $scope.currentUser = {
     name: $localStorage.userData.name,
     profilePic: $localStorage.userData.pic.data.url 
   }
+
+
   
 
 
