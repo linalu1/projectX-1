@@ -256,14 +256,21 @@ angular.module('ionicApp.chat', [])
 
   socket.on('receive new message', function(data){
     console.log('****************** received a new message *****************');
-    $scope.chatMsgs.push({
-      text: data.message, 
-      firstName: data.senderFirstName, 
-      userId: data.senderId, 
-      timestamp_created: data.messageTime, 
-      profileImage: data.senderProfileImage
-    });
-    console.log('last message received', $scope.chatMsgs[$scope.chatMsgs.length-1]);
+    console.log('received data', data);
+    console.log('conversation ID sent to me', data.conversationId);
+    console.log('my current conversation:', $stateParams.chatId);
+    if(data.conversationId === $stateParams.chatId) {
+      $scope.chatMsgs.push({
+        text: data.message, 
+        firstName: data.senderFirstName, 
+        userId: data.senderId, 
+        timestamp_created: data.messageTime, 
+        profileImage: data.senderProfileImage
+      });
+      console.log('last message received for this conversation', $scope.chatMsgs[$scope.chatMsgs.length-1]);      
+    } else {
+      console.log('received message for another conversation');
+    }
     viewScroll.resize();
     viewScroll.scrollBottom();
 

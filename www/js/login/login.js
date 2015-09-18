@@ -3,6 +3,25 @@
 angular.module('ionicApp.login', [])
 
 .controller('LoginCtrl', function($scope, socket, chatServicesSocket, $state, $ionicSlideBoxDelegate, $rootScope, $cordovaOauth, $localStorage, $http) {
+
+  socket.on('receiving changes to private chat storage', function(chatID, senderID) {
+    console.log("myIoSocket.on 'receiving changes to private chat storage' inside socket.js")
+    console.log('################################################ NEED TO SEE THIS MESSAGE #############################')
+    console.log('chatID', chatID);
+    console.log('senderID:', senderID);
+    $localStorage.userPrivateChats[senderID] = chatID;
+    $localStorage.userAllChatsArray.push(chatID);
+    $localStorage.userAllChatsObject[chatID] = true;
+    // $rootScope.getAllChats($localStorage.userAllChats);
+  });
+
+  socket.on('update localStorage messages', function() {
+    // $rootScope.getAllChats($localStorage.userAllChats);
+    console.log('received message in background, updating loclStorage messages.')
+    $rootScope.getUserChatInfo($localStorage.userData.fbId);
+  });
+
+
   $rootScope.login = true;
   $rootScope.isPrivateChat = false;
 
@@ -24,7 +43,6 @@ angular.module('ionicApp.login', [])
             console.log('userDataInfo:', userDataInfo);
             console.log('userId:',userDataInfo.data.fbId);
             //call the getUserChatInfo function here
-            
             console.log('userDataInfo', userDataInfo);
             $localStorage.userData = userDataInfo.data;
             $localStorage.access_token = result.access_token;

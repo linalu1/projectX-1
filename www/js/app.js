@@ -114,22 +114,6 @@ angular.module('ionicApp', [
     }
   });
 
-  socket.on('receiving changes to private chat storage', function(chatID, senderID) {
-    console.log("myIoSocket.on 'receiving changes to private chat storage' inside socket.js")
-    console.log('################################################ NEED TO SEE THIS MESSAGE #############################')
-    console.log('chatID', chatID);
-    console.log('senderID:', senderID);
-    $localStorage.userPrivateChats[senderID] = chatID;
-    $localStorage.userAllChatsArray.push(chatID);
-    $localStorage.userAllChatsObject[chatID] = true;
-    // $rootScope.getAllChats($localStorage.userAllChats);
-  });
-
-  socket.on('update localStorage messages', function() {
-    // $rootScope.getAllChats($localStorage.userAllChats);
-    console.log('received message in background, updating loclStorage messages.')
-    $rootScope.getUserChatInfo($localStorage.userData.fbId);
-  });
 
 })
 

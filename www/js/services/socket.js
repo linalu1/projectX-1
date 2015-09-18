@@ -19,6 +19,7 @@ angular.module('ionicApp.services', [])
   })
 
 
+
   // myIoSocket.on('news', function (data) {
   //     console.log(data);
   //     myIoSocket.emit('my other event', { my: 'data' });
