@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('ionicApp.services', [])
-.factory('socket',function(socketFactory, $rootScope){
+.factory('socket',function(socketFactory, $rootScope, $localStorage){
     //Create socket and connect to http://chat.socket.io 
   $rootScope.mobileFacadeURL = 'http://10.6.1.165:3000';
 
@@ -18,18 +18,13 @@ angular.module('ionicApp.services', [])
     console.log('Server said hello to client');
   })
 
-  myIoSocket.on('receiving changes to private chat storage', function(chatID, senderID) {
-    console.log("myIoSocket.on 'receiving changes to private chat storage' inside socket.js")
-    $localStorage.userPrivateChats[senderID] = userID;
-    $localStorage.userAllChatsArray.push(chatID);
-    $localStorage.userAllChatsObject[chatID] = true;
-    $rootScope.getAllChats($localStorage.userAllChats);
 
-  })
   // myIoSocket.on('news', function (data) {
   //     console.log(data);
   //     myIoSocket.emit('my other event', { my: 'data' });
   //   });
+
+
   return mySocket;
 })
 .factory('chatServicesSocket', function(socketFactory, $rootScope) {

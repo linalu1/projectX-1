@@ -67,6 +67,10 @@ angular.module('ionicApp.otherUsers', [])
 
 
       //check if this is working. 
+      console.log('about to emit socket "update other user private chat storage"')
+      console.log('userId:', userId);
+      console.log('$rootScope.selectedChatId:', $rootScope.selectedChatId);
+      console.log('$localStorage.userData.fbId:', $localStorage.userData.fbId);
       socket.emit('update other user private chat storage', userId, $rootScope.selectedChatId, $localStorage.userData.fbId, function(data) {
         console.log("socket.emit 'update other user private chat storage'")
 

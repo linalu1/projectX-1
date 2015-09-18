@@ -319,7 +319,9 @@ angular.module('ionicApp.chat', [])
     // depending on if the chat exists in userChat's allchat's array,  
       // if it does, simply do post request to send message
       // if it doesn't, do a post request to create a new database AND send message. (I think);
-
+    socket.emit('tell other user to update localStorage messages', $scope.participantUserIDs, function(data) {
+      console.log('socket.emit "tell other user to update localstoage messages"');
+    });
 
     //chuck this in an array
 
