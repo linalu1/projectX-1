@@ -104,7 +104,7 @@ angular.module('ionicApp.chat', [])
   $scope.generateListOfParticipantsString = function(participantsObject) {
     console.log('C. THIS MUST BE SHOWN**********************')
 
-    $scope.participantUserIDsArray = [];
+    $scope.participantUserIDsArray = []; 
     for (var key in participantsObject) {
       $scope.participantUserIDsArray.push(participantsObject[key].firstName);
     }  
