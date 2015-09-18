@@ -6,7 +6,7 @@ angular.module('ionicApp.profile', [])
   $rootScope.login = false;
   $rootScope.isPrivateChat = false;
 
-  
+
   $scope.currentUser = {
     name: $localStorage.userData.name,
     profilePic: $localStorage.userData.pic.data.url 
@@ -42,14 +42,22 @@ angular.module('ionicApp.profile', [])
 
 })
 
-.controller('generalSettingsCtrl', function($scope, $state, $localStorage) {
+.controller('generalSettingsCtrl', function($scope, $state, $localStorage, $rootScope) {
   $scope.redirectToProfileSettings = function() {
     $state.go('profile');
   }
 
   $scope.logout = function(){
+    // for (var prop in $rootScope) {
+    //     if (prop.substring(0,1) !== '$') {
+    //         delete $rootScope[prop];
+    //     }
+    // }
+    $rootScope = $rootScope.$new(true);
+    $scope = $scope.$new(true);
     $localStorage.$reset();
     $state.go('login');
+
   }
 
 })

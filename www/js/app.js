@@ -32,7 +32,7 @@ angular.module('ionicApp', [
   })
   .state('chat', {
     url: '/chat',
-    templateUrl: 'js/chat/chat.html',
+    templateUrl: 'js/chat/chat.html', 
     controller: 'chatCtrl',
     authenticate: true // change to 'false' for testing
 
@@ -135,6 +135,17 @@ angular.module('ionicApp', [
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
+
+    // hides bottom tab when keyboard is open.
+    window.addEventListener('native.keyboardshow', function () {
+      document.querySelector('div.tabs').style.display = 'none';
+      angular.element(document.querySelector('ion-content.has-tabs')).css('bottom', 0);
+    });
+    window.addEventListener('native.keyboardhide', function () {
+      var tabs = document.querySelectorAll('div.tabs');
+      angular.element(tabs[0]).css('display', '');
+    });
+
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if(window.cordova && window.cordova.plugins.Keyboard) {

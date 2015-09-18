@@ -14,7 +14,6 @@ angular.module('ionicApp.chat', [])
   // some get req based on the id to get info on that certian chat
   // each chat room has a socket id.... we can use that id itself... bam
 
-
   console.log('---------------------------------->stateParams', $stateParams);
   console.log('------------------------------------>selectedChatId', $rootScope.selectedChatId)
 
@@ -227,9 +226,14 @@ angular.module('ionicApp.chat', [])
       participantsArray = thisConversation.participants;
     }
     console.log(userCount);
-    if(userCount === participantsArray.length) {
+    if(participantsArray && userCount === participantsArray.length) {
       console.log('^^^^^^^^^^^$scope.participantUserIDs',$scope.participantUserIDs)
-      $scope.chatMsgs = $scope.retrieveExistingConversation($stateParams.chatId);      
+      $scope.chatMsgs = $scope.retrieveExistingConversation($stateParams.chatId);    
+      if(Array.isArray($scope.chatMsgs)) {
+        $scope.doneLoading = true;
+      }  
+      viewScroll.resize();
+      viewScroll.scrollBottom();
       clearInterval(checkIfParticipantUpdated);
     }
   }, 200);
@@ -259,6 +263,9 @@ angular.module('ionicApp.chat', [])
       timestamp_created: data.messageTime, 
       profileImage: data.senderProfileImage
     });
+    console.log('last message received', $scope.chatMsgs[$scope.chatMsgs.length-1]);
+    viewScroll.resize();
+    viewScroll.scrollBottom();
 
     // $chat.append('<span class="msg"><b>' + data.nick + ': </b>' + data.msg + "</span><br/>");
   });
@@ -286,10 +293,9 @@ angular.module('ionicApp.chat', [])
   $scope.submitText = function(text){
     // socket.emit('send message', text, toUser.userId);
 
+    // if($scope.chatMsgs.length < 1) {
 
-    if($scope.chatMsgs.length < 1) {
-
-    }
+    // }
 
     $scope.messageData = {
       message: text,
@@ -326,6 +332,7 @@ angular.module('ionicApp.chat', [])
     // }
 
 
+    $scope.chatMsgs = $scope.chatMsgs || [];
 
 
     // $scope.chatMsgs.push({text: text, userId: 123, time: new Date()});

@@ -19,6 +19,7 @@ angular.module('ionicApp.services', [])
   })
 
   myIoSocket.on('receiving changes to private chat storage', function(chatID, senderID) {
+    console.log("myIoSocket.on 'receiving changes to private chat storage' inside socket.js")
     $localStorage.userPrivateChats[senderID] = userID;
     $localStorage.userAllChatsArray.push(chatID);
     $localStorage.userAllChatsObject[chatID] = true;
