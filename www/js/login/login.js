@@ -28,7 +28,7 @@ angular.module('ionicApp.login', [])
             console.log('userDataInfo', userDataInfo);
             $localStorage.userData = userDataInfo.data;
             $localStorage.access_token = result.access_token;
-            $scope.getUserChatInfo(userDataInfo.data.fbId);
+            $rootScope.getUserChatInfo(userDataInfo.data.fbId);
             $state.go("selectActivity");
 
             socket.emit('new user logged on', userDataInfo.data.fbId, function(data){
@@ -74,7 +74,7 @@ angular.module('ionicApp.login', [])
   };
 
 
-  $scope.getUserChatInfo = function(userId) {
+  $rootScope.getUserChatInfo = function(userId) {
     console.log('getUserChatInfo client method called.')
     console.log('userId', userId);
     $http.post($rootScope.mobileFacadeURL + '/api/chat/getUserChats', {access_token: $localStorage.access_token, userId: userId})
@@ -95,6 +95,8 @@ angular.module('ionicApp.login', [])
         }
 
         $localStorage.userAllChatsArray = userDataChats.data.chatId_all;
+
+        $rootScope.objectifyUserAllChats($localStorage.userAllChatsArray);
 
 
         console.log('$localStorage.userAllChats', $localStorage.userAllChatsArray);
