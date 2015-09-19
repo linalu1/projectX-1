@@ -4,6 +4,7 @@ angular.module('ionicApp.chat', [])
 
 .controller('chatCtrl', function($scope, $state, $rootScope, $localStorage, socket) {
 
+  // sets login to false to display the tab bar
   $rootScope.login = false;
 
   // Invokes the function to render all conversations.
