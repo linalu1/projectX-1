@@ -47,7 +47,7 @@ angular.module('ionicApp.chat', [])
     })
   }
 
-  $scope.getUserInfo = function(userID, callback) {
+  $rootScope.getUserInfo = function(userID, callback) {
     console.log('inside getUserInfo')
     console.log('inside getUserInfo for userID:', userID);
     $http.post($rootScope.mobileFacadeURL + '/api/user/chatGetUserInfo', {access_token: $localStorage.access_token, userID: userID})
@@ -123,8 +123,8 @@ angular.module('ionicApp.chat', [])
     console.log('checking if it is a private chat')
     console.log('$rootScope.selectedUserToMsg', $rootScope.selectedUserToMsg);
     if($rootScope.isPrivateChat) {
-      $scope.getUserInfo($scope.currentUserId, $scope.addUserAsParticipant);
-      $scope.getUserInfo($rootScope.selectedUserToMsg, $scope.addUserAsParticipant);
+      $rootScope.getUserInfo($scope.currentUserId, $scope.addUserAsParticipant);
+      $rootScope.getUserInfo($rootScope.selectedUserToMsg, $scope.addUserAsParticipant);
     } else {
       // add some logic here.
       console.log("it's not a private chat. add some logic here")
@@ -146,7 +146,7 @@ angular.module('ionicApp.chat', [])
       // open a new chat
       // $rootScope.current
     } else {
-      $scope.getUserInfo(userIDToAdd, $scope.addUserAsParticipant);
+      $rootScope.getUserInfo(userIDToAdd, $scope.addUserAsParticipant);
       console.log('addingUserToChat invoked');
       console.log('**********************************',$scope.participantUserIDs);
       socket.emit('added new user to chat', 
