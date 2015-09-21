@@ -88,6 +88,11 @@ angular.module('ionicApp.login', [])
       $rootScope.objectifyUserChatDetails($localStorage.userChatDetails);
       console.log('THIS IS WHERE YOU CALL refactorChatDetailsForChatRender+++++++++++++++++++++++++++++++++++++')
       console.log('$localStorage.userChatDetails', $localStorage.userChatDetails);
+      // if($localStorage.userChatDetails && !$localStorage.userChatDetailsRender) {
+      //   $rootScope.refactorChatDetailsForChatRender($localStorage.userChatDetails);    
+      // }
+
+      // $rootScope.refactorChatDetailsForChatRender($localStorage.userChatDetails);    
     }, function(err) {
       console.log('encountered error retrieving all chats');
       console.log('err:', err);

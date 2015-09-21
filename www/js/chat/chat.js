@@ -30,26 +30,26 @@ angular.module('ionicApp.chat', [])
 
   $rootScope.login = false;
 
-  $scope.InputPlaceholder = [
-    'Say Hello!',
-    'Be nice :)',
-    'Tell them what you want to do!',
-    'Be spontaneous???',
-    'Just have fun',
-    "Don't forget to rate the app!",
-    "Be happy, we are!",
-    'Smile lots'
-  ]
+  // $scope.InputPlaceholder = [
+  //   'Say Hello!',
+  //   'Be nice :)',
+  //   'Tell them what you want to do!',
+  //   'Be spontaneous???',
+  //   'Just have fun',
+  //   "Don't forget to rate the app!",
+  //   "Be happy, we are!",
+  //   'Smile lots'
+  // ]
 
-  // may need to reset this if a new ID is opened.
-  // $scope.participantUserIDs = {};
+  // // may need to reset this if a new ID is opened.
+  // // $scope.participantUserIDs = {};
 
-  var generateRandomInputPlaceholder = function(array) {
-    var index = Math.floor(Math.random() * array.length);
-    $scope.$apply(function() {
-      $scope.RandomInputPlaceholder = $scope.InputPlaceholder[index]
-    })
-  }
+  // var generateRandomInputPlaceholder = function(array) {
+  //   var index = Math.floor(Math.random() * array.length);
+  //   $scope.$apply(function() {
+  //     $scope.RandomInputPlaceholder = $scope.InputPlaceholder[index]
+  //   })
+  // }
 
   $rootScope.getUserInfo = function(userID, callback) {
     console.log('inside getUserInfo')
