@@ -3,7 +3,7 @@
 angular.module('ionicApp.chat', [])
 
 .controller('chatCtrl', function($scope, $state, $rootScope, $localStorage) {
-  
+
   $rootScope.login = false;
   if($localStorage.userChatDetails) {
     $rootScope.refactorChatDetailsForChatRender($localStorage.userChatDetails);    
@@ -65,19 +65,53 @@ angular.module('ionicApp.chat', [])
     })
   };
 
-  $scope.addUserAsParticipant = function(userID, userData) {
-    console.log('B. THIS MUST BE SHOWN**********************')
-
-    if($scope.participantUserIDs && !$scope.participantUserIDs[userID]) {
-      $scope.participantUserIDs[userID] = userData;
-    } else if (!$scope.participantUserIDs) {
-      $scope.participantUserIDs = {};
-      $scope.participantUserIDs[userID] = userData;
-
-    }
-    console.log('current users in object:', $scope.participantUserIDs);
-    $scope.generateListOfParticipantsString($scope.participantUserIDs);
+  $scope.getUsersInfo = function(arrayOfUserIDs, callback) {
+    console.log('inside getUserInfo')
+    console.log('about to http.post')
+    console.log('arrayOfUserIDs:',arrayOfUserIDs);
+    $http.post($rootScope.mobileFacadeURL + '/api/user/chatGetUsersInfo', {access_token: $localStorage.access_token, userID: arrayOfUserIDs})
+    .then(function(body) {
+      console.log('received a response inside getUsersInfochat.js')
+      console.log('userinfo received:', body.data);
+      // console.log(callback);
+      callback(body.data);
+    }, function(err) {
+      alert('cannot retrieve userinfo of one or more users ');
+      console.log('error:', err);
+    })
   };
+
+  $scope.addUsersAsParticipant = function(userData) {
+    console.log('----------------> userData:', userData);
+    $scope.participantUserIDs = $scope.participantUserIDs || {};
+    for (var key in userData) {
+      $scope.participantUserIDs[key] = userData[key];
+    }
+
+    console.log('---------------> $scope.participantUserIDs', $scope.participantUserIDs)
+    $scope.generateListOfParticipantsString($scope.participantUserIDs);
+
+    $scope.chatMsgs = $scope.retrieveExistingConversation($stateParams.chatId);    
+    if(Array.isArray($scope.chatMsgs)) {
+      $scope.doneLoading = true;
+    }  
+    viewScroll.resize();
+    viewScroll.scrollBottom();
+  }
+
+  // $scope.addUserAsParticipant = function(userID, userData) {
+  //   console.log('B. THIS MUST BE SHOWN**********************')
+
+  //   if($scope.participantUserIDs && !$scope.participantUserIDs[userID]) {
+  //     $scope.participantUserIDs[userID] = userData;
+  //   } else if (!$scope.participantUserIDs) {
+  //     $scope.participantUserIDs = {};
+  //     $scope.participantUserIDs[userID] = userData;
+
+  //   }
+  //   console.log('current users in object:', $scope.participantUserIDs);
+  //   $scope.generateListOfParticipantsString($scope.participantUserIDs);
+  // };
 
   $scope.getCurrentUserInfo = function() {
     console.log('A. THIS MUST BE SHOWN**********************')
@@ -105,7 +139,7 @@ angular.module('ionicApp.chat', [])
 
   $scope.generateListOfParticipantsString = function(participantsObject) {
     console.log('C. THIS MUST BE SHOWN**********************')
-
+    console.log('---------------------> participantsObject', participantsObject);
     $scope.participantUserIDsArray = []; 
     for (var key in participantsObject) {
       $scope.participantUserIDsArray.push(participantsObject[key].firstName);
@@ -116,6 +150,8 @@ angular.module('ionicApp.chat', [])
 
     console.log('this should show all users in the chat:',$scope.participantUserIDsString)
       // $scope.participantUserIDsString += JSON.stringify(participantsObject[key]) + ', ';
+
+
   }
 
 
@@ -125,8 +161,14 @@ angular.module('ionicApp.chat', [])
     console.log('checking if it is a private chat')
     console.log('$rootScope.selectedUserToMsg', $rootScope.selectedUserToMsg);
     if($rootScope.isPrivateChat) {
-      $rootScope.getUserInfo($scope.currentUserId, $scope.addUserAsParticipant);
-      $rootScope.getUserInfo($rootScope.selectedUserToMsg, $scope.addUserAsParticipant);
+      var usersArray = [];
+      usersArray.push($scope.currentUserId);
+      usersArray.push($rootScope.selectedUserToMsg);
+      console.log('------------------> usersArray', usersArray);
+
+      $scope.getUsersInfo(usersArray, $scope.addUsersAsParticipant)
+      // $rootScope.getUserInfo($scope.currentUserId, $scope.addUserAsParticipant);
+      // $rootScope.getUserInfo($rootScope.selectedUserToMsg, $scope.addUserAsParticipant);
     } else {
       // add some logic here.
       console.log("it's not a private chat. add some logic here")
@@ -216,29 +258,30 @@ angular.module('ionicApp.chat', [])
     console.log('RETRIEVED MESSAGES! chatMessages:', chatMessages);
     return chatMessages;
   }
+  // $scope.
   
 
-  var checkIfParticipantUpdated = setInterval(function(){
-    var userCount = 0, thisConversation, participantsArray;
-    for (var key in $scope.participantUserIDs) {
-      userCount++;
-    }
-    if($stateParams.chatId && $localStorage.userChatDetailsObject && $localStorage.userChatDetailsObject[$stateParams.chatId]) {
-      thisConversation = $localStorage.userChatDetailsObject[$stateParams.chatId];
-      participantsArray = thisConversation.participants;
-    }
-    console.log(userCount);
-    if(participantsArray && userCount === participantsArray.length) {
-      console.log('^^^^^^^^^^^$scope.participantUserIDs',$scope.participantUserIDs)
-      $scope.chatMsgs = $scope.retrieveExistingConversation($stateParams.chatId);    
-      if(Array.isArray($scope.chatMsgs)) {
-        $scope.doneLoading = true;
-      }  
-      viewScroll.resize();
-      viewScroll.scrollBottom();
-      clearInterval(checkIfParticipantUpdated);
-    }
-  }, 200);
+  // var checkIfParticipantUpdated = setInterval(function(){
+  //   var userCount = 0, thisConversation, participantsArray;
+  //   for (var key in $scope.participantUserIDs) {
+  //     userCount++;
+  //   }
+  //   if($stateParams.chatId && $localStorage.userChatDetailsObject && $localStorage.userChatDetailsObject[$stateParams.chatId]) {
+  //     thisConversation = $localStorage.userChatDetailsObject[$stateParams.chatId];
+  //     participantsArray = thisConversation.participants;
+  //   }
+  //   console.log(userCount);
+  //   if(participantsArray && userCount === participantsArray.length) {
+  //     console.log('^^^^^^^^^^^$scope.participantUserIDs',$scope.participantUserIDs)
+  //     $scope.chatMsgs = $scope.retrieveExistingConversation($stateParams.chatId);    
+  //     if(Array.isArray($scope.chatMsgs)) {
+  //       $scope.doneLoading = true;
+  //     }  
+  //     viewScroll.resize();
+  //     viewScroll.scrollBottom();
+  //     clearInterval(checkIfParticipantUpdated);
+  //   }
+  // }, 200);
   // checkIfParticipantUpdated();
 
 

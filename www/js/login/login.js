@@ -94,7 +94,7 @@ angular.module('ionicApp.login', [])
     })
   };
 
-  $rootScope.getUsersInfo = function(arrayOfUserIDs, callback) {
+  $scope.getUsersInfo = function(arrayOfUserIDs, callback) {
     console.log('inside getUserInfo')
     console.log('about to http.post')
     console.log(arrayOfUserIDs);
@@ -150,7 +150,7 @@ angular.module('ionicApp.login', [])
       //   console.log('data', data);
       // });
 
-      $rootScope.getUsersInfo(participantUsersArrayNoCurrUser, function(userInfo) {
+      $scope.getUsersInfo(participantUsersArrayNoCurrUser, function(userInfo) {
         console.log('adding current convo to localStorage chat detail render');
         console.log('returned user info', userInfo);
         var participantsArray = [];
