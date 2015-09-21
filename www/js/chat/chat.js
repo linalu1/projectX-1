@@ -2,9 +2,13 @@
 
 angular.module('ionicApp.chat', [])
 
-.controller('chatCtrl', function($scope, $state, $rootScope) {
+.controller('chatCtrl', function($scope, $state, $rootScope, $localStorage) {
+  
   $rootScope.login = false;
-  $scope.chats = $localStorage.userChatDetails;
+  if($localStorage.userChatDetails) {
+    $rootScope.refactorChatDetailsForChatRender($localStorage.userChatDetails);    
+  }
+  $scope.chats = $localStorage.userChatDetailsRender || [];
   // [{name: "Omar", lastText: "LOL", face: "https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xpa1/v/t1.0-9/1604716_10202673663939733_1410194365_n.jpg?oh=5f132a47f63f52e413c62d872c171748&oe=566920ED", id: 123}];
 
 })
@@ -60,8 +64,6 @@ angular.module('ionicApp.chat', [])
       console.log('error:', err);
     })
   };
-
-
 
   $scope.addUserAsParticipant = function(userID, userData) {
     console.log('B. THIS MUST BE SHOWN**********************')
@@ -290,6 +292,7 @@ angular.module('ionicApp.chat', [])
         console.log('data:',data);
 
     });
+
 
     $rootScope.getUserChatInfo($localStorage.userData.fbId);
 

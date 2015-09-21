@@ -3,7 +3,7 @@
 angular.module('ionicApp.services', [])
 .factory('socket',function(socketFactory, $rootScope, $localStorage){
     //Create socket and connect to http://chat.socket.io 
-  $rootScope.mobileFacadeURL = 'http://10.6.1.165:3000';
+  $rootScope.mobileFacadeURL = 'http://192.168.128.114:3000';
 
   // console.log('$rootScope.mobileFacadeURL', $rootScope.mobileFacadeURL);
   var myIoSocket = io.connect($rootScope.mobileFacadeURL);
@@ -30,7 +30,7 @@ angular.module('ionicApp.services', [])
 })
 .factory('chatServicesSocket', function(socketFactory, $rootScope) {
   console.log('inside factory3');
-  var chatServicesSocket = io.connect('http://10.6.1.165:3003');
+  var chatServicesSocket = io.connect('http://192.168.128.114:3003');
 
   var myChatSocket = socketFactory({  
     ioSocket: chatServicesSocket

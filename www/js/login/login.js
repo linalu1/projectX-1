@@ -4,6 +4,8 @@ angular.module('ionicApp.login', [])
 
 .controller('LoginCtrl', function($scope, socket, chatServicesSocket, $state, $ionicSlideBoxDelegate, $rootScope, $cordovaOauth, $localStorage, $http) {
 
+
+
   socket.on('receiving changes to private chat storage', function(chatID, senderID) {
     console.log("myIoSocket.on 'receiving changes to private chat storage' inside socket.js")
     console.log('################################################ NEED TO SEE THIS MESSAGE #############################')
@@ -84,13 +86,95 @@ angular.module('ionicApp.login', [])
       console.log('userChatDetails:',userChatDetails);
       $localStorage.userChatDetails = userChatDetails.data;
       $rootScope.objectifyUserChatDetails($localStorage.userChatDetails);
-
+      console.log('THIS IS WHERE YOU CALL refactorChatDetailsForChatRender+++++++++++++++++++++++++++++++++++++')
+      console.log('$localStorage.userChatDetails', $localStorage.userChatDetails);
     }, function(err) {
       console.log('encountered error retrieving all chats');
       console.log('err:', err);
     })
   };
 
+  $rootScope.getUsersInfo = function(arrayOfUserIDs, callback) {
+    console.log('inside getUserInfo')
+    console.log('about to http.post')
+    console.log(arrayOfUserIDs);
+    $http.post($rootScope.mobileFacadeURL + '/api/user/chatGetUsersInfo', {access_token: $localStorage.access_token, userID: arrayOfUserIDs})
+    .then(function(body) {
+      console.log('received a response inside getUsersInfochat.js')
+      console.log('userinfo received:', body.data);
+      // console.log(callback);
+      callback(body.data);
+    }, function(err) {
+      alert('cannot retrieve userinfo of one or more users ');
+      console.log('error:', err);
+    })
+  };
+
+  $rootScope.refactorChatDetailsForChatRender = function(localStorageUserChatDetails) {
+    console.log('inside refactorChatDetailsForChatRender function')
+    $localStorage.userChatDetailsRender = [];
+
+    for (var i =0 ; i < localStorageUserChatDetails.length; i++) {
+
+      var currConvo = localStorageUserChatDetails[i];
+      console.log('currConvo', currConvo);
+      var convoToPush = {}, userInfoObject, senderUserIDSaved;
+      var participantUsersArray = currConvo.participants;
+      // filter out yourself.
+      console.log('participantUsersArray', participantUsersArray)
+      var participantUsersArrayNoCurrUser = [];
+      for (var i = 0 ;i < participantUsersArray.length; i++) {
+        if(participantUsersArray[i] !== $localStorage.userData.fbId) {
+          participantUsersArrayNoCurrUser.push(participantUsersArray[i]);
+
+          // participantUsersArray.splice(i, 1);
+          // break;
+          // return;
+        }
+      }
+      console.log('participantUsersArrayNoCurrUser', participantUsersArrayNoCurrUser);
+
+
+      for (var i = currConvo.messages.length-1; i>= 0; i--) {
+        if(currConvo.messages[i].senderID !== $localStorage.userData.fbId) {
+          senderUserIDSaved = currConvo.messages[i].senderID;
+          break;
+          // return;
+        }
+      }
+      console.log('senderUserIDSaved', senderUserIDSaved);
+      var otherUsersArray = [];
+
+      // $rootScope.getUsersInfo(['1465443900431771', '10207060761214423', '149753995369062'], function(data) {
+      //   console.log('inside callback@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
+      //   console.log('data', data);
+      // });
+
+      $rootScope.getUsersInfo(participantUsersArrayNoCurrUser, function(userInfo) {
+        console.log('adding current convo to localStorage chat detail render');
+        console.log('returned user info', userInfo);
+        var participantsArray = [];
+        for (var key in userInfo) {
+          participantsArray.push(userInfo[key].firstName);
+        }
+        console.log('participantsArray', participantsArray);
+        userInfoObject = userInfo;
+        console.log('userInfoObject', userInfoObject);
+        convoToPush.chatId = currConvo.chatId;
+        convoToPush.lastMessage = currConvo.messages[currConvo.messages.length-1].text;
+        convoToPush.participants = participantsArray.join(', ');
+        convoToPush.participantIDs = participantUsersArrayNoCurrUser;
+        convoToPush.senderProfileImage = userInfoObject[senderUserIDSaved].profileImage;
+        convoToPush.lastMessage_timestamp = currConvo.timestamp_updated;
+        convoToPush.group = currConvo.group;
+        convoToPush.firstSender = currConvo.firstSender;
+        console.log('convoToPush', convoToPush);
+        $localStorage.userChatDetailsRender.push(convoToPush);
+
+      });
+    }
+    console.log('@@@@@@@@@@@@@@@$localStorage.userChatDetailsRender:', $localStorage.userChatDetailsRender)
+  }
 
   $rootScope.getUserChatInfo = function(userId) {
     console.log('getUserChatInfo client method called.')
