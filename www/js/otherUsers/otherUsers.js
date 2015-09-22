@@ -33,7 +33,7 @@ angular.module('ionicApp.otherUsers', [])
 
   $scope.sendMessage = function(userId, userInfo) {
     // $scope.$apply(function() {
-    $scope.participantUserIDs = {};
+    $rootScope.participantUserIDs = {};
     // $rootScope.isPrivateMessage = userId;
     $scope.currentTime = Date.now();
     // $rootScope.

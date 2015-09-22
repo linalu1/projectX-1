@@ -85,6 +85,8 @@ angular.module('ionicApp.login', [])
       console.log('received response in getAllChats');
       console.log('userChatDetails:',userChatDetails);
       $localStorage.userChatDetails = userChatDetails.data;
+      // $rootScope.refactorChatDetailsForChatRender($localStorage.userChatDetails);    
+
       $rootScope.objectifyUserChatDetails($localStorage.userChatDetails);
       console.log('THIS IS WHERE YOU CALL refactorChatDetailsForChatRender+++++++++++++++++++++++++++++++++++++')
       console.log('$localStorage.userChatDetails', $localStorage.userChatDetails);
@@ -125,7 +127,7 @@ angular.module('ionicApp.login', [])
       console.log('currConvo', currConvo);
       var convoToPush = {}, userInfoObject, senderUserIDSaved;
       var participantUsersArray = currConvo.participants;
-      // filter out yourself.
+      // filter out current user.
       console.log('participantUsersArray', participantUsersArray)
       var participantUsersArrayNoCurrUser = [];
       for (var i = 0 ;i < participantUsersArray.length; i++) {

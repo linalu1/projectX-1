@@ -2,7 +2,7 @@
 
 angular.module('ionicApp.chat', [])
 
-.controller('chatCtrl', function($scope, $state, $rootScope, $localStorage) {
+.controller('chatCtrl', function($scope, $state, $rootScope, $localStorage, socket) {
 
   $rootScope.login = false;
   if($localStorage.userChatDetails) {
@@ -11,6 +11,13 @@ angular.module('ionicApp.chat', [])
   $scope.chats = $localStorage.userChatDetailsRender || [];
   // [{name: "Omar", lastText: "LOL", face: "https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xpa1/v/t1.0-9/1604716_10202673663939733_1410194365_n.jpg?oh=5f132a47f63f52e413c62d872c171748&oe=566920ED", id: 123}];
 
+  socket.on('receive new message', function(data) {
+    if($localStorage.userChatDetails) {
+      $scope.$apply(function() {
+        $rootScope.refactorChatDetailsForChatRender($localStorage.userChatDetails);
+      })
+    }
+  })
 })
 
 
@@ -42,7 +49,7 @@ angular.module('ionicApp.chat', [])
   // ]
 
   // // may need to reset this if a new ID is opened.
-  // // $scope.participantUserIDs = {};
+  // // $rootScope.participantUserIDs = {};
 
   // var generateRandomInputPlaceholder = function(array) {
   //   var index = Math.floor(Math.random() * array.length);
@@ -83,13 +90,13 @@ angular.module('ionicApp.chat', [])
 
   $scope.addUsersAsParticipant = function(userData) {
     console.log('----------------> userData:', userData);
-    $scope.participantUserIDs = $scope.participantUserIDs || {};
+    $rootScope.participantUserIDs = $rootScope.participantUserIDs || {};
     for (var key in userData) {
-      $scope.participantUserIDs[key] = userData[key];
+      $rootScope.participantUserIDs[key] = userData[key];
     }
 
-    console.log('---------------> $scope.participantUserIDs', $scope.participantUserIDs)
-    $scope.generateListOfParticipantsString($scope.participantUserIDs);
+    console.log('---------------> $rootScope.participantUserIDs', $rootScope.participantUserIDs)
+    $scope.generateListOfParticipantsString($rootScope.participantUserIDs);
 
     $scope.chatMsgs = $scope.retrieveExistingConversation($stateParams.chatId);    
     if(Array.isArray($scope.chatMsgs)) {
@@ -102,15 +109,15 @@ angular.module('ionicApp.chat', [])
   // $scope.addUserAsParticipant = function(userID, userData) {
   //   console.log('B. THIS MUST BE SHOWN**********************')
 
-  //   if($scope.participantUserIDs && !$scope.participantUserIDs[userID]) {
-  //     $scope.participantUserIDs[userID] = userData;
-  //   } else if (!$scope.participantUserIDs) {
-  //     $scope.participantUserIDs = {};
-  //     $scope.participantUserIDs[userID] = userData;
+  //   if($rootScope.participantUserIDs && !$rootScope.participantUserIDs[userID]) {
+  //     $rootScope.participantUserIDs[userID] = userData;
+  //   } else if (!$rootScope.participantUserIDs) {
+  //     $rootScope.participantUserIDs = {};
+  //     $rootScope.participantUserIDs[userID] = userData;
 
   //   }
-  //   console.log('current users in object:', $scope.participantUserIDs);
-  //   $scope.generateListOfParticipantsString($scope.participantUserIDs);
+  //   console.log('current users in object:', $rootScope.participantUserIDs);
+  //   $scope.generateListOfParticipantsString($rootScope.participantUserIDs);
   // };
 
   $scope.getCurrentUserInfo = function() {
@@ -176,29 +183,105 @@ angular.module('ionicApp.chat', [])
   }
   $scope.checkIfIsPrivateChat();
 
-  $scope.generateListOfParticipantsString($scope.participantUserIDs);
+  $scope.generateListOfParticipantsString($rootScope.participantUserIDs);
 
-  // $scope.receiverFirstName = $scope.participantUserIDs
+  // $scope.receiverFirstName = $rootScope.participantUserIDs
   // $scope.receiverUserIDs.push($scope.receiverUserId);
 
   $scope.addingUserToChat = function(userIDToAdd) {
     // need shittonne of logic here. if currently 2 users, open new chat. if 3 users, persist in current chat
     // also need to display message saying ____ has been added to the conversation
-    if($scope.participantUserIDsArray.length < 3) {
-      $rootScope.selectedChatId = $scope.currentUserId + Date.now()
+    $rootScope.getUserInfo(userIDToAdd, $scope.addUserAsParticipant);
+
+
+    // chatServicesSocket.emit('add conversation to new participant chat storage', objectOfMessageData, function(data) {
+    //   console.log(data);
+    //   console.log('socket.emit add conversation to new participant chat storage');
+    // });
+
+    // $rootScope.current
+    // socket.emit('update other user public chat storage', $rootScope.selectedChatId, userIDToAdd, function(data) {
+    //   console.log(data)
+
+    //   // also emit to chatsocket to update userchats
+    // });
+
+    console.log('adding user to chat');
+    if($rootScope.participantUserIDsArray.length < 3) {
+
+      $rootScope.selectedChatId = $scope.currentUserId + Date.now();
+      console.log('I was in private chat, now taking user to a new conversation to support multi users')
+      console.log('$rootScope.selectedChatId', $rootScope.selectedChatId);
+      console.log('rootScope.participantUserIDs', rootScope.participantUserIDs);
+      // generate an array of all participants.
+      var allParticipatingUsers = [];
+      for (var key in $scope.participantUserIDs) {
+        allParticipatingUsers.push(key);
+      }
+      allParticipatingUsers.push(userIDToAdd);
+
+      // update localStorage for all users
+      socket.emit('update other user public chat storage', $rootScope.selectedChatId, allParticipatingUsers, function(data) {
+        console.log(data)
+      });
+
+      // update array of public chats in userChats
+      chatServicesSocket.emit('add public chat to participant storage', $rootScope.selectedChatId, allParticipatingUsers, function(data) {
+        console.log(data);
+      })
+
+      // create a new conversation in database.
+      var conversationData = {
+        chatId: $rootScope.selectedChatId,
+        firstSender: $localStorage.userData.fbId,
+        timestamp_updated: Time.now(),
+        participants: allParticipatingUsers,
+        group: true
+      };
+
+      chatServicesSocket.emit('create new conversation in database', conversationData, function(data) {
+        console.log('chatServicesSocket.emit emitting create new conversation in database ');
+      })
+
+
+      // redirect user to new chat
       $state.go('chatDetail', {chatId: $rootScope.selectedChatId}, {reload: true});
-      // open a new chat
-      // $rootScope.current
+
     } else {
+      var objectOfMessageData = {
+        chatId: $stateParams.chatId,
+        newParticipantId: userIDToAdd
+      }
+      var userArray = [];
+      userArray.push(userIDToAdd);
+
+      console.log("already in a public chat, now adding new user to current chat")
       $rootScope.getUserInfo(userIDToAdd, $scope.addUserAsParticipant);
       console.log('addingUserToChat invoked');
-      console.log('**********************************',$scope.participantUserIDs);
+      console.log('**********************************',$rootScope.participantUserIDs);
       socket.emit('added new user to chat', 
-        $scope.participantUserIDs, 
+        $rootScope.participantUserIDs, 
         $scope.currentUserId, 
         function(data){
         console.log('emitting "adding new user to chat"');
-      });            
+      });
+
+      // update localStorage 
+      socket.emit('update other user public chat storage', $stateParams.chatId, userArray, function(data) {
+        console.log(data)
+      });
+
+      // update DB convo participants. 
+      chatServicesSocket.emit('add participant to conversation', objectOfMessageData, function(data) {
+        console.log(data);
+        console.log('socket.emit add participant to conversation')
+      })
+
+      // update array of public chats in userChats
+      chatServicesSocket.emit('add public chat to participant storage', $stateParams.chatId, userArray, function(data) {
+        console.log(data);
+      })
+
     }
 
     // gets user info and adds user as participant
@@ -210,10 +293,10 @@ angular.module('ionicApp.chat', [])
   socket.on('chat participant updates', function(data) {
     console.log('socket.on "chat participant updates"');
 
-    $scope.participantUserIDs = data;
+    $rootScope.participantUserIDs = data;
     $scope.participantUserCount  = 0;
-    for (var key in $scope.participantUserIDs) {
-      $scope.participantUserIDsString += JSON.stringify($scope.participantUserIDs[key]) + '';
+    for (var key in $rootScope.participantUserIDs) {
+      $rootScope.participantUserIDsString += JSON.stringify($rootScope.participantUserIDs[key]) + '';
       $scope.participantUserCount++;
     }  
 
@@ -248,10 +331,10 @@ angular.module('ionicApp.chat', [])
         var oldStructure = messages[i];
         var newStructure = {};
         newStructure.text = oldStructure.text;
-        newStructure.firstName = $scope.participantUserIDs[oldStructure.senderID].firstName; // something
+        newStructure.firstName = $rootScope.participantUserIDs[oldStructure.senderID].firstName; // something
         newStructure.userId = oldStructure.senderID;
         newStructure.timestamp_created = oldStructure.timestamp_created;
-        newStructure.profileImage = $scope.participantUserIDs[oldStructure.senderID].profileImage;
+        newStructure.profileImage = $rootScope.participantUserIDs[oldStructure.senderID].profileImage;
         chatMessages.push(newStructure);
       }
     }
@@ -263,7 +346,7 @@ angular.module('ionicApp.chat', [])
 
   // var checkIfParticipantUpdated = setInterval(function(){
   //   var userCount = 0, thisConversation, participantsArray;
-  //   for (var key in $scope.participantUserIDs) {
+  //   for (var key in $rootScope.participantUserIDs) {
   //     userCount++;
   //   }
   //   if($stateParams.chatId && $localStorage.userChatDetailsObject && $localStorage.userChatDetailsObject[$stateParams.chatId]) {
@@ -272,7 +355,7 @@ angular.module('ionicApp.chat', [])
   //   }
   //   console.log(userCount);
   //   if(participantsArray && userCount === participantsArray.length) {
-  //     console.log('^^^^^^^^^^^$scope.participantUserIDs',$scope.participantUserIDs)
+  //     console.log('^^^^^^^^^^^$rootScope.participantUserIDs',$rootScope.participantUserIDs)
   //     $scope.chatMsgs = $scope.retrieveExistingConversation($stateParams.chatId);    
   //     if(Array.isArray($scope.chatMsgs)) {
   //       $scope.doneLoading = true;
@@ -290,7 +373,7 @@ angular.module('ionicApp.chat', [])
 
 
 
-  // if($scope.participantUserIDs)
+  // if($rootScope.participantUserIDs)
   // $scope.authorData = $localStorage.userData;
   // $scope.
 
@@ -357,7 +440,7 @@ angular.module('ionicApp.chat', [])
       senderProfileImage: $scope.currentUserProfileImage,
       senderFirstName: $scope.currentUserFirstName,
       conversationId: $scope.selectedChatId,
-      messageParticipants: $scope.participantUserIDs
+      messageParticipants: $rootScope.participantUserIDs
     }
 
     $scope.saveMessageToDatabase($scope.messageData);
@@ -372,7 +455,7 @@ angular.module('ionicApp.chat', [])
     // depending on if the chat exists in userChat's allchat's array,  
       // if it does, simply do post request to send message
       // if it doesn't, do a post request to create a new database AND send message. (I think);
-    socket.emit('tell other user to update localStorage messages', $scope.participantUserIDs, function(data) {
+    socket.emit('tell other user to update localStorage messages', $rootScope.participantUserIDs, function(data) {
       console.log('socket.emit "tell other user to update localstoage messages"');
     });
 
@@ -380,8 +463,8 @@ angular.module('ionicApp.chat', [])
 
     // for (var key in participantUserIDs) {
     console.log('$scope.messageData',$scope.messageData);
-    console.log('$scope.participantUserIDs', $scope.participantUserIDs);
-    socket.emit('send message', $scope.messageData, $scope.participantUserIDs, function(data) {
+    console.log('$rootScope.participantUserIDs', $rootScope.participantUserIDs);
+    socket.emit('send message', $scope.messageData, $rootScope.participantUserIDs, function(data) {
       console.log('emitting "send message"');
     });      
     // }

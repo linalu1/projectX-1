@@ -18,7 +18,12 @@ angular.module('ionicApp.services', [])
     console.log('Server said hello to client');
   })
 
-
+  myIoSocket.on('update user public chat storage', function(data) {
+    if($localStorage.userAllChatsObject && !localStorage.userAllChatsObject[data]) {
+      $localStorage.userAllChatsArray.push(data);
+      $localStorage.userAllChatsObject[data] = true;
+    }
+  })
 
   // myIoSocket.on('news', function (data) {
   //     console.log(data);
