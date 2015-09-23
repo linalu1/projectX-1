@@ -23,7 +23,9 @@ angular.module('ionicApp.login', [])
     $rootScope.getUserChatInfo($localStorage.userData.fbId);
   });
 
-
+  $scope.$apply(function() {
+    $rootScope.login = true;
+  });
   $rootScope.login = true;
   $rootScope.isPrivateChat = false;
 

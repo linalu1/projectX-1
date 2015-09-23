@@ -17,8 +17,17 @@ angular.module('ionicApp.otherUsers', [])
           $http.post($rootScope.mobileFacadeURL + '/api/checkin/getcheckin?latitude=' + lat + '&longitude=' + long + '&distance=' +  $rootScope.distance + '&currentFbId=' + $localStorage.userData.fbId, {access_token: $localStorage.access_token})
             .then(function(resp){
               console.log(resp.data);
+
               $rootScope.userResults = resp.data;
-              console.log('$rootScope.userResults', $rootScope.userResults);
+
+              console.log('1-->$rootScope.userResults', $rootScope.userResults);
+
+              for (var i = 0 ; i < $rootScope.userResults.length; i++) {
+                $rootScope.userResults[i].distanceMiles = $rootScope.userResults[i].distanceMiles || '<1';
+                var firstNameOnly = $rootScope.userResults[i].username.slice(0, $rootScope.userResults[i].username.indexOf(' '));
+                $rootScope.userResults[i].username = firstNameOnly;
+              }
+              console.log('2--> $rootScope.userResults', $rootScope.userResults);
             })
           });
     }

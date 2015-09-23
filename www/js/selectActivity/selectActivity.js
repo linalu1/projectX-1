@@ -19,14 +19,14 @@ angular.module('ionicApp.selectActivity', [])
       socket.emit('my other event', { my: data });
     });
 
-  $scope.label = "Select Activity";
+  $scope.label = "What to do?";
 
   $scope.activityChange = function(newActivity){
     $scope.label = newActivity;
   }
   
   $scope.postActivity = function(){
-    if (!$scope.label || $scope.label === '' || $scope.label === 'Select Activity') {
+    if (!$scope.label || $scope.label === '' || $scope.label === 'What to do?') {
       alert('Select something');
       return;
     }

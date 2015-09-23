@@ -1,13 +1,13 @@
 <!-- ion top bar (navigation) -->
 <ion-header-bar class="bar-calm">
-<h1 class="title">I'm Free</h1>
+<h1 class="title">People around you!</h1>
 </ion-header-bar>
 
 <ion-view view-title="Home">
-<ion-content>
+<ion-content has-bouncing="true" class="has-header has-tabs">
 <!-- a single user -->
 <div ng-show="userResults === undefined">
-  <center><h3>Fetching Nearby Users</h3></center>
+  <center><h3></h3></center>
 </div>
 
 <div class="results-cards-list">
@@ -23,8 +23,8 @@
           </div>
           <div class="col">
             <center>
-              <p class="home-username"><b> {{ person.username }} </b></p>
-              <p class="home-distance">{{person.distanceMiles}} miles away</p>
+              <p class="home-username"><b> {{ person.username }} </b> </p>
+              <p class="home-distance">{{person.distanceMiles}} miles away | {{person.userAge }} years</p> 
               <!-- &nbsp; -->
               <a><i class="user-card-msg-icon ion-paper-airplane calm"></i></a>
               <a ng-href="#/chatDetail/{{selectedChatId}}" ng-click="sendMessage(person.id, person)"><i class="user-card-msg-icon ion-android-mail calm"></i></a>

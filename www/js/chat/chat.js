@@ -22,8 +22,58 @@ angular.module('ionicApp.chat', [])
 
 
 .controller('chatDetailCtrl', function($scope, $state, $rootScope, $ionicScrollDelegate, socket, $localStorage, chatServicesSocket, $ionicPopover, $http, $stateParams) {
+
+  // var hasKeyboardBeenOpened = false;
+  // $scope.hideTabBar() = function() {
+  //   // $rootScope.login = !showKeyboard;
+  //   console.log('keyboard showing');
+
+  //   document.querySelector('ion-tabs').style.display = 'none';
+
+  //   $ionScrollDelegate.resize()
+  //   // angular.element(document.querySelector('ion-content.has-tabs')).css('bottom', 0);
+  //   // hasKeyboardBeenOpened = true;
+  // }
+
+  // $scope.showTabBar() = function() {
+  //   if(hasKeyboardBeenOpened) {
+  //     console.log('keyboard hidden');
+  //     var tabs = document.querySelectorAll('ion-tabs').style.display = '';
+
+  //     $ionScrollDelegate.resize()
+
+  //     // angular.element(tabs[0]).css('display', '');
+      
+  //   }
+    
+  // }
+
+  // jQuery(function($){
+
+  //   $('.item-input-wrapper').toggle(function() {
+  //     // first handler called
+
+  //   }, function() {
+  //     console.log('keyboard hidden');
+
+  //     //second handler called
+  //   })
+    
+
+  // })
   // some get req based on the id to get info on that certian chat
   // each chat room has a socket id.... we can use that id itself... bam
+
+  window.addEventListener('native.keyboardshow', function () {
+    console.log('keyboard shows')
+    // document.querySelector('div.tabs').style.display = 'none';
+    // angular.element(document.querySelector('ion-content.has-tabs')).css('bottom', 0);
+  });
+  window.addEventListener('native.keyboardhide', function () {
+    console.log('keyboard hides');
+    // var tabs = document.querySelectorAll('div.tabs');
+    // angular.element(tabs[0]).css('display', '');
+  });
 
   console.log('---------------------------------->stateParams', $stateParams);
   console.log('------------------------------------>selectedChatId', $rootScope.selectedChatId)
@@ -407,7 +457,7 @@ angular.module('ionicApp.chat', [])
 
   $scope.saveMessageToDatabase = function(messageData) {
     // if conversation ID doesn't exist, create one in side Database.
-
+    console.log('trying to save Mesage to database.')
     // use socket to do this
     console.log('----------------------------->messageData', messageData);
     // if don't use socket, do below. 
@@ -432,6 +482,15 @@ angular.module('ionicApp.chat', [])
     // if($scope.chatMsgs.length < 1) {
 
     // }
+    console.log('invoked submitText()')
+    $scope.chatMsgs = $scope.chatMsgs || [];
+    $scope.chatMsgs.push({text: text, firstName: $scope.currentUserFirstName, userId: $scope.currentUserId, timestamp_created: Date.now(), profileImage: $scope.currentUserProfileImage});
+
+    viewScroll.resize();
+    viewScroll.scrollBottom();
+
+
+    $scope.input.message = "";
 
     $scope.messageData = {
       message: text,
@@ -442,6 +501,8 @@ angular.module('ionicApp.chat', [])
       conversationId: $scope.selectedChatId,
       messageParticipants: $rootScope.participantUserIDs
     }
+
+
 
     $scope.saveMessageToDatabase($scope.messageData);
 
@@ -470,15 +531,11 @@ angular.module('ionicApp.chat', [])
     // }
 
 
-    $scope.chatMsgs = $scope.chatMsgs || [];
 
 
     // $scope.chatMsgs.push({text: text, userId: 123, time: new Date()});
-    $scope.chatMsgs.push({text: text, firstName: $scope.currentUserFirstName, userId: $scope.currentUserId, timestamp_created: Date.now()});
-
-    $scope.input.message = "";
-    viewScroll.resize();
-    viewScroll.scrollBottom();
+    // viewScroll.resize();
+    // viewScroll.scrollBottom();
   }
 
   $scope.redirectToChats = function() {

@@ -56,6 +56,10 @@ angular.module('ionicApp.profile', [])
     $rootScope = $rootScope.$new(true);
     $scope = $scope.$new(true);
     $localStorage.$reset();
+    $scope.$apply(function() {
+      $rootScope.login = true;
+    })
+    $rootScope.login = true;
     $state.go('login');
 
   }

@@ -222,7 +222,7 @@ ion-md-input input:focus ~ .md-highlight {
   /*border: dashed 1px;*/
   border-radius: 50%;
   margin: 1.75em auto 0;
-  margin-top:-5%;
+  margin-top:-3%;
 }
 .circle-container a {
   display: block;
@@ -243,7 +243,7 @@ ion-md-input input:focus ~ .md-highlight {
   margin-bottom: -2em;
   margin-right: -3em;
   margin-left: -4em;
-  /*margin-bottom: -1em;*/
+  margin-bottom: -1em;
 }
 /*ng prefixer */
 .circle-container img { display: block; width: 100%; } /*width changes size of each image*/
@@ -396,7 +396,7 @@ p.user-card-list-item {
 }
 
 i.user-card-msg-icon {
-  font-size:1.5em; 
+  font-size:1.8em; 
   margin-right: 0.5em;
   /*text-align:center;*/
   /*display:inline-block;*/
@@ -405,7 +405,7 @@ i.user-card-msg-icon {
 
 p.home-username{ 
   /*display:inline-block;*/
-  font-size: 1.5em;
+  font-size: 1.6em;
   margin-bottom:0.5em;
   /*text-align:right;*/
 }

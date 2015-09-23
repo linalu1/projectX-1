@@ -16,7 +16,7 @@
     </div>
 </div>
 
-  <ion-content has-bouncing="true" class="has-header has-footer" 
+  <ion-content has-bouncing="true" class="has-header has-tabs" 
       delegate-handle="userMessageScroll">
     
     <!-- repeat and print every message in a message arr -->
@@ -36,7 +36,7 @@
                   </div>
 
                   <div class="message-detail">
-                    <span class="bold">{{message.firstName}}</span>,
+                    <span class="bold">{{message.firstName}}</span> 
                     <span am-time-ago="message.timestamp_created"></span>
                   </div>
 
