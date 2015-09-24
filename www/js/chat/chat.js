@@ -5,12 +5,14 @@ angular.module('ionicApp.chat', [])
 .controller('chatCtrl', function($scope, $state, $rootScope, $localStorage, socket) {
 
   $rootScope.login = false;
+
+  // Invokes the function to render all conversations.
   if($localStorage.userChatDetails) {
     $rootScope.refactorChatDetailsForChatRender($localStorage.userChatDetails);    
   }
   $scope.chats = $localStorage.userChatDetailsRender || [];
-  // [{name: "Omar", lastText: "LOL", face: "https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xpa1/v/t1.0-9/1604716_10202673663939733_1410194365_n.jpg?oh=5f132a47f63f52e413c62d872c171748&oe=566920ED", id: 123}];
 
+  // When user receives a new message, update this view.
   socket.on('receive new message', function(data) {
     if($localStorage.userChatDetails) {
       $scope.$apply(function() {
@@ -23,114 +25,30 @@ angular.module('ionicApp.chat', [])
 
 .controller('chatDetailCtrl', function($scope, $state, $rootScope, $ionicScrollDelegate, socket, $localStorage, chatServicesSocket, $ionicPopover, $http, $stateParams) {
 
-  // var hasKeyboardBeenOpened = false;
-  // $scope.hideTabBar() = function() {
-  //   // $rootScope.login = !showKeyboard;
-  //   console.log('keyboard showing');
-
-  //   document.querySelector('ion-tabs').style.display = 'none';
-
-  //   $ionScrollDelegate.resize()
-  //   // angular.element(document.querySelector('ion-content.has-tabs')).css('bottom', 0);
-  //   // hasKeyboardBeenOpened = true;
-  // }
-
-  // $scope.showTabBar() = function() {
-  //   if(hasKeyboardBeenOpened) {
-  //     console.log('keyboard hidden');
-  //     var tabs = document.querySelectorAll('ion-tabs').style.display = '';
-
-  //     $ionScrollDelegate.resize()
-
-  //     // angular.element(tabs[0]).css('display', '');
-      
-  //   }
-    
-  // }
-
-  // jQuery(function($){
-
-  //   $('.item-input-wrapper').toggle(function() {
-  //     // first handler called
-
-  //   }, function() {
-  //     console.log('keyboard hidden');
-
-  //     //second handler called
-  //   })
-    
-
-  // })
-  // some get req based on the id to get info on that certian chat
-  // each chat room has a socket id.... we can use that id itself... bam
-
-  window.addEventListener('native.keyboardshow', function () {
-    console.log('keyboard shows')
-    // document.querySelector('div.tabs').style.display = 'none';
-    // angular.element(document.querySelector('ion-content.has-tabs')).css('bottom', 0);
-  });
-  window.addEventListener('native.keyboardhide', function () {
-    console.log('keyboard hides');
-    // var tabs = document.querySelectorAll('div.tabs');
-    // angular.element(tabs[0]).css('display', '');
-  });
-
-  console.log('---------------------------------->stateParams', $stateParams);
-  console.log('------------------------------------>selectedChatId', $rootScope.selectedChatId)
-
+  // For the top right corner drop down menu (to add user)
   $ionicPopover.fromTemplateUrl('templates/chat/popOverChatSetting.html', {
     scope: $scope,
   }).then(function(popover) {
     $scope.popover = popover;
   });
 
-
   $rootScope.login = false;
 
-  // $scope.InputPlaceholder = [
-  //   'Say Hello!',
-  //   'Be nice :)',
-  //   'Tell them what you want to do!',
-  //   'Be spontaneous???',
-  //   'Just have fun',
-  //   "Don't forget to rate the app!",
-  //   "Be happy, we are!",
-  //   'Smile lots'
-  // ]
-
-  // // may need to reset this if a new ID is opened.
-  // // $rootScope.participantUserIDs = {};
-
-  // var generateRandomInputPlaceholder = function(array) {
-  //   var index = Math.floor(Math.random() * array.length);
-  //   $scope.$apply(function() {
-  //     $scope.RandomInputPlaceholder = $scope.InputPlaceholder[index]
-  //   })
-  // }
-
+  // Makes post request to user database for a single user's info 
   $rootScope.getUserInfo = function(userID, callback) {
-    console.log('inside getUserInfo')
-    console.log('inside getUserInfo for userID:', userID);
     $http.post($rootScope.mobileFacadeURL + '/api/user/chatGetUserInfo', {access_token: $localStorage.access_token, userID: userID})
     .then(function(body) {
-      console.log('received a response inside getUserInfo chat.js')
-      console.log('userinfo received:',body.data);
       callback(userID, body.data);      
     }, function(err) {
+      console.log('err:', err);
       alert("cannot retrieve userinfo");
-      console.log('error:', err);
     })
   };
 
+  // Makes post request to user database for multiple user's info
   $scope.getUsersInfo = function(arrayOfUserIDs, callback) {
-    console.log('inside getUserInfo')
-    console.log('about to http.post')
-    console.log('arrayOfUserIDs:',arrayOfUserIDs);
     $http.post($rootScope.mobileFacadeURL + '/api/user/chatGetUsersInfo', {access_token: $localStorage.access_token, userID: arrayOfUserIDs})
     .then(function(body) {
-      console.log('received a response inside getUsersInfochat.js')
-      console.log('userinfo received:', body.data);
-      // console.log(callback);
       callback(body.data);
     }, function(err) {
       alert('cannot retrieve userinfo of one or more users ');
@@ -138,149 +56,83 @@ angular.module('ionicApp.chat', [])
     })
   };
 
+  // Adds a user as a participant inside a chat. 
   $scope.addUsersAsParticipant = function(userData) {
-    console.log('----------------> userData:', userData);
     $rootScope.participantUserIDs = $rootScope.participantUserIDs || {};
     for (var key in userData) {
       $rootScope.participantUserIDs[key] = userData[key];
     }
-
-    console.log('---------------> $rootScope.participantUserIDs', $rootScope.participantUserIDs)
     $scope.generateListOfParticipantsString($rootScope.participantUserIDs);
-
     $scope.chatMsgs = $scope.retrieveExistingConversation($stateParams.chatId);    
     if(Array.isArray($scope.chatMsgs)) {
       $scope.doneLoading = true;
     }  
     viewScroll.resize();
     viewScroll.scrollBottom();
-  }
+  };
 
-  // $scope.addUserAsParticipant = function(userID, userData) {
-  //   console.log('B. THIS MUST BE SHOWN**********************')
-
-  //   if($rootScope.participantUserIDs && !$rootScope.participantUserIDs[userID]) {
-  //     $rootScope.participantUserIDs[userID] = userData;
-  //   } else if (!$rootScope.participantUserIDs) {
-  //     $rootScope.participantUserIDs = {};
-  //     $rootScope.participantUserIDs[userID] = userData;
-
-  //   }
-  //   console.log('current users in object:', $rootScope.participantUserIDs);
-  //   $scope.generateListOfParticipantsString($rootScope.participantUserIDs);
-  // };
-
+  // Allocates the current user's info into $scope variables
   $scope.getCurrentUserInfo = function() {
-    console.log('A. THIS MUST BE SHOWN**********************')
     $scope.userData = $localStorage.userData;
     $scope.currentUserId = $scope.userData.fbId;
     $scope.currentUserProfileImage = $scope.userData.pic.data.url;
     $scope.currentUserFirstName = $scope.userData.name.substr(0, $scope.userData.name.indexOf(' '));    
 
-    // initialize participantUserCount
+    // initializes participantUserCount
     $scope.participantUserCount = 1;
   }();
 
-  // $scope.saveReceiverInformation =   
-  // $scope.receiverUserId = $rootScope.selectedUserToMsg;
-  // $scope.receiverUserInfo = $rootScope.selectedUserToMsgInfo;
-
-
-  // possibly redundant
-  $scope.recordCurrentChatID = function() {
-    if($rootScope.selectedChatId) {
-      $scope.selectedChatId = $rootScope.selectedChatId;    
-      console.log('selectedChatId', $rootScope.selectedChatId);
-    }    
-  }();
-
+  // Generates a string of all participants' first names 
   $scope.generateListOfParticipantsString = function(participantsObject) {
-    console.log('C. THIS MUST BE SHOWN**********************')
-    console.log('---------------------> participantsObject', participantsObject);
     $scope.participantUserIDsArray = []; 
     for (var key in participantsObject) {
       $scope.participantUserIDsArray.push(participantsObject[key].firstName);
     }  
     $scope.participantUserIDsString = $scope.participantUserIDsArray.join(', ');
+  };
 
-    console.log('this should show all users in the chat as array', $scope.participantUserIDsArray); 
-
-    console.log('this should show all users in the chat:',$scope.participantUserIDsString)
-      // $scope.participantUserIDsString += JSON.stringify(participantsObject[key]) + ', ';
-
-
-  }
-
-
+  // If current chat is private, it populates the users array with information. This is to retrieve the most updated first names (dynamic due to Facebook rules) and profile pictures from user database. 
   $scope.checkIfIsPrivateChat = function(){
-    console.log('checking if chat is private');
-    console.log('$localStorage.userData.fbId', $localStorage.userData.fbId)
-    console.log('checking if it is a private chat')
-    console.log('$rootScope.selectedUserToMsg', $rootScope.selectedUserToMsg);
     if($rootScope.isPrivateChat) {
       var usersArray = [];
       usersArray.push($scope.currentUserId);
       usersArray.push($rootScope.selectedUserToMsg);
-      console.log('------------------> usersArray', usersArray);
-
       $scope.getUsersInfo(usersArray, $scope.addUsersAsParticipant)
-      // $rootScope.getUserInfo($scope.currentUserId, $scope.addUserAsParticipant);
-      // $rootScope.getUserInfo($rootScope.selectedUserToMsg, $scope.addUserAsParticipant);
     } else {
-      // add some logic here.
-      console.log("it's not a private chat. add some logic here")
+      console.log("it's not a private chat.")
     }
-  }
+  };
   $scope.checkIfIsPrivateChat();
 
-  $scope.generateListOfParticipantsString($rootScope.participantUserIDs);
+  // Invokes the function to genrate a string of all participants' first names
+  $scope.generateListOfParticipantsString($rootScope.participantUserIDs); 
 
-  // $scope.receiverFirstName = $rootScope.participantUserIDs
-  // $scope.receiverUserIDs.push($scope.receiverUserId);
-
+  // Adds another user to chat.
   $scope.addingUserToChat = function(userIDToAdd) {
-    // need shittonne of logic here. if currently 2 users, open new chat. if 3 users, persist in current chat
-    // also need to display message saying ____ has been added to the conversation
     $rootScope.getUserInfo(userIDToAdd, $scope.addUserAsParticipant);
 
-
-    // chatServicesSocket.emit('add conversation to new participant chat storage', objectOfMessageData, function(data) {
-    //   console.log(data);
-    //   console.log('socket.emit add conversation to new participant chat storage');
-    // });
-
-    // $rootScope.current
-    // socket.emit('update other user public chat storage', $rootScope.selectedChatId, userIDToAdd, function(data) {
-    //   console.log(data)
-
-    //   // also emit to chatsocket to update userchats
-    // });
-
-    console.log('adding user to chat');
+    // if there are 2 or less participants in the current chat, then we want to open a new chat window to support the multi-user chat feature.
     if($rootScope.participantUserIDsArray.length < 3) {
-
       $rootScope.selectedChatId = $scope.currentUserId + Date.now();
-      console.log('I was in private chat, now taking user to a new conversation to support multi users')
-      console.log('$rootScope.selectedChatId', $rootScope.selectedChatId);
-      console.log('rootScope.participantUserIDs', rootScope.participantUserIDs);
-      // generate an array of all participants.
+
+      // add the new participant to an array of participants.
       var allParticipatingUsers = [];
       for (var key in $scope.participantUserIDs) {
         allParticipatingUsers.push(key);
       }
       allParticipatingUsers.push(userIDToAdd);
 
-      // update localStorage for all users
+      // update all participating users' localstorage with the new chat ID. 
       socket.emit('update other user public chat storage', $rootScope.selectedChatId, allParticipatingUsers, function(data) {
         console.log(data)
       });
 
-      // update array of public chats in userChats
+      // update array of public chats in database
       chatServicesSocket.emit('add public chat to participant storage', $rootScope.selectedChatId, allParticipatingUsers, function(data) {
         console.log(data);
       })
 
-      // create a new conversation in database.
+      // create a new conversation in database with new chatID
       var conversationData = {
         chatId: $rootScope.selectedChatId,
         firstSender: $localStorage.userData.fbId,
@@ -288,16 +140,15 @@ angular.module('ionicApp.chat', [])
         participants: allParticipatingUsers,
         group: true
       };
-
       chatServicesSocket.emit('create new conversation in database', conversationData, function(data) {
-        console.log('chatServicesSocket.emit emitting create new conversation in database ');
       })
 
-
-      // redirect user to new chat
+      // redirect current user to new chat view (corresponding to te new chatID)
       $state.go('chatDetail', {chatId: $rootScope.selectedChatId}, {reload: true});
 
     } else {
+
+      // Generate an object to store key info 
       var objectOfMessageData = {
         chatId: $stateParams.chatId,
         newParticipantId: userIDToAdd
@@ -305,75 +156,50 @@ angular.module('ionicApp.chat', [])
       var userArray = [];
       userArray.push(userIDToAdd);
 
-      console.log("already in a public chat, now adding new user to current chat")
+      // Get the information of the new added user
       $rootScope.getUserInfo(userIDToAdd, $scope.addUserAsParticipant);
-      console.log('addingUserToChat invoked');
-      console.log('**********************************',$rootScope.participantUserIDs);
       socket.emit('added new user to chat', 
         $rootScope.participantUserIDs, 
         $scope.currentUserId, 
         function(data){
-        console.log('emitting "adding new user to chat"');
       });
 
-      // update localStorage 
+      // update localStorage of the newly added participant.
       socket.emit('update other user public chat storage', $stateParams.chatId, userArray, function(data) {
-        console.log(data)
+        console.log(data);
       });
 
-      // update DB convo participants. 
+      // update DB convo participants in database. 
       chatServicesSocket.emit('add participant to conversation', objectOfMessageData, function(data) {
         console.log(data);
-        console.log('socket.emit add participant to conversation')
       })
 
-      // update array of public chats in userChats
+      // update array of public chats in database for the newly added participant
       chatServicesSocket.emit('add public chat to participant storage', $stateParams.chatId, userArray, function(data) {
         console.log(data);
       })
-
     }
+  };
 
-    // gets user info and adds user as participant
-
-  }
-
-
-
+  // listens for events where a new participant is added (or removed), and updates the string of users accordingly. 
   socket.on('chat participant updates', function(data) {
-    console.log('socket.on "chat participant updates"');
-
     $rootScope.participantUserIDs = data;
     $scope.participantUserCount  = 0;
     for (var key in $rootScope.participantUserIDs) {
       $rootScope.participantUserIDsString += JSON.stringify($rootScope.participantUserIDs[key]) + '';
       $scope.participantUserCount++;
     }  
-
-
   })
 
-  console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$scope.selectedChatId', $scope.selectedChatId);
-  // ajax request here
-  // ajax response here 
+  // Takes care of scrolling inside the chat view
   var viewScroll = $ionicScrollDelegate.$getByHandle('userMessageScroll');
-  // $scope.user = {_id: 123};
-  // $scope.chatMsgs = 
-  //   [{text: 'hi', userId: $scope.receiverUserId, firstName: $scope.receiverFirstName, timestamp_created: 1442248009876, profileImage: $scope.receiverUserInfo.profilePic}, 
-  //   {text: 'hi', userId: $scope.userData.fbId, firstName: $scope.currentUserFirstName,timestamp_created: 1442248061232, profileImage: $scope.userData.pic.data.url }, 
-  //   {text: 'hi', userId: $scope.receiverUserId, firstName: $scope.receiverFirstName, timestamp_created: 1442248075389, profileImage: $scope.receiverUserInfo.profilePic}, 
-  //   {text: 'hi', userId: $scope.userData.fbId, firstName: $scope.currentUserFirstName, timestamp_created: 1442248085159, profileImage: $scope.userData.pic.data.url }];
 
+  // Retrieve existing conversation from database. Using the chatID
   $scope.retrieveExistingConversation = function(chatID) {
-    console.log('retrieving existing conversation');
     var chatMessages = [];
     if(chatID && $localStorage.userChatDetailsObject && $localStorage.userChatDetailsObject[chatID]) {
-      console.log('currConversation in localStorage',$localStorage.userChatDetailsObject[chatID])
       var currConversation = $localStorage.userChatDetailsObject[chatID];
       var participants = currConversation.participants;
-      // for (var i = 0 ; i < participants.length; i++) {
-      //   $scope.getUserInfo(participants[i], $scope.addUserAsParticipant);
-      // }
       var messages = currConversation.messages;
 
       // refactoring message structure 
@@ -388,55 +214,12 @@ angular.module('ionicApp.chat', [])
         chatMessages.push(newStructure);
       }
     }
-    console.log('RETRIEVED MESSAGES! chatMessages:', chatMessages);
     return chatMessages;
-  }
-  // $scope.
-  
+  };
 
-  // var checkIfParticipantUpdated = setInterval(function(){
-  //   var userCount = 0, thisConversation, participantsArray;
-  //   for (var key in $rootScope.participantUserIDs) {
-  //     userCount++;
-  //   }
-  //   if($stateParams.chatId && $localStorage.userChatDetailsObject && $localStorage.userChatDetailsObject[$stateParams.chatId]) {
-  //     thisConversation = $localStorage.userChatDetailsObject[$stateParams.chatId];
-  //     participantsArray = thisConversation.participants;
-  //   }
-  //   console.log(userCount);
-  //   if(participantsArray && userCount === participantsArray.length) {
-  //     console.log('^^^^^^^^^^^$rootScope.participantUserIDs',$rootScope.participantUserIDs)
-  //     $scope.chatMsgs = $scope.retrieveExistingConversation($stateParams.chatId);    
-  //     if(Array.isArray($scope.chatMsgs)) {
-  //       $scope.doneLoading = true;
-  //     }  
-  //     viewScroll.resize();
-  //     viewScroll.scrollBottom();
-  //     clearInterval(checkIfParticipantUpdated);
-  //   }
-  // }, 200);
-  // checkIfParticipantUpdated();
-
-
-
-  // $localStorage.userChatDetails[stateParams.chatId].messages
-
-
-
-  // if($rootScope.participantUserIDs)
-  // $scope.authorData = $localStorage.userData;
-  // $scope.
-
-  // $scope.toUser = {username:"Nate", pic: "https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xpa1/v/t1.0-9/1604716_10202673663939733_1410194365_n.jpg?oh=5f132a47f63f52e413c62d872c171748&oe=566920ED"};
-  // $scope.fromUser = {username:"Omar", pic: "https://scontent-sjc2-1.xx.fbcdn.net/hphotos-xfp1/v/t1.0-9/10417801_10205603744989928_8706339890647288713_n.jpg?oh=d055bbd53c3fec5dc75f8b151600bd6c&oe=56727532"};
-
-
-
+  // listens for new messages from other users
   socket.on('receive new message', function(data){
-    console.log('****************** received a new message *****************');
-    console.log('received data', data);
-    console.log('conversation ID sent to me', data.conversationId);
-    console.log('my current conversation:', $stateParams.chatId);
+    // check if the receiving conversation's chatID matches the current convo's chatID
     if(data.conversationId === $stateParams.chatId) {
       $scope.chatMsgs.push({
         text: data.message, 
@@ -445,102 +228,52 @@ angular.module('ionicApp.chat', [])
         timestamp_created: data.messageTime, 
         profileImage: data.senderProfileImage
       });
-      console.log('last message received for this conversation', $scope.chatMsgs[$scope.chatMsgs.length-1]);      
     } else {
-      console.log('received message for another conversation');
+      // send iOS/Android notification to user
     }
     viewScroll.resize();
     viewScroll.scrollBottom();
-
-    // $chat.append('<span class="msg"><b>' + data.nick + ': </b>' + data.msg + "</span><br/>");
   });
 
+  //Saves a message to Database. 
   $scope.saveMessageToDatabase = function(messageData) {
-    // if conversation ID doesn't exist, create one in side Database.
-    console.log('trying to save Mesage to database.')
-    // use socket to do this
-    console.log('----------------------------->messageData', messageData);
-    // if don't use socket, do below. 
     chatServicesSocket.emit( 'save message to database', 
       messageData, 
       function(data) {
-        console.log('chatServicesSocket.emit "save message to database"');
-        console.log('data:',data);
-
     });
-
-
     $rootScope.getUserChatInfo($localStorage.userData.fbId);
+  };
 
-    // $http.post($rootScope.mobileFacadeURL + '/api/chat/saveMessageToDatabase')
-  }
-
-
+  // Invoked upon pressing 'send' inside the chat window. 'text' refers to the message that the user would like to send.
   $scope.submitText = function(text){
-    // socket.emit('send message', text, toUser.userId);
-
-    // if($scope.chatMsgs.length < 1) {
-
-    // }
-    console.log('invoked submitText()')
     $scope.chatMsgs = $scope.chatMsgs || [];
     $scope.chatMsgs.push({text: text, firstName: $scope.currentUserFirstName, userId: $scope.currentUserId, timestamp_created: Date.now(), profileImage: $scope.currentUserProfileImage});
-
     viewScroll.resize();
     viewScroll.scrollBottom();
-
-
     $scope.input.message = "";
-
     $scope.messageData = {
       message: text,
       messageTime: Date.now(),
       senderId: $scope.currentUserId,
       senderProfileImage: $scope.currentUserProfileImage,
       senderFirstName: $scope.currentUserFirstName,
-      conversationId: $scope.selectedChatId,
+      conversationId: $stateParams.chatId,
       messageParticipants: $rootScope.participantUserIDs
     }
-
-
-
     $scope.saveMessageToDatabase($scope.messageData);
-
-
-    // redundant. 
-    // if($scope.chatMsgs.length < 1) {
-    //   // you want to create a new conversation here. 
-    // }
-
-
-    // depending on if the chat exists in userChat's allchat's array,  
-      // if it does, simply do post request to send message
-      // if it doesn't, do a post request to create a new database AND send message. (I think);
+    // Tell the other user to update localstorage messages by pulling from database (if other user is not in same chat window)
     socket.emit('tell other user to update localStorage messages', $rootScope.participantUserIDs, function(data) {
-      console.log('socket.emit "tell other user to update localstoage messages"');
     });
-
-    //chuck this in an array
-
-    // for (var key in participantUserIDs) {
-    console.log('$scope.messageData',$scope.messageData);
-    console.log('$rootScope.participantUserIDs', $rootScope.participantUserIDs);
+    // Sends message to other user directly. if other user is not in same chat window, will notify other user instead. 
     socket.emit('send message', $scope.messageData, $rootScope.participantUserIDs, function(data) {
-      console.log('emitting "send message"');
     });      
-    // }
+  };
 
-
-
-
-    // $scope.chatMsgs.push({text: text, userId: 123, time: new Date()});
-    // viewScroll.resize();
-    // viewScroll.scrollBottom();
-  }
-
+  // Invoked when pressing the 'Back' button
   $scope.redirectToChats = function() {
     $state.go('chat');
-  }
+  };
+
 })
 
 // add extra line at end

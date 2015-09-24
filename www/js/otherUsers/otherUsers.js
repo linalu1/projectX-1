@@ -123,6 +123,43 @@ angular.module('ionicApp.otherUsers', [])
     loadNearbyUsers();
   }, 5000);              
 
+  // var reset = function() {
+  //     var inClass = document.querySelectorAll('.in');
+  //     for (var i = 0; i < inClass.length; i++) {
+  //         inClass[i].classList.remove('in');
+  //         inClass[i].removeAttribute('style');
+  //     }
+  //     var done = document.querySelectorAll('.done');
+  //     for (var j = 0; j < done.length; j++) {
+  //         done[j].classList.remove('done');
+  //         done[j].removeAttribute('style');
+  //     }
+  //     var ionList = document.getElementByClassName('results-cards-list');
+  //     for (var k = 0; k < ionList.length; k++) {
+  //         var toRemove = ionList[k].className;
+  //         if (/animate-/.test(toRemove)) {
+  //             ionList[k].className = ionList[k].className.replace(/(?:^|\s)animate-\S*(?:$|\s)/, '');
+  //         }
+  //     }
+  // };
+
+  // $scope.fadeSlideIn = function() {
+  //     reset();
+  //     document.getElementsByTagName('div')[0].className += ' animate-fade-slide-in';
+  //     setTimeout(function() {
+  //         ionicMaterialMotion.fadeSlideIn();
+  //     }, 500);
+  // };
+
+  // // $scope.fadeSlideIn();
+  // // $timeout(function() {
+  // //     ionicMaterialMotion.fadeSlideIn({
+  // //         selector: '.animate-fade-slide-in .item'
+  // //     });
+  // // }, 200);
+
+  // // Activate ink for controller
+  // ionicMaterialInk.displayEffect();
 
 });
 

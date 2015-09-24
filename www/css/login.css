@@ -396,7 +396,7 @@ p.user-card-list-item {
 }
 
 i.user-card-msg-icon {
-  font-size:1.8em; 
+  font-size:1.5em; 
   margin-right: 0.5em;
   /*text-align:center;*/
   /*display:inline-block;*/
@@ -409,6 +409,11 @@ p.home-username{
   margin-bottom:0.5em;
   /*text-align:right;*/
 }
+
+p.home-userage{
+  margin-bottom:0.1em;
+}
+
 
 p.home-distance{
   margin-bottom:0.5em;
@@ -480,3 +485,13 @@ div.findsettings-age-display {
 div.show-user-settings-list {
   margin-top: 5%;
 }
+
+
+/*i.user-card-msg-icon-test {*/
+/*  margin-top:10.0em;
+  font-size:20.0em; 
+  margin-right: 0.5em;
+*/  /*text-align:center;*/
+  /*display:inline-block;*/
+  
+/*}*/

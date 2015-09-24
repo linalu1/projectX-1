@@ -1,0 +1,103 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Users/Lina/.nvm/versions/node/v4.0.0/bin/node',
+1 verbose cli   '/Users/Lina/.nvm/versions/node/v4.0.0/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--save',
+1 verbose cli   'ionic-material' ]
+2 info using npm@2.14.3
+3 info using node@v4.0.0
+4 verbose install initial load of /Users/Lina/Documents/HR/thesisProject/projectMasterV2/projectX-1/package.json
+5 warn package.json blank@1.0.0 No repository field.
+6 warn package.json blank@1.0.0 No license field.
+7 verbose installManyTop reading scoped package data from /Users/Lina/Documents/HR/thesisProject/projectMasterV2/projectX-1/node_modules/angular/package.json
+8 verbose installManyTop reading scoped package data from /Users/Lina/Documents/HR/thesisProject/projectMasterV2/projectX-1/node_modules/bower/package.json
+9 verbose installManyTop reading scoped package data from /Users/Lina/Documents/HR/thesisProject/projectMasterV2/projectX-1/node_modules/cordova/package.json
+10 verbose installManyTop reading scoped package data from /Users/Lina/Documents/HR/thesisProject/projectMasterV2/projectX-1/node_modules/gulp/package.json
+11 verbose installManyTop reading scoped package data from /Users/Lina/Documents/HR/thesisProject/projectMasterV2/projectX-1/node_modules/gulp-concat/package.json
+12 verbose installManyTop reading scoped package data from /Users/Lina/Documents/HR/thesisProject/projectMasterV2/projectX-1/node_modules/gulp-minify-css/package.json
+13 verbose installManyTop reading scoped package data from /Users/Lina/Documents/HR/thesisProject/projectMasterV2/projectX-1/node_modules/gulp-rename/package.json
+14 verbose installManyTop reading scoped package data from /Users/Lina/Documents/HR/thesisProject/projectMasterV2/projectX-1/node_modules/gulp-sass/package.json
+15 verbose installManyTop reading scoped package data from /Users/Lina/Documents/HR/thesisProject/projectMasterV2/projectX-1/node_modules/gulp-util/package.json
+16 verbose installManyTop reading scoped package data from /Users/Lina/Documents/HR/thesisProject/projectMasterV2/projectX-1/node_modules/shelljs/package.json
+17 info package.json gulp-minify-css@0.3.13 No license field.
+18 info package.json gulp-rename@1.2.2 No license field.
+19 info package.json gulp-util@2.2.20 No license field.
+20 info package.json shelljs@0.3.0 license should be a valid SPDX license expression
+21 info package.json cordova@5.3.1 license should be a valid SPDX license expression
+22 verbose readDependencies loading dependencies from /Users/Lina/Documents/HR/thesisProject/projectMasterV2/projectX-1/package.json
+23 silly cache add args [ 'ionic-material', null ]
+24 verbose cache add spec ionic-material
+25 silly cache add parsed spec Result {
+25 silly cache add   raw: 'ionic-material',
+25 silly cache add   scope: null,
+25 silly cache add   name: 'ionic-material',
+25 silly cache add   rawSpec: '',
+25 silly cache add   spec: '*',
+25 silly cache add   type: 'range' }
+26 silly addNamed ionic-material@*
+27 verbose addNamed "*" is a valid semver range for ionic-material
+28 silly addNameRange { name: 'ionic-material', range: '*', hasData: false }
+29 silly mapToRegistry name ionic-material
+30 silly mapToRegistry using default registry
+31 silly mapToRegistry registry https://registry.npmjs.org/
+32 silly mapToRegistry uri https://registry.npmjs.org/ionic-material
+33 verbose addNameRange registry:https://registry.npmjs.org/ionic-material not in flight; fetching
+34 verbose request uri https://registry.npmjs.org/ionic-material
+35 verbose request no auth needed
+36 info attempt registry request try #1 at 7:50:44 AM
+37 verbose request id c0dd5741f9cca6fa
+38 http request GET https://registry.npmjs.org/ionic-material
+39 http 404 https://registry.npmjs.org/ionic-material
+40 verbose headers { 'content-type': 'application/json',
+40 verbose headers   'cache-control': 'max-age=0',
+40 verbose headers   'content-length': '2',
+40 verbose headers   'accept-ranges': 'bytes',
+40 verbose headers   date: 'Wed, 23 Sep 2015 14:49:23 GMT',
+40 verbose headers   via: '1.1 varnish',
+40 verbose headers   age: '0',
+40 verbose headers   connection: 'keep-alive',
+40 verbose headers   'x-served-by': 'cache-lax1426-LAX',
+40 verbose headers   'x-cache': 'MISS',
+40 verbose headers   'x-cache-hits': '0',
+40 verbose headers   'x-timer': 'S1443019763.180211,VS0,VE87' }
+41 silly get cb [ 404,
+41 silly get   { 'content-type': 'application/json',
+41 silly get     'cache-control': 'max-age=0',
+41 silly get     'content-length': '2',
+41 silly get     'accept-ranges': 'bytes',
+41 silly get     date: 'Wed, 23 Sep 2015 14:49:23 GMT',
+41 silly get     via: '1.1 varnish',
+41 silly get     age: '0',
+41 silly get     connection: 'keep-alive',
+41 silly get     'x-served-by': 'cache-lax1426-LAX',
+41 silly get     'x-cache': 'MISS',
+41 silly get     'x-cache-hits': '0',
+41 silly get     'x-timer': 'S1443019763.180211,VS0,VE87' } ]
+42 verbose stack Error: Registry returned 404 for GET on https://registry.npmjs.org/ionic-material
+42 verbose stack     at makeError (/Users/Lina/.nvm/versions/node/v4.0.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:263:12)
+42 verbose stack     at CachingRegistryClient.<anonymous> (/Users/Lina/.nvm/versions/node/v4.0.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:241:14)
+42 verbose stack     at Request._callback (/Users/Lina/.nvm/versions/node/v4.0.0/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:171:14)
+42 verbose stack     at Request.self.callback (/Users/Lina/.nvm/versions/node/v4.0.0/lib/node_modules/npm/node_modules/request/request.js:198:22)
+42 verbose stack     at emitTwo (events.js:87:13)
+42 verbose stack     at Request.emit (events.js:172:7)
+42 verbose stack     at Request.<anonymous> (/Users/Lina/.nvm/versions/node/v4.0.0/lib/node_modules/npm/node_modules/request/request.js:1073:14)
+42 verbose stack     at emitOne (events.js:82:20)
+42 verbose stack     at Request.emit (events.js:169:7)
+42 verbose stack     at IncomingMessage.<anonymous> (/Users/Lina/.nvm/versions/node/v4.0.0/lib/node_modules/npm/node_modules/request/request.js:1019:12)
+43 verbose statusCode 404
+44 verbose pkgid ionic-material
+45 verbose cwd /Users/Lina/Documents/HR/thesisProject/projectMasterV2/projectX-1
+46 error Darwin 14.5.0
+47 error argv "/Users/Lina/.nvm/versions/node/v4.0.0/bin/node" "/Users/Lina/.nvm/versions/node/v4.0.0/bin/npm" "install" "--save" "ionic-material"
+48 error node v4.0.0
+49 error npm  v2.14.3
+50 error code E404
+51 error 404 Registry returned 404 for GET on https://registry.npmjs.org/ionic-material
+51 error 404
+51 error 404 'ionic-material' is not in the npm registry.
+51 error 404 You should bug the author to publish it (or use the name yourself!)
+51 error 404 It was specified as a dependency of 'blank'
+51 error 404
+51 error 404 Note that you can also install from a
+51 error 404 tarball, folder, http url, or git url.
+52 verbose exit [ 1, true ]

@@ -1,6 +1,6 @@
 <!-- ion top bar (navigation) -->
 <ion-header-bar class="bar-calm">
-<h1 class="title">People around you!</h1>
+<h1 class="title">People around you :)</h1>
 </ion-header-bar>
 
 <ion-view view-title="Home">
@@ -24,7 +24,8 @@
           <div class="col">
             <center>
               <p class="home-username"><b> {{ person.username }} </b> </p>
-              <p class="home-distance">{{person.distanceMiles}} miles away | {{person.userAge }} years</p> 
+              <p class="home-userage">{{person.userAge }} years old<p>
+              <p class="home-distance">{{person.distanceMiles}} miles away</p> 
               <!-- &nbsp; -->
               <a><i class="user-card-msg-icon ion-paper-airplane calm"></i></a>
               <a ng-href="#/chatDetail/{{selectedChatId}}" ng-click="sendMessage(person.id, person)"><i class="user-card-msg-icon ion-android-mail calm"></i></a>
