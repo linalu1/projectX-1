@@ -3,14 +3,14 @@
 </ion-header-bar>
 
 <ion-view view-title="Chats">
-  <ion-content>
+  <ion-content has-bouncing="true" class="has-header has-tabs">
     <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/chat/{{chat.id}}">
-        <img ng-src="{{chat.face}}">
-        <h2>{{chat.name}}</h2>
-        <p>{{chat.lastText}}</p>
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/chatDetail/{{chat.chatId}}">
+        <img ng-src="{{chat.senderProfileImage}}">
+        <h2>{{chat.participants}}</h2>
+        <p>{{chat.lastMessage}}</p>
+        <span am-time-ago="message.lastMessage_timestamp"></span>
         <i class="icon ion-chevron-right icon-accessory"></i>
-
       </ion-item>
     </ion-list>
   </ion-content>

@@ -8,10 +8,13 @@ angular.module('ionicApp', [
   'ionicApp.otherUsers', 
   'ionicApp.profile', 
   'ionicApp.addFbLikes',
+  'ionicApp.services',
+  'ionicApp.directives',
   'angularMoment', 
   'luegg.directives', 
   'ngStorage', 
-  'ngCordova'
+  'ngCordova',
+  'btford.socket-io'
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -29,13 +32,12 @@ angular.module('ionicApp', [
   })
   .state('chat', {
     url: '/chat',
-    templateUrl: 'js/chat/chat.html',
+    templateUrl: 'js/chat/chat.html', 
     controller: 'chatCtrl',
     authenticate: true // change to 'false' for testing
-
   })
-  .state('chat-detail', {
-    url: '/chat/:chatId',
+  .state('chatDetail', {
+    url: '/chatDetail/:chatId',
     templateUrl: 'js/chat/chatdetail.html',
     controller: 'chatDetailCtrl',
     authenticate: true // change to 'true' for testing
@@ -77,33 +79,21 @@ angular.module('ionicApp', [
     controller: 'generalSettingsCtrl',
     authenticate: true // change to 'false' for testing
   });
-
   $urlRouterProvider.otherwise("/");
 })
 
-// redundant unless this method is being used to hide top/bottom bar for login.html
-/*
-.run(function ($state, $rootScope) {
-    $rootScope.$state = $state;
-})
-*/
-
 .config(['$ionicConfigProvider', function($ionicConfigProvider) {
-
     $ionicConfigProvider.tabs.position('bottom'); // other values: top, standard
 
+    // do not allow user swipe left to go back to previous viewed screen (introduces bugs into the app)
+    $ionicConfigProvider.views.swipeBackEnabled(false);
 }])
 
-.run(function($localStorage, $rootScope, $location){
-
+.run(function($localStorage, $rootScope, $location, socket){
   $rootScope.distance = 5;
-  $rootScope.mobileFacadeURL = 'http://10.6.1.162:3000';
-  // sets the default var
-
   if ($localStorage.access_token) {
     $location.path('/otherUsers');
   }
-
   $rootScope.$on('$stateChangeStart', function (evt, next, current) {
     if (next.authenticate && !$localStorage.access_token) {
       $rootScope.login = false;
@@ -126,6 +116,11 @@ angular.module('ionicApp', [
       'label': '@'
     }
   }
+})
+
+.run(function($ionicPlatform, $rootScope) {
+  $ionicPlatform.ready(function() {
+  });
 });
 
 //add extra line at the end

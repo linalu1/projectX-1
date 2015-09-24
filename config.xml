@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <widget id="com.ionicframework.blank300760" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <allow-navigation href="http://*/*" />
-  <name>HangOut</name>
+  <name>I'm Free</name>
   <description>
         An Ionic Framework and Cordova project.
     </description>
@@ -21,6 +21,40 @@
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
   <platform name="ios">
+
+    <!-- iOS 7.0+ -->
+    <!-- iPhone / iPod Touch -->
+    <icon src="icons/ios/icon.jpg" width="60" height="60" />
+    <icon src="icons/ios/icon.jpg" width="120" height="120" />
+
+    <!-- iPad -->
+    <icon src="icons/ios/icon.jpg" width="76" height="76" />
+    <icon src="icons/ios/icon.jpg" width="152" height="152" />
+
+    <!-- iOS 6.1 -->
+    <!-- Spotlight Icon -->
+    <icon src="icons/ios/icon.jpg" width="40" height="40" />
+    <icon src="icons/ios/icon.jpg" width="80" height="80" />
+
+    <!-- iPhone / iPod Touch -->
+    <icon src="icons/ios/icon.jpg" width="57" height="57" />
+    <icon src="icons/ios/icon.jpg" width="114" height="114" />
+
+    <!-- iPad -->
+    <icon src="icons/ios/icon.jpg" width="72" height="72" />
+    <icon src="icons/ios/icon.jpg" width="144" height="144" />
+
+    <!-- iPhone Spotlight and Settings Icon -->
+    <icon src="icons/ios/icon.jpg" width="29" height="29" />
+    <icon src="icons/ios/icon.jpg" width="58" height="58" />
+
+    <!-- iPad Spotlight and Settings Icon -->
+    <icon src="icons/ios/icon.jpg" width="50" height="50" />
+    <icon src="icons/ios/icon.jpg" width="100" height="100" />
+  </platform>
+
+
+<!--   <platform name="ios">
     <icon src="resources/ios/icon/icon.png" width="57" height="57"/>
     <icon src="resources/ios/icon/icon@2x.png" width="114" height="114"/>
     <icon src="resources/ios/icon/icon-40.png" width="40" height="40"/>
@@ -47,7 +81,7 @@
     <splash src="resources/ios/splash/Default-Portrait~ipad.png" height="1024" width="768"/>
     <splash src="resources/ios/splash/Default@2x~iphone.png" height="960" width="640"/>
     <splash src="resources/ios/splash/Default~iphone.png" height="480" width="320"/>
-  </platform>
+  </platform> -->
   <platform name="android">
     <icon src="resources/android/icon/drawable-ldpi-icon.png" density="ldpi"/>
     <icon src="resources/android/icon/drawable-mdpi-icon.png" density="mdpi"/>

@@ -3,7 +3,7 @@
 </ion-header-bar>
 
 <ion-view view-title="profile">
-  <ion-content>
+  <ion-content has-bouncing="true" class="has-header has-tabs">
 
     <center>
       <img class="settings-profile-pic" ng-src="{{currentUser.profilePic}}">
@@ -12,24 +12,24 @@
 
     <div class="settings-main-menu-bottom">
       <ul class="list settings-main-menu">
-          <li class="item" ng-click="redirectToFind()">
-            Find Preferences
-          </li>
-          <li class="item">
-            Share HangOut
-          </li>
 
-          <li class="item">
-            Help
-          </li>
+        <li class="item" ng-click="redirectToFind()">
+          Find Preferences
+        </li>
 
-          <li class="item" ng-click="redirectToSettings()">
-            Settings
-          </li>
+        <li class="item">
+          Share ImFree
+        </li>
+
+        <li class="item">
+          Help
+        </li>
+
+        <li class="item" ng-click="redirectToSettings()">
+          Settings
+        </li>
 
       </ul>
    </div>
   </ion-content>
-
 </ion-view>
-

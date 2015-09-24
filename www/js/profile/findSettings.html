@@ -1,16 +1,10 @@
 <ion-view view-title="findSettings">
-
-
-
-<ion-header-bar class="bar-calm">
-  <button class="button button-clear" ng-click="redirectToProfileSettings()">Back</button>
-
+  <ion-header-bar class="bar-calm">
+    <button class="button button-clear" ng-click="redirectToProfileSettings()">Back</button>
     <h1 class="title">Find Settings</h1>
+  </ion-header-bar>
+  <ion-content has-bouncing="true" class="has-header has-tabs">
 
-</ion-header-bar>
-
-
-  <ion-content>
     <ul class="list find-settings-find-button">
       <li class="item item-toggle">
          Find
@@ -21,27 +15,26 @@
            </div>
          </label>
       </li>
-    </ul>
-    </br>
+    </ul></br>
+
     <div class="findsettings-distance-range">
       <p style="font-size:1.1em">Distance: {{distance}} {{distanceUnit}} </p>
-    </div><div class='findsettings-distance-display'>
+    </div>
+    <div class='findsettings-distance-display'>
       <p></p>
     </div>
-
-
     <div class="item range range-settings-distance">
       <i class="icon ion-ios-location-outline"></i>
       <input type="range" name="volume" min="2" max="50" value="{{ distance }}" ng-model="distance" ng-change="updateDist(distance)">
       <i class="icon ion-ios-location"></i>
-    </div>
+    </div></br>
 
-    </br>
     <div class="findsettings-age-range">
-      <p style="font-size:1.1em">Age: 18 to {{age}}</p>    </div><div class='findsettings-age-display'>
+      <p style="font-size:1.1em">Age: 18 to {{age}}</p>
+    </div>
+    <div class='findsettings-age-display'>
       <p></p>
     </div>
-
     <div class="list">
       <div class="item range range-positive range-setting-age">
         <i class="icon ion-ios-circle-outline"></i>
@@ -54,10 +47,6 @@
       Show Everyone
       <i class="icon ion-chevron-right"></i>
     </li>
-
-
-
-
+    
   </ion-content>
 </ion-view>
-

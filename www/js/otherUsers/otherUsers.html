@@ -1,97 +1,74 @@
 <!-- ion top bar (navigation) -->
 <ion-header-bar class="bar-calm">
-  <h1 class="title">HangOut</h1>
+<h1 class="title">People around you :)</h1>
 </ion-header-bar>
 
 <ion-view view-title="Home">
-  <ion-content>
-    <!-- a single user -->
-    <div ng-show="userResults === undefined">
-      <center><h3>Fetching Nearby Users</h3></center>
-    </div>
+<ion-content has-bouncing="true" class="has-header has-tabs">
+<!-- a single user -->
+<div ng-show="userResults === undefined">
+  <center><h3></h3></center>
+</div>
 
-    <div class="results-cards-list">
-      <div ng-repeat="person in userResults">
-        <div class="card">
-          <div class="item item-text-wrap">
-            <div class="row">
-              <div class="col">
-                <center>
-                  <img class="home-profile-pic" ng-src="{{person.profilePic}}">
-                </center>
-
-              </div>
-              <div class="col">
-                <center>
-                  <p class="home-username"><b> {{ person.username }} </b></p>
-                  <p class="home-distance">{{person.distanceMiles}} miles away</p>
-                  <!-- &nbsp; -->
-                  <a><i class="user-card-msg-icon ion-paper-airplane calm"></i></a>
-                  <a><i class="user-card-msg-icon ion-android-mail calm"></i></a>
-
-                  <a><i class="user-card-msg-icon ion-android-person-add calm"></i></a>
-
-                </center>
-                
-
-
-
-              </div>
+<div class="results-cards-list">
+  <div ng-repeat="person in userResults">
+    <div class="card">
+      <div class="item item-text-wrap">
+        <div class="row">
+          <div class="col">
+            <center>
+              <img class="home-profile-pic" ng-src="{{person.profilePic}}">
+            </center>
+          </div>
+          <div class="col">
+            <center>
+              <p class="home-username"><b> {{ person.username }} </b> </p>
+              <p class="home-userage">{{person.userAge }} years old<p>
+              <p class="home-distance">{{person.distanceMiles}} miles away</p> 
+              <a><i class="user-card-msg-icon ion-paper-airplane calm"></i></a>
+              <a ng-href="#/chatDetail/{{selectedChatId}}" ng-click="sendMessage(person.id, person)"><i class="user-card-msg-icon ion-android-mail calm"></i></a>
+              <a><i class="user-card-msg-icon ion-android-person-add calm"></i></a>
+            </center>
+          </div>
+        </div>
+      </div>
+      <div class="item item-text-wrap">
+        <div class="row">
+          <div class="col user-card-column">
+            <center><a><i class="user-card ion-happy calm"></i></a></center>
+          </div>
+          <div class="col col-67 user-card-column">
+            <div class="user-card-list">
+              <center>
+                <p ng-repeat="name in person.activities track by $index" 
+                    href="#" 
+                    class="user-card-list-item">{{ name }}</p>
+            </center>
             </div>
           </div>
-          <div class="item item-text-wrap">
-            <div class="row">
-              <div class="col user-card-column">
-                <center>
-
-                <a><i class="user-card ion-happy calm"></i></a>
-                <!-- <div href="" icon-on="ion-happy">asd</div> -->
-                <!-- </br> -->
+        </div>
+      </div>
+      <div class="item item-text-wrap">
+        <div class="row">
+          <div class="col user-card-column">
+            <center>
+            <a><i class="user-card ion-ios-heart calm"></i></a>
+            </center>
+          </div>
+          <div class="col col-67 user-card-column">
+            <div class="user-card-list">
+              <center>
+                <p ng-repeat="name in person.likesTopThree" 
+                    href="#" 
+                    class="user-card-list-item">{{ name }}</p>
+                <a class='user-card-see-more'href="#">...</a>
               </center>
-
-              </div>
-              <div class="col col-67 user-card-column">
-                <div class="user-card-list"><center>
-                  <p ng-repeat="name in person.activities track by $index" 
-                      href="#" 
-                      class="user-card-list-item">
-                      {{ name }}
-                  </p>
-                  <!-- <a class='user-card-see-more'href="#">...</a> -->
-                </center>
-                </div>
-              </div>
             </div>
           </div>
-
-          <div class="item item-text-wrap">
-            <div class="row">
-              <div class="col user-card-column">
-                <center>
-                <a><i class="user-card ion-ios-heart calm"></i></a>
-                <!-- <div href="" icon-on="ion-happy">asd</div> -->
-                <!-- </br> -->
-                </center>
-
-              </div>
-              <div class="col col-67 user-card-column">
-                <div class="user-card-list">
-                  <center>
-                  <p ng-repeat="name in person.likesTopThree" 
-                      href="#" 
-                      class="user-card-list-item">
-                      {{ name }}
-                  </p>
-                  <a class='user-card-see-more'href="#">...</a>
-                </center>
-                </div>
-
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
     </div>
-  </ion-content>
+  </div>
+</div>
+</ion-content>
 </ion-view>

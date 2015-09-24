@@ -5,7 +5,6 @@ body {
   height: 100%;
 }
 .slider-slide {
-  /*padding-top: 80px;*/
   color: #000;
   background-color: #fff;
   text-align: center;
@@ -13,11 +12,9 @@ body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
   font-weight: 300;
 }
-
 #logo {
   margin: 30px 0px;
 }
-
 #list {
   width: 170px;
   margin: 30px auto;
@@ -31,30 +28,21 @@ body {
   list-style: decimal;
   margin: 10px 0px;
 }
-
 .button.ng-hide{
   display:none;
 }
-
-
 @keyframes animatedBackground {
   from { background-position: 0 0; }
   to { background-position: 100% 0; }
 }
-
 @-webkit-keyframes animatedBackground {
   from { background-position: 0 0; }
   to { background-position: 100% 0; }
 }
-
-
-
 .page-1-scroll-content{
-    /*width: 560px; */
   position:relative;
   height: 800px; 
   background-position: 0;
-  /*background-repeat: repeat-x;*/
   background-size:cover;
   -webkit-animation:animatedBackground 50s linear infinite;
    -moz-animation:animatedBackground 50s linear infinite;
@@ -62,8 +50,6 @@ body {
      -o-animation:animatedBackground 50s linear infinite;
         animation:animatedBackground 50s linear infinite;
 }
-
-
 .page-2-scroll-content{
     /*width: 550px; */
   height: 800px; 
@@ -76,13 +62,9 @@ body {
      -o-animation:animatedBackground 50s linear infinite;
         animation:animatedBackground 50s linear infinite;
 }
-
-
 .page-3-scroll-content{
-    /*width: 550px; */
   height: 800px; 
   background-position: 0;
-  /*background-repeat: repeat-x;*/
   background-size:cover;
   -webkit-animation:animatedBackground 50s linear infinite;
    -moz-animation:animatedBackground 50s linear infinite;
@@ -90,14 +72,9 @@ body {
      -o-animation:animatedBackground 50s linear infinite;
         animation:animatedBackground 50s linear infinite;
 }
-
-
-
 .page-4-scroll-content{
-    /*width: 550px; */
   height: 800px; 
   background-position: 0;
-  /*background-repeat: repeat-x;*/
   background-size:cover;
   -webkit-animation:animatedBackground 50s linear infinite;
    -moz-animation:animatedBackground 50s linear infinite;
@@ -105,23 +82,18 @@ body {
      -o-animation:animatedBackground 50s linear infinite;
         animation:animatedBackground 50s linear infinite;
 }
-
 .facebook-login-container {
   margin-top: -50%;
   text-align: center;
 }
-
 .facebook-login-buttons {
   margin-bottom: 3%;
 }
-
 .login-logo-container { 
-  /*text-align: center;*/
   margin-top:-13%;
   margin-left: auto;
   margin-right: auto;
 }
-
 /*ion-md-input initiate */
 ion-md-input {
   position: relative;
@@ -203,12 +175,6 @@ ion-md-input input:focus ~ .md-highlight {
 }
 /*ion-md-input end */
 
-/*
-.choosetodo-input-container {
-  position:fixed;
-  border: 1px solid black;
-}*/
-
 /**
  * Position icons into circle (SO)
  * http://stackoverflow.com/q/12813573/1397351 
@@ -219,10 +185,9 @@ ion-md-input input:focus ~ .md-highlight {
   width: 24em;
   height: 24em;
   padding: 2.8em; /*= 2em * 1.4 (2em = half the width of an img, 1.4 = sqrt(2))*/
-  /*border: dashed 1px;*/
   border-radius: 50%;
   margin: 1.75em auto 0;
-  margin-top:-5%;
+  margin-top:-3%;
 }
 .circle-container a {
   display: block;
@@ -243,7 +208,7 @@ ion-md-input input:focus ~ .md-highlight {
   margin-bottom: -2em;
   margin-right: -3em;
   margin-left: -4em;
-  /*margin-bottom: -1em;*/
+  margin-bottom: -1em;
 }
 /*ng prefixer */
 .circle-container img { display: block; width: 100%; } /*width changes size of each image*/
@@ -301,182 +266,72 @@ i.interest-icon path {
     fill: #FFAC0D; /* #FFC900; */
   }
 
-/* this is just for showing the angle on hover */
-/*.circle-container a:not(.center):before {
-  position: absolute;
-  width: 4em;
-  color: white;
-  opacity: 0;
-  background: rgba(0,0,0,.5);
-  font: 1.25em/3.45 Courier, monospace;
-  letter-spacing: 2px;
-  text-decoration: none;
-  text-indent: -2em;
-  text-shadow: 0 0 .1em deeppink;*/
-  /*transition: .7s;  only works in Firefox */
-/*  content: attr(class)'°';
-}*/
-/*.circle-container a:hover:before { opacity: 1; }*/
-
-/* this is for showing the circle on which the images are placed */
-/*.circle-container:after {
-  position: absolute;
-  top: 2.8em; left: 2.8em;
-  width: 24em; height: 24em;
-  border: dashed 1px deeppink;
-  border-radius: 50%;
-  opacity: .3;
-  pointer-events: none;
-  content: '';
-}
-.circle-container:hover:after { opacity: 1; }
-.circle-container a:not(.center):after {
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 4px; height: 4px;
-  border-radius: 50%;
-  box-shadow: 0 0 .5em .5em white;
-  margin: -2px;
-  background: deeppink;
-  opacity: .3;
-  content: '';
-}
-.circle-container:hover a:after { opacity: 1; }
-.circle-container a:hover:after { opacity: .3; }*/
-
 img.home-profile-pic {
   width: 7em;
-  /*height: 50px;*/
   border-radius: 50%;
   position: relative;
   margin-top:-1em;
   margin-left:-1em;
   margin-bottom:-1em;
-
-  /*padding: -4em;*/
-  /*bottom: 10px;*/
-  /*padding-top:200em;*/
 }
-
 i.user-card {
   font-size:2.5em;
-  /*top:50%;*/
-  /*bottom: 50%;*/
   vertical-align: middle;
-
 }
-
-button.user-card-button {
-  /*margin-top:-1em;*/
-  /*margin-left:-0.5em;*/
-
-  /*margin-bottom:-1em;*/
-  /*text-align:center;*/
-  /*margin-left:50%;*/
-  /*margin-right:50%;*/
-}
-
 div.user-card-column {
   margin-top:-1em;
-  /*margin-left:-0.5em;*/
   margin-bottom:-1em;
-  /*text-align:right;*/ 
 }
-
 p.user-card-list {
   margin-top: -1em;
-  /*margin-left:-0.5em;  */
 }
-
-p.user-card-list-item {
-}
-
 .user-card-list a {
   text-decoration: none !important;
 }
-
 i.user-card-msg-icon {
   font-size:1.5em; 
   margin-right: 0.5em;
-  /*text-align:center;*/
-  /*display:inline-block;*/
-  
 }
-
 p.home-username{ 
-  /*display:inline-block;*/
-  font-size: 1.5em;
+  font-size: 1.6em;
   margin-bottom:0.5em;
-  /*text-align:right;*/
 }
-
+p.home-userage{
+  margin-bottom:0.1em;
+}
 p.home-distance{
   margin-bottom:0.5em;
 }
-
-div.right-align-in-col {
-  /*text-align:right;*/
-  /*float: right;*/
-}
-
-
 img.settings-profile-pic {
   width: 13em;
-  /*height: 50px;*/
   border-radius: 50%;
   position: relative;
   margin-top:5%;
-  /*text-align:center;*/
-  /*margin-left:50%;*/
-  /*margin-right:50%;*/
-
-  /*padding: -4em;*/
-  /*bottom: 10px;*/
-  /*padding-top:200em;*/
 }
-
-
 ul.settings-main-menu{
   margin-top:10%;
 }
-
-
 ul.settings-toggle-menu, ul.find-settings-find-button{
   margin-top: 5%;
 }
-
 div.findsettings-age-range, div.findsettings-distance-range {
   margin-left:5%;
   display: inline-block;
 }
-
 div.settings-main-menu-bottom {
   margin-bottom:60px;
 }
-
 div.results-cards-list {
   margin-bottom:90px;
 }
-
 div.findsettings-distance-display {
-  /*float:right;*/
   margin-left:20%;
-  /*margin-right: -95%;*/
-  /*display: contents;*/
-  /*text-align: right;*/
   display: inline-block;
 }
-
 div.findsettings-age-display {
   display: inline-block;
   font-size: 2em;
-  /*margin-left:20%;*/
-  /*margin-left:30%;*/
-  /*text-align:middle;*/
-  /*float:none;*/
 }
-
-
 div.show-user-settings-list {
   margin-top: 5%;
 }

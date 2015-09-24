@@ -10,12 +10,14 @@
     "angular-material": "~0.10.1",
     "angular-moment": "~0.10.2",
     "angular-scroll-glue": "~2.0.6",
+    "angular-socket-io": "~0.7.0",
     "ionic-material": "~0.4.2",
     "jquery": "~2.1.4",
     "moment": "~2.10.6",
     "ng-cordova-oauth": "~0.1.4",
     "ngCordova": "~0.1.20-alpha",
-    "ngstorage": "~0.3.9"
+    "ngstorage": "~0.3.9",
+    "robotodraft": "~1.1.0"
   },
   "resolutions": {
     "angular": ">= 1.0.8"
