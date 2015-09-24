@@ -12,36 +12,13 @@
     ">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title>I'm Free</title>
-
-    <!-- stylesheets -->
     <link href="lib/ionic/css/ionic.css" rel="stylesheet">
     <link href="css/login.css" rel="stylesheet">
     <link href="css/chat.css" rel="stylesheet">
-    <!--<link href="http://code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">-->
-
-
-    <!-- Angular Material CSS -->
-    <!--<link rel="stylesheet prefetch" href="https://gitcdn.xyz/repo/angular/bower-material/v0.10.1/angular-material.css">-->
     <link href="lib/ion-md-input/css/ion-md-input.css" rel="stylesheet">
-    <!-- <link href="lib/ion.rangeslider/css/normalize.css" rel="stylesheet"> -->
-    <!-- <link href="lib/ion.rangeslider/css/ion.rangeSlider.css"> -->
-    <!-- <link href="lib/ion.rangeslider/css/ion.rangeSlider.skinHTML5.css"> -->
-    <!-- <link href="lib/ion.rangeslider/css/ion.rangeSlider.skinFlat.css"> -->
-
-
-    
-
-
-
-
-    <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
-
-
   </head>
-
   <body ng-app="ionicApp">
-
   <ion-nav-view></ion-nav-view>
 
     <!-- ion tabs (bottom bar) -->
@@ -58,9 +35,11 @@
       </ion-tab>
 
       <!-- Add FB Likes Tab -->
-<!--       <ion-tab title="Your Likes" icon-off="ion-ios-heart-outline" icon-on="ion-ios-heart" href="#/addFbLikes">
+      <!-- 
+      <ion-tab title="Your Likes" icon-off="ion-ios-heart-outline" icon-on="ion-ios-heart" href="#/addFbLikes">
         <ion-nav-view name="tab-likes"></ion-nav-view>
-      </ion-tab> -->
+      </ion-tab> 
+      -->
 
       <!-- Chats Tab -->
       <ion-tab title="Chats" icon-off="ion-ios-chatboxes-outline" icon-on="ion-ios-chatboxes" href="#/chat">
@@ -76,21 +55,16 @@
     <!-- ion tabs end here -->
 
     <script src="lib/jquery/dist/jquery.min.js"></script>
-    <!--<script src="lib/ion.rangeslider/js/ion.rangeSlider.min.js"></script>  -->
-
 
     <!-- ionic -->
     <script src="lib/ionic/js/ionic.bundle.min.js"></script>
     <script src="lib/ionic/js/ionic.min.js"></script>
 
-    <!-- dependencies for angular -->
-    <!-- // <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular.js'></script> -->
-
+    <!-- angular and cordova -->
     <script src="lib/angular-animate/angular-animate.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.min.js"></script>
     <script src="lib/angular-aria/angular-aria.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-messages.min.js"></script>
-    <!--<script src="https://gitcdn.xyz/repo/angular/bower-material/v0.10.1/angular-material.js"></script>-->
     <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/assets-cache.js"></script>
     <script src="lib/moment/moment.js"></script>
     <script src="lib/angular-moment/angular-moment.js"></script>
@@ -98,12 +72,8 @@
     <script src="lib/ngstorage/ngStorage.min.js"></script>
     <script src="lib/ng-cordova-oauth/dist/ng-cordova-oauth.min.js"></script>
     <script src="lib/ngCordova/dist/ng-cordova.js"></script>
-    <!--<script src="lib/ionic-material/dist/ionic.material.js"></script>-->
-    <!--<script src="lib/ionic-material/dist/ionic.material.css"></script>
-
-
+    
     <!-- ng controllers  -->
-
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/login/login.js"></script>
     <script type="text/javascript" src="js/selectActivity/selectActivity.js"></script>
@@ -118,23 +88,17 @@
     <!-- services (for socket) -->
     <script type="text/javascript" src="js/directives.js"></script>
 
-
-    <!--socket io client library-->
+    <!-- socket io client library -->
     <script src="http://chat.socket.io/socket.io/socket.io.js"></script>
 
     <!-- Other Libraries-->
     <script src="lib/angular-sanitize/angular-sanitize.min.js"></script>
     <script src="lib/angular-socket-io/socket.js"></script>
 
-    <!--your services' js -->
+    <!--socket services js -->
     <script src="js/services/socket.js"></script>
 
-    <!--your directives' js -->
+    <!--directives js -->
     <script src="js/directives.js"></script>
-
-    <!-- for the chat options menu -->
-    <!--<script src="http://code.ionicframework.com/nightly/js/ionic.bundle.js"></script>-->
-
-
   </body>
 </html>

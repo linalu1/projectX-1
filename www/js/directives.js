@@ -1,5 +1,7 @@
 'use strict';
 
+// directive to allow message to send upon pressing 'Go' on native keyboard.
+
 angular.module('ionicApp.directives', [])
 .directive('ngEnter', function() {
   return function(scope, element, attrs) {

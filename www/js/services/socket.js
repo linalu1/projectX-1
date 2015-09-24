@@ -2,7 +2,8 @@
 
 angular.module('ionicApp.services', [])
 .factory('socket',function(socketFactory, $rootScope, $localStorage){
-    //Create socket and connect to http://chat.socket.io 
+  
+  //Create socket and connect to MobileFacade. rootScope variable created to allow reference from other files.
   $rootScope.mobileFacadeURL = 'http://10.6.1.165:3000';
 
   // construct the socket factory
@@ -11,12 +12,7 @@ angular.module('ionicApp.services', [])
     ioSocket: myIoSocket
   });
 
-  // to test if the socket is active.
-  // myIoSocket.emit('helloServer');
-  // myIoSocket.on('helloClient', function(data) {
-  //   console.log('Server said hello to client');
-  // })
-
+  // listen for events to update current user's localstorage public chat
   myIoSocket.on('update user public chat storage', function(data) {
     if($localStorage.userAllChatsObject && !localStorage.userAllChatsObject[data]) {
       $localStorage.userAllChatsArray.push(data);
@@ -24,36 +20,19 @@ angular.module('ionicApp.services', [])
     }
   })
 
-  // myIoSocket.on('news', function (data) {
-  //     console.log(data);
-  //     myIoSocket.emit('my other event', { my: 'data' });
-  //   });
-
-
   return mySocket;
 })
 .factory('chatServicesSocket', function(socketFactory, $rootScope) {
-  console.log('inside factory3');
+
+  //Create socket and connect to MobileFacade  
   var chatServicesSocket = io.connect('http://10.6.1.165:3003');
 
+  // construct the socket factory
   var myChatSocket = socketFactory({  
     ioSocket: chatServicesSocket
   });
-
-
-
-  chatServicesSocket.on('testing1', function(data) {
-    console.log(data);
-    chatServicesSocket.emit('testing2', {lina: 'isSoAwesome'});
-  });
-  console.log('inside factory3');
   return chatServicesSocket;
-
 })
 ;
-
-
-//***************** Chat Services Socket ********************//
-
 
 //add extra line at the end

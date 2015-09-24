@@ -35,7 +35,6 @@ angular.module('ionicApp', [
     templateUrl: 'js/chat/chat.html', 
     controller: 'chatCtrl',
     authenticate: true // change to 'false' for testing
-
   })
   .state('chatDetail', {
     url: '/chatDetail/:chatId',
@@ -80,19 +79,10 @@ angular.module('ionicApp', [
     controller: 'generalSettingsCtrl',
     authenticate: true // change to 'false' for testing
   });
-
   $urlRouterProvider.otherwise("/");
 })
 
-// redundant unless this method is being used to hide top/bottom bar for login.html
-/*
-.run(function ($state, $rootScope) {
-    $rootScope.$state = $state;
-})
-*/
-
 .config(['$ionicConfigProvider', function($ionicConfigProvider) {
-
     $ionicConfigProvider.tabs.position('bottom'); // other values: top, standard
 
     // do not allow user swipe left to go back to previous viewed screen (introduces bugs into the app)
@@ -100,25 +90,16 @@ angular.module('ionicApp', [
 }])
 
 .run(function($localStorage, $rootScope, $location, socket){
-
   $rootScope.distance = 5;
-  // $rootScope.mobileFacadeURL = 'http://10.6.1.165:3000';
-  // sets the default var
-  console.log('-------------------------------->$rootScope.mobileFacadeURL', $rootScope.mobileFacadeURL);;
   if ($localStorage.access_token) {
     $location.path('/otherUsers');
   }
-
   $rootScope.$on('$stateChangeStart', function (evt, next, current) {
     if (next.authenticate && !$localStorage.access_token) {
       $rootScope.login = false;
       $location.path('/');
     }
   });
-
-
-
-
 })
 
 .directive('ionMdInput', function(){
@@ -139,29 +120,6 @@ angular.module('ionicApp', [
 
 .run(function($ionicPlatform, $rootScope) {
   $ionicPlatform.ready(function() {
-
-    // // hides bottom tab when keyboard is open.
-    // window.addEventListener('native.keyboardshow', function () {
-    //   // $rootScope.login = true;
-    //   console.log('keyboard showing');
-    //   document.querySelector('ion-tabs').style.display = 'none';
-    //   angular.element(document.querySelector('ion-content.has-tabs')).css('bottom', 0);
-    // });
-    // window.addEventListener('native.keyboardhide', function () {
-    //   // $rootScope.login = false;
-    //   console.log('keyboard not')
-    //   var tabs = document.querySelectorAll('ion-tabs');
-    //   angular.element(tabs[0]).css('display', '');
-    // });
-
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    // if(window.cordova && window.cordova.plugins.Keyboard) {
-    //   cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    // }
-    // if(window.StatusBar) {
-    //   StatusBar.styleDefault();
-    // }
   });
 });
 

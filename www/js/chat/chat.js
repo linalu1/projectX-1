@@ -33,6 +33,7 @@ angular.module('ionicApp.chat', [])
     $scope.popover = popover;
   });
 
+  // login variable set to false for bottom tab bar to appear
   $rootScope.login = false;
 
   // Makes post request to user database for a single user's info 
@@ -262,6 +263,7 @@ angular.module('ionicApp.chat', [])
       messageParticipants: $rootScope.participantUserIDs
     }
     $scope.saveMessageToDatabase($scope.messageData);
+    
     // Tell the other user to update localstorage messages by pulling from database (if other user is not in same chat window)
     socket.emit('tell other user to update localStorage messages', $rootScope.participantUserIDs, function(data) {
     });
